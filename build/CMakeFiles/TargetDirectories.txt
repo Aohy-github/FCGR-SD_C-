@@ -1,0 +1,3 @@
+/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/GLS.dir
+/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/edit_cache.dir
+/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/rebuild_cache.dir
