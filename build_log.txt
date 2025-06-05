@@ -1,0 +1,10 @@
+make: 进入目录“/home/aohy/AohyFile/GLS_cluster/build”
+make[1]: 进入目录“/home/aohy/AohyFile/GLS_cluster/build”
+make[2]: 进入目录“/home/aohy/AohyFile/GLS_cluster/build”
+make[2]: 离开目录“/home/aohy/AohyFile/GLS_cluster/build”
+[ 61%] Built target spdlog
+make[2]: 进入目录“/home/aohy/AohyFile/GLS_cluster/build”
+make[2]: 离开目录“/home/aohy/AohyFile/GLS_cluster/build”
+[100%] Built target GLS
+make[1]: 离开目录“/home/aohy/AohyFile/GLS_cluster/build”
+make: 离开目录“/home/aohy/AohyFile/GLS_cluster/build”

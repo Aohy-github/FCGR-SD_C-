@@ -23,28 +23,27 @@ echo "======================"
 
 echo " GLS: "
 
-/usr/bin/time -v ./build/GLS -i ${dataNmae} -k 6 -t 1 > log.txt
+time ./build/GLS -i ${dataNmae} -k 4 -t 20 -p 0.75 > ./logs/log_GLS.txt
 
-# echo "======================"
-# echo "======================"
+echo "======================"
+echo "======================"
 
-# echo " mafft: "
-# time mafft --thread 16 ${dataNmae} > ${alignName}
+echo " mafft: "
+time mafft --thread 16 ${dataNmae} > ${alignName}
 
-# echo "======================"
-# echo "======================"
+echo "======================"
+echo "======================"
 
-# outName="./IqOut/"
-# echo " iqtree: "
-# ./iqtree-3.0.1-Linux-intel/bin/iqtree3 -s ./${alignName} -m GTR+G -B 1000 -T AUTO --prefix ${outName}/result
+outName="./IqOut/"
+echo " iqtree: "
+./iqtree-3.0.1-Linux-intel/bin/iqtree3 -s ./${alignName} -m GTR+G -B 1000 -T AUTO --prefix ${outName}/result
 
 
-# echo "======================"
-# echo "======================"
+echo "======================"
+echo "======================"
 
-# outName="./IqOut/"
+outName="./IqOut/"
 
-# echo " TreeDist: "
-# Rscript compare_rf.R ${outName}/result.bionj ./out.tree 
-# rm -r ${outName}/*
-
+echo "TreeDist:"
+Rscript compare_rf.R ${outName}/result.bionj ./out.tree 
+rm -r ${outName}/*

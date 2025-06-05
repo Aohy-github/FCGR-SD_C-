@@ -9,7 +9,7 @@
 #include <atomic>
 #include <functional>
 #include <future>
-
+#include "spdlog/spdlog.h"
 class ThreadPool{
 private:
     std::vector<std::thread> workers;
@@ -46,7 +46,7 @@ public:
             this->Tasks.emplace([task]{
                 (*task)();
             });
-            std::cout << this->Tasks.size() << std::endl;
+            // spdlog::info("this Tasks size() : {}" , this->Tasks.size());
         }
         
         condition.notify_one();

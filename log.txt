@@ -1,6145 +1,2459 @@
-输入文件: ./data/steps-1024_0.fasta
-FCGR constructor called
-N_thread : 1
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169
-170
-171
-172
-173
-174
-175
-176
-177
-178
-179
-180
-181
-182
-183
-184
-185
-186
-187
-188
-189
-190
-191
-192
-193
-194
-195
-196
-197
-198
-199
-200
-201
-202
-203
-204
-205
-206
-207
-208
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219
-220
-221
-222
-223
-224
-225
-226
-227
-228
-229
-230
-231
-232
-233
-234
-235
-236
-237
-238
-239
-240
-241
-242
-243
-244
-245
-246
-247
-248
-249
-250
-251
-252
-253
-254
-255
-256
-257
-258
-259
-260
-261
-262
-263
-264
-265
-266
-267
-268
-269
-270
-271
-272
-273
-273
-274
-275
-276
-277
-278
-279
-280
-281
-282
-283
-284
-285
-286
-287
-288
-289
-290
-291
-292
-293
-294
-295
-296
-297
-298
-299
-300
-301
-302
-303
-304
-305
-306
-307
-308
-309
-310
-311
-312
-313
-314
-315
-316
-317
-318
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350
-351
-352
-353
-354
-355
-356
-357
-358
-359
-360
-361
-362
-363
-364
-365
-366
-367
-368
-369
-370
-371
-372
-373
-374
-375
-376
-377
-378
-379
-380
-381
-382
-383
-384
-385
-386
-387
-388
-389
-390
-391
-392
-393
-394
-395
-396
-397
-398
-399
-400
-401
-402
-403
-404
-405
-406
-407
-408
-409
-410
-411
-412
-413
-414
-415
-416
-417
-418
-419
-420
-421
-422
-423
-424
-425
-426
-427
-428
-429
-430
-431
-432
-433
-434
-435
-436
-437
-438
-439
-440
-441
-442
-443
-444
-445
-446
-447
-448
-449
-450
-451
-452
-453
-454
-455
-456
-457
-458
-459
-460
-461
-462
-463
-464
-465
-466
-467
-468
-469
-470
-471
-472
-473
-474
-475
-476
-477
-478
-479
-480
-481
-482
-483
-484
-485
-486
-487
-488
-489
-490
-491
-492
-493
-493
-494
-495
-496
-497
-498
-499
-500
-501
-502
-503
-504
-505
-506
-507
-508
-509
-510
-511
-512
-513
-514
-515
-516
-517
-518
-519
-520
-521
-522
-523
-524
-525
-526
-527
-528
-529
-530
-531
-532
-533
-534
-535
-536
-537
-538
-539
-540
-541
-542
-543
-544
-545
-546
-547
-548
-549
-550
-551
-552
-553
-554
-555
-556
-557
-558
-559
-560
-561
-562
-563
-564
-565
-566
-567
-568
-569
-570
-571
-572
-573
-574
-575
-576
-577
-578
-579
-580
-581
-582
-583
-584
-585
-586
-587
-588
-589
-590
-591
-592
-593
-594
-595
-596
-597
-598
-599
-600
-601
-602
-603
-604
-605
-606
-607
-608
-609
-610
-611
-612
-613
-614
-615
-616
-617
-618
-619
-620
-621
-622
-623
-624
-625
-626
-627
-628
-629
-630
-631
-632
-633
-634
-635
-636
-637
-638
-639
-640
-641
-642
-643
-644
-645
-646
-647
-648
-649
-650
-651
-652
-653
-654
-655
-656
-657
-658
-659
-660
-661
-662
-663
-664
-665
-666
-667
-668
-669
-670
-671
-672
-673
-674
-675
-676
-677
-678
-679
-680
-681
-682
-683
-684
-685
-686
-687
-688
-689
-690
-691
-692
-693
-694
-694
-695
-696
-697
-698
-699
-700
-701
-702
-703
-704
-705
-706
-707
-708
-709
-710
-711
-712
-713
-714
-715
-716
-717
-718
-719
-720
-721
-722
-723
-724
-725
-726
-727
-728
-729
-730
-731
-732
-733
-734
-735
-736
-737
-738
-739
-740
-741
-742
-743
-744
-745
-746
-747
-748
-749
-750
-751
-752
-753
-754
-755
-756
-757
-758
-759
-760
-761
-762
-763
-764
-765
-766
-767
-768
-769
-770
-771
-772
-773
-774
-775
-776
-777
-778
-779
-780
-781
-782
-783
-784
-785
-786
-787
-788
-789
-790
-791
-792
-793
-794
-795
-796
-797
-798
-799
-800
-801
-802
-803
-804
-805
-806
-807
-808
-809
-810
-811
-812
-813
-814
-815
-816
-817
-818
-819
-820
-821
-822
-823
-824
-825
-826
-827
-828
-829
-830
-831
-832
-833
-834
-835
-836
-837
-838
-839
-840
-841
-842
-843
-844
-845
-846
-847
-848
-849
-850
-851
-852
-853
-854
-855
-856
-857
-858
-859
-860
-861
-862
-863
-864
-865
-866
-867
-868
-869
-870
-871
-872
-873
-874
-875
-876
-877
-878
-879
-880
-881
-882
-883
-884
-885
-886
-887
-888
-889
-890
-891
-892
-893
-894
-895
-896
-897
-898
-899
-900
-901
-902
-903
-904
-905
-906
-907
-908
-909
-910
-911
-911
-912
-913
-914
-915
-916
-917
-918
-919
-920
-921
-922
-923
-924
-925
-926
-927
-928
-929
-930
-931
-932
-933
-934
-935
-936
-937
-938
-939
-940
-941
-942
-943
-944
-945
-946
-947
-948
-949
-950
-951
-952
-953
-954
-955
-956
-957
-958
-959
-960
-961
-962
-963
-964
-965
-966
-967
-968
-969
-970
-971
-972
-973
-974
-975
-976
-977
-978
-979
-980
-981
-982
-983
-984
-985
-986
-987
-988
-989
-990
-991
-992
-993
-994
-995
-996
-997
-998
-999
-1000
-1001
-1002
-1003
-1004
-1005
-1006
-1007
-1008
-1009
-1010
-1011
-1012
-1013
-1014
-1015
-1016
-1017
-1018
-1019
-1020
-1021
-1022
-1023
-1024
-1025
-1026
-1027
-1028
-1029
-1030
-1031
-1032
-1033
-1034
-1035
-1036
-1037
-1038
-1039
-1040
-1041
-1042
-1043
-1044
-1045
-1046
-1047
-1048
-1049
-1050
-1051
-1052
-1053
-1054
-1055
-1056
-1057
-1058
-1059
-1060
-1061
-1062
-1063
-1064
-1065
-1066
-1067
-1068
-1069
-1070
-1071
-1072
-1073
-1074
-1075
-1076
-1077
-1078
-1079
-1080
-1081
-1082
-1083
-1084
-1085
-1086
-1087
-1088
-1089
-1090
-1091
-1092
-1093
-1094
-1095
-1096
-1097
-1097
-1098
-1099
-1100
-1101
-1102
-1103
-1104
-1105
-1106
-1107
-1108
-1109
-1110
-1111
-1112
-1113
-1114
-1115
-1116
-1117
-1118
-1119
-1120
-1121
-1122
-1123
-1124
-1125
-1126
-1127
-1128
-1129
-1130
-1131
-1132
-1133
-1134
-1135
-1136
-1137
-1138
-1139
-1140
-1141
-1142
-1143
-1144
-1145
-1146
-1147
-1148
-1149
-1150
-1151
-1152
-1153
-1154
-1155
-1156
-1157
-1158
-1159
-1160
-1161
-1162
-1163
-1164
-1165
-1166
-1167
-1168
-1169
-1170
-1171
-1172
-1173
-1174
-1175
-1176
-1177
-1178
-1179
-1180
-1181
-1182
-1183
-1184
-1185
-1186
-1187
-1188
-1189
-1190
-1191
-1192
-1193
-1194
-1195
-1196
-1197
-1198
-1199
-1200
-1201
-1202
-1203
-1204
-1205
-1206
-1207
-1208
-1209
-1210
-1211
-1212
-1213
-1214
-1215
-1216
-1217
-1218
-1219
-1220
-1221
-1222
-1223
-1224
-1225
-1226
-1227
-1228
-1229
-1230
-1231
-1232
-1233
-1234
-1235
-1236
-1237
-1238
-1239
-1240
-1241
-1242
-1243
-1244
-1245
-1246
-1247
-1248
-1249
-1250
-1251
-1252
-1253
-1254
-1255
-1256
-1257
-1258
-1259
-1260
-1261
-1262
-1263
-1264
-1265
-1266
-1267
-1268
-1269
-1270
-1271
-1272
-1273
-1274
-1275
-1276
-1277
-1278
-1279
-1280
-1281
-1282
-1283
-1284
-1285
-1286
-1287
-1288
-1289
-1290
-1291
-1292
-1293
-1294
-1295
-1296
-1297
-1298
-1299
-1300
-1301
-1302
-1303
-1304
-1305
-1306
-1307
-1308
-1309
-1309
-1310
-1311
-1312
-1313
-1314
-1315
-1316
-1317
-1318
-1319
-1320
-1321
-1322
-1323
-1324
-1325
-1326
-1327
-1328
-1329
-1330
-1331
-1332
-1333
-1334
-1335
-1336
-1337
-1338
-1339
-1340
-1341
-1342
-1343
-1344
-1345
-1346
-1347
-1348
-1349
-1350
-1351
-1352
-1353
-1354
-1355
-1356
-1357
-1358
-1359
-1360
-1361
-1362
-1363
-1364
-1365
-1366
-1367
-1368
-1369
-1370
-1371
-1372
-1373
-1374
-1375
-1376
-1377
-1378
-1379
-1380
-1381
-1382
-1383
-1384
-1385
-1386
-1387
-1388
-1389
-1390
-1391
-1392
-1393
-1394
-1395
-1396
-1397
-1398
-1399
-1400
-1401
-1402
-1403
-1404
-1405
-1406
-1407
-1408
-1409
-1410
-1411
-1412
-1413
-1414
-1415
-1416
-1417
-1418
-1419
-1420
-1421
-1422
-1423
-1424
-1425
-1426
-1427
-1428
-1429
-1430
-1431
-1432
-1433
-1434
-1435
-1436
-1437
-1438
-1439
-1440
-1441
-1442
-1443
-1444
-1445
-1446
-1447
-1448
-1449
-1450
-1451
-1452
-1453
-1454
-1455
-1456
-1457
-1458
-1459
-1460
-1461
-1462
-1463
-1464
-1465
-1466
-1467
-1468
-1469
-1470
-1471
-1472
-1473
-1474
-1475
-1476
-1477
-1478
-1479
-1480
-1481
-1482
-1483
-1484
-1485
-1486
-1487
-1488
-1489
-1490
-1491
-1492
-1493
-1494
-1495
-1496
-1497
-1498
-1499
-1500
-1501
-1502
-1503
-1504
-1505
-1506
-1507
-1508
-1509
-1510
-1511
-1512
-1513
-1514
-1515
-1516
-1516
-1517
-1518
-1519
-1520
-1521
-1522
-1523
-1524
-1525
-1526
-1527
-1528
-1529
-1530
-1531
-1532
-1533
-1534
-1535
-1536
-1537
-1538
-1539
-1540
-1541
-1542
-1543
-1544
-1545
-1546
-1547
-1548
-1549
-1550
-1551
-1552
-1553
-1554
-1555
-1556
-1557
-1558
-1559
-1560
-1561
-1562
-1563
-1564
-1565
-1566
-1567
-1568
-1569
-1570
-1571
-1572
-1573
-1574
-1575
-1576
-1577
-1578
-1579
-1580
-1581
-1582
-1583
-1584
-1585
-1586
-1587
-1588
-1589
-1590
-1591
-1592
-1593
-1594
-1595
-1596
-1597
-1598
-1599
-1600
-1601
-1602
-1603
-1604
-1605
-1606
-1607
-1608
-1609
-1610
-1611
-1612
-1613
-1614
-1615
-1616
-1617
-1618
-1619
-1620
-1621
-1622
-1623
-1624
-1625
-1626
-1627
-1628
-1629
-1630
-1631
-1632
-1633
-1634
-1635
-1636
-1637
-1638
-1639
-1640
-1641
-1642
-1643
-1644
-1645
-1646
-1647
-1648
-1649
-1650
-1651
-1652
-1653
-1654
-1655
-1656
-1657
-1658
-1659
-1660
-1661
-1662
-1663
-1664
-1665
-1666
-1667
-1668
-1669
-1670
-1671
-1672
-1673
-1674
-1675
-1676
-1677
-1678
-1679
-1680
-1681
-1682
-1683
-1684
-1685
-1686
-1687
-1688
-1689
-1690
-1691
-1692
-1693
-1694
-1695
-1696
-1697
-1698
-1699
-1700
-1701
-1702
-1703
-1704
-1705
-1706
-1707
-1708
-1709
-1710
-1711
-1712
-1713
-1714
-1715
-1716
-1717
-1718
-1719
-1720
-1721
-1722
-1723
-1724
-1725
-1726
-1727
-1728
-1729
-1730
-1731
-1732
-1733
-1734
-1735
-1736
-1737
-1738
-1739
-1740
-1741
-1742
-1743
-1744
-1744
-1745
-1746
-1747
-1748
-1749
-1750
-1751
-1752
-1753
-1754
-1755
-1756
-1757
-1758
-1759
-1760
-1761
-1762
-1763
-1764
-1765
-1766
-1767
-1768
-1769
-1770
-1771
-1772
-1773
-1774
-1775
-1776
-1777
-1778
-1779
-1780
-1781
-1782
-1783
-1784
-1785
-1786
-1787
-1788
-1789
-1790
-1791
-1792
-1793
-1794
-1795
-1796
-1797
-1798
-1799
-1800
-1801
-1802
-1803
-1804
-1805
-1806
-1807
-1808
-1809
-1810
-1811
-1812
-1813
-1814
-1815
-1816
-1817
-1818
-1819
-1820
-1821
-1822
-1823
-1824
-1825
-1826
-1827
-1828
-1829
-1830
-1831
-1832
-1833
-1834
-1835
-1836
-1837
-1838
-1839
-1840
-1841
-1842
-1843
-1844
-1845
-1846
-1847
-1848
-1849
-1850
-1851
-1852
-1853
-1854
-1855
-1856
-1857
-1858
-1859
-1860
-1861
-1862
-1863
-1864
-1865
-1866
-1867
-1868
-1869
-1870
-1871
-1872
-1873
-1874
-1875
-1876
-1877
-1878
-1879
-1880
-1881
-1882
-1883
-1884
-1885
-1886
-1887
-1888
-1889
-1890
-1891
-1892
-1893
-1894
-1895
-1896
-1897
-1898
-1899
-1900
-1901
-1902
-1903
-1904
-1905
-1906
-1907
-1908
-1909
-1910
-1911
-1912
-1913
-1914
-1915
-1916
-1917
-1918
-1919
-1920
-1921
-1922
-1923
-1924
-1925
-1926
-1927
-1928
-1929
-1930
-1931
-1932
-1933
-1934
-1935
-1936
-1937
-1938
-1939
-1940
-1941
-1942
-1943
-1944
-1945
-1946
-1947
-1948
-1949
-1950
-1951
-1952
-1953
-1954
-1955
-1956
-1957
-1958
-1959
-1960
-1961
-1962
-1963
-1964
-1965
-1966
-1967
-1968
-1969
-1970
-1971
-1972
-1973
-1974
-1975
-1976
-1977
-1978
-1979
-1980
-1981
-1982
-1983
-1984
-1985
-1985
-1986
-1987
-1988
-1989
-1990
-1991
-1992
-1993
-1994
-1995
-1996
-1997
-1998
-1999
-2000
-2001
-2002
-2003
-2004
-2005
-2006
-2007
-2008
-2009
-2010
-2011
-2012
-2013
-2014
-2015
-2016
-2017
-2018
-2019
-2020
-2021
-2022
-2023
-2024
-2025
-2026
-2027
-2028
-2029
-2030
-2031
-2032
-2033
-2034
-2035
-2036
-2037
-seqs.size() :2047
-1
- count_temp :0
-2
- count_temp :1
-3
- count_temp :2
-3
- count_temp :3
-4
- count_temp :4
-5
- count_temp :5
-6
- count_temp :6
-7
- count_temp :7
-8
- count_temp :8
-9
- count_temp :9
-10
- count_temp :10
-11
- count_temp :11
-12
- count_temp :12
-13
- count_temp :13
-14
- count_temp :14
-15
- count_temp :15
-16
- count_temp :16
-17
- count_temp :17
-18
- count_temp :18
-19
- count_temp :19
-20
- count_temp :20
-21
- count_temp :21
-22
- count_temp :22
-23
- count_temp :23
-24
- count_temp :24
-25
- count_temp :25
-26
- count_temp :26
-27
- count_temp :27
-28
- count_temp :28
-29
- count_temp :29
-30
- count_temp :30
-31
- count_temp :31
-32
- count_temp :32
-33
- count_temp :33
-34
- count_temp :34
-35
- count_temp :35
-36
- count_temp :36
-37
- count_temp :37
-38
- count_temp :38
-39
- count_temp :39
-40
- count_temp :40
-41
- count_temp :41
-42
- count_temp :42
-43
- count_temp :43
-44
- count_temp :44
-45
- count_temp :45
-46
- count_temp :46
-47
- count_temp :47
-48
- count_temp :48
-49
- count_temp :49
-50
- count_temp :50
-51
- count_temp :51
-52
- count_temp :52
-53
- count_temp :53
-54
- count_temp :54
-55
- count_temp :55
-56
- count_temp :56
-57
- count_temp :57
-58
- count_temp :58
-59
- count_temp :59
-60
- count_temp :60
-61
- count_temp :61
-62
- count_temp :62
-63
- count_temp :63
-64
- count_temp :64
-65
- count_temp :65
-66
- count_temp :66
-67
- count_temp :67
-68
- count_temp :68
-69
- count_temp :69
-70
- count_temp :70
-71
- count_temp :71
-72
- count_temp :72
-73
- count_temp :73
-74
- count_temp :74
-75
- count_temp :75
-76
- count_temp :76
-77
- count_temp :77
-78
- count_temp :78
-79
- count_temp :79
-80
- count_temp :80
-81
- count_temp :81
-82
- count_temp :82
-83
- count_temp :83
-84
- count_temp :84
-85
- count_temp :85
-86
- count_temp :86
-87
- count_temp :87
-88
- count_temp :88
-89
- count_temp :89
-90
- count_temp :90
-91
- count_temp :91
-92
- count_temp :92
-93
- count_temp :93
-94
- count_temp :94
-95
- count_temp :95
-96
- count_temp :96
-97
- count_temp :97
-98
- count_temp :98
-99
- count_temp :99
-100
- count_temp :100
-101
- count_temp :101
-102
- count_temp :102
-103
- count_temp :103
-104
- count_temp :104
-105
- count_temp :105
-106
- count_temp :106
-107
- count_temp :107
-108
- count_temp :108
-109
- count_temp :109
-110
- count_temp :110
-111
- count_temp :111
-112
- count_temp :112
-113
- count_temp :113
-114
- count_temp :114
-115
- count_temp :115
-116
- count_temp :116
-117
- count_temp :117
-118
- count_temp :118
-119
- count_temp :119
-120
- count_temp :120
-121
- count_temp :121
-122
- count_temp :122
-123
- count_temp :123
-124
- count_temp :124
-125
- count_temp :125
-126
- count_temp :126
-127
- count_temp :127
-128
- count_temp :128
-129
- count_temp :129
-130
- count_temp :130
-131
- count_temp :131
-132
- count_temp :132
-133
- count_temp :133
-134
- count_temp :134
-135
- count_temp :135
-136
- count_temp :136
-137
- count_temp :137
-138
- count_temp :138
-139
- count_temp :139
-140
- count_temp :140
-141
- count_temp :141
-142
- count_temp :142
-143
- count_temp :143
-144
- count_temp :144
-145
- count_temp :145
-146
- count_temp :146
-147
- count_temp :147
-148
- count_temp :148
-149
- count_temp :149
-150
- count_temp :150
-151
- count_temp :151
-152
- count_temp :152
-153
- count_temp :153
-154
- count_temp :154
-155
- count_temp :155
-156
- count_temp :156
-157
- count_temp :157
-158
- count_temp :158
-159
- count_temp :159
-160
- count_temp :160
-161
- count_temp :161
-162
- count_temp :162
-163
- count_temp :163
-164
- count_temp :164
-165
- count_temp :165
-166
- count_temp :166
-167
- count_temp :167
-168
- count_temp :168
-169
- count_temp :169
-170
- count_temp :170
-171
- count_temp :171
-172
- count_temp :172
-173
- count_temp :173
-174
- count_temp :174
-175
- count_temp :175
-176
- count_temp :176
-177
- count_temp :177
-178
- count_temp :178
-179
- count_temp :179
-180
- count_temp :180
-181
- count_temp :181
-182
- count_temp :182
-183
- count_temp :183
-184
- count_temp :184
-185
- count_temp :185
-186
- count_temp :186
-187
- count_temp :187
-188
- count_temp :188
-189
- count_temp :189
-190
- count_temp :190
-191
- count_temp :191
-192
- count_temp :192
-193
- count_temp :193
-194
- count_temp :194
-195
- count_temp :195
-196
- count_temp :196
-197
- count_temp :197
-198
- count_temp :198
-199
- count_temp :199
-200
- count_temp :200
-201
- count_temp :201
-202
- count_temp :202
-203
- count_temp :203
-204
- count_temp :204
-205
- count_temp :205
-206
- count_temp :206
-207
- count_temp :207
-208
- count_temp :208
-209
- count_temp :209
-210
- count_temp :210
-211
- count_temp :211
-212
- count_temp :212
-213
- count_temp :213
-214
- count_temp :214
-215
- count_temp :215
-216
- count_temp :216
-217
- count_temp :217
-218
- count_temp :218
-219
- count_temp :219
-220
- count_temp :220
-221
- count_temp :221
-222
- count_temp :222
-223
- count_temp :223
-224
- count_temp :224
-225
- count_temp :225
-226
- count_temp :226
-227
- count_temp :227
-228
- count_temp :228
-229
- count_temp :229
-230
- count_temp :230
-231
- count_temp :231
-232
- count_temp :232
-233
- count_temp :233
-234
- count_temp :234
-235
- count_temp :235
-236
- count_temp :236
-237
- count_temp :237
-238
- count_temp :238
-239
- count_temp :239
-240
- count_temp :240
-241
- count_temp :241
-242
- count_temp :242
-243
- count_temp :243
-244
- count_temp :244
-245
- count_temp :245
-246
- count_temp :246
-247
- count_temp :247
-248
- count_temp :248
-249
- count_temp :249
-250
- count_temp :250
-251
- count_temp :251
-252
- count_temp :252
-253
- count_temp :253
-254
- count_temp :254
-255
- count_temp :255
-256
- count_temp :256
-257
- count_temp :257
-258
- count_temp :258
-259
- count_temp :259
-260
- count_temp :260
-261
- count_temp :261
-262
- count_temp :262
-263
- count_temp :263
-264
- count_temp :264
-265
- count_temp :265
-266
- count_temp :266
-267
- count_temp :267
-268
- count_temp :268
-269
- count_temp :269
-270
- count_temp :270
-271
- count_temp :271
-272
- count_temp :272
-273
- count_temp :273
-274
- count_temp :274
-275
- count_temp :275
-276
- count_temp :276
-277
- count_temp :277
-278
- count_temp :278
-279
- count_temp :279
-280
- count_temp :280
-281
- count_temp :281
-282
- count_temp :282
-283
- count_temp :283
-284
- count_temp :284
-285
- count_temp :285
-286
- count_temp :286
-287
- count_temp :287
-288
- count_temp :288
-289
- count_temp :289
-290
- count_temp :290
-291
- count_temp :291
-292
- count_temp :292
-293
- count_temp :293
-294
- count_temp :294
-295
- count_temp :295
-296
- count_temp :296
-297
- count_temp :297
-298
- count_temp :298
-299
- count_temp :299
-300
- count_temp :300
-301
- count_temp :301
-302
- count_temp :302
-303
- count_temp :303
-304
- count_temp :304
-305
- count_temp :305
-306
- count_temp :306
-307
- count_temp :307
-308
- count_temp :308
-309
- count_temp :309
-310
- count_temp :310
-311
- count_temp :311
-312
- count_temp :312
-313
- count_temp :313
-314
- count_temp :314
-315
- count_temp :315
-316
- count_temp :316
-317
- count_temp :317
-318
- count_temp :318
-319
- count_temp :319
-320
- count_temp :320
-321
- count_temp :321
-322
- count_temp :322
-323
- count_temp :323
-324
- count_temp :324
-325
- count_temp :325
-326
- count_temp :326
-327
- count_temp :327
-328
- count_temp :328
-329
- count_temp :329
-330
- count_temp :330
-331
- count_temp :331
-332
- count_temp :332
-333
- count_temp :333
-334
- count_temp :334
-335
- count_temp :335
-336
- count_temp :336
-337
- count_temp :337
-338
- count_temp :338
-339
- count_temp :339
-340
- count_temp :340
-341
- count_temp :341
-342
- count_temp :342
-343
- count_temp :343
-344
- count_temp :344
-345
- count_temp :345
-346
- count_temp :346
-347
- count_temp :347
-348
- count_temp :348
-349
- count_temp :349
-350
- count_temp :350
-351
- count_temp :351
-352
- count_temp :352
-353
- count_temp :353
-354
- count_temp :354
-355
- count_temp :355
-356
- count_temp :356
-357
- count_temp :357
-358
- count_temp :358
-359
- count_temp :359
-360
- count_temp :360
-361
- count_temp :361
-362
- count_temp :362
-363
- count_temp :363
-364
- count_temp :364
-365
- count_temp :365
-366
- count_temp :366
-367
- count_temp :367
-368
- count_temp :368
-369
- count_temp :369
-370
- count_temp :370
-371
- count_temp :371
-372
- count_temp :372
-373
- count_temp :373
-374
- count_temp :374
-375
- count_temp :375
-376
- count_temp :376
-377
- count_temp :377
-378
- count_temp :378
-379
- count_temp :379
-380
- count_temp :380
-381
- count_temp :381
-382
- count_temp :382
-383
- count_temp :383
-384
- count_temp :384
-385
- count_temp :385
-386
- count_temp :386
-387
- count_temp :387
-388
- count_temp :388
-389
- count_temp :389
-390
- count_temp :390
-391
- count_temp :391
-392
- count_temp :392
-393
- count_temp :393
-394
- count_temp :394
-395
- count_temp :395
-396
- count_temp :396
-397
- count_temp :397
-398
- count_temp :398
-399
- count_temp :399
-400
- count_temp :400
-401
- count_temp :401
-402
- count_temp :402
-403
- count_temp :403
-404
- count_temp :404
-405
- count_temp :405
-406
- count_temp :406
-407
- count_temp :407
-408
- count_temp :408
-409
- count_temp :409
-410
- count_temp :410
-411
- count_temp :411
-412
- count_temp :412
-413
- count_temp :413
-414
- count_temp :414
-415
- count_temp :415
-416
- count_temp :416
-417
- count_temp :417
-418
- count_temp :418
-419
- count_temp :419
-420
- count_temp :420
-421
- count_temp :421
-422
- count_temp :422
-423
- count_temp :423
-424
- count_temp :424
-425
- count_temp :425
-426
- count_temp :426
-427
- count_temp :427
-428
- count_temp :428
-429
- count_temp :429
-430
- count_temp :430
-431
- count_temp :431
-432
- count_temp :432
-433
- count_temp :433
-434
- count_temp :434
-435
- count_temp :435
-436
- count_temp :436
-437
- count_temp :437
-438
- count_temp :438
-439
- count_temp :439
-440
- count_temp :440
-441
- count_temp :441
-442
- count_temp :442
-443
- count_temp :443
-444
- count_temp :444
-445
- count_temp :445
-446
- count_temp :446
-447
- count_temp :447
-448
- count_temp :448
-449
- count_temp :449
-450
- count_temp :450
-451
- count_temp :451
-452
- count_temp :452
-453
- count_temp :453
-454
- count_temp :454
-455
- count_temp :455
-456
- count_temp :456
-457
- count_temp :457
-458
- count_temp :458
-459
- count_temp :459
-460
- count_temp :460
-461
- count_temp :461
-462
- count_temp :462
-463
- count_temp :463
-464
- count_temp :464
-465
- count_temp :465
-466
- count_temp :466
-467
- count_temp :467
-468
- count_temp :468
-469
- count_temp :469
-470
- count_temp :470
-471
- count_temp :471
-472
- count_temp :472
-473
- count_temp :473
-474
- count_temp :474
-475
- count_temp :475
-476
- count_temp :476
-477
- count_temp :477
-478
- count_temp :478
-479
- count_temp :479
-480
- count_temp :480
-481
- count_temp :481
-482
- count_temp :482
-483
- count_temp :483
-484
- count_temp :484
-485
- count_temp :485
-486
- count_temp :486
-487
- count_temp :487
-488
- count_temp :488
-489
- count_temp :489
-490
- count_temp :490
-491
- count_temp :491
-492
- count_temp :492
-493
- count_temp :493
-494
- count_temp :494
-495
- count_temp :495
-496
- count_temp :496
-497
- count_temp :497
-498
- count_temp :498
-499
- count_temp :499
-500
- count_temp :500
-501
- count_temp :501
-502
- count_temp :502
-503
- count_temp :503
-504
- count_temp :504
-505
- count_temp :505
-506
- count_temp :506
-507
- count_temp :507
-508
- count_temp :508
-509
- count_temp :509
-510
- count_temp :510
-511
- count_temp :511
-512
- count_temp :512
-513
- count_temp :513
-514
- count_temp :514
-515
- count_temp :515
-516
- count_temp :516
-517
- count_temp :517
-518
- count_temp :518
-519
- count_temp :519
-520
- count_temp :520
-521
- count_temp :521
-522
- count_temp :522
-523
- count_temp :523
-524
- count_temp :524
-525
- count_temp :525
-526
- count_temp :526
-527
- count_temp :527
-528
- count_temp :528
-529
- count_temp :529
-530
- count_temp :530
-531
- count_temp :531
-532
- count_temp :532
-533
- count_temp :533
-534
- count_temp :534
-535
- count_temp :535
-536
- count_temp :536
-537
- count_temp :537
-538
- count_temp :538
-539
- count_temp :539
-540
- count_temp :540
-541
- count_temp :541
-542
- count_temp :542
-543
- count_temp :543
-544
- count_temp :544
-545
- count_temp :545
-546
- count_temp :546
-547
- count_temp :547
-548
- count_temp :548
-549
- count_temp :549
-550
- count_temp :550
-551
- count_temp :551
-552
- count_temp :552
-553
- count_temp :553
-554
- count_temp :554
-555
- count_temp :555
-556
- count_temp :556
-557
- count_temp :557
-558
- count_temp :558
-559
- count_temp :559
-560
- count_temp :560
-561
- count_temp :561
-562
- count_temp :562
-563
- count_temp :563
-564
- count_temp :564
-565
- count_temp :565
-566
- count_temp :566
-567
- count_temp :567
-568
- count_temp :568
-569
- count_temp :569
-570
- count_temp :570
-571
- count_temp :571
-572
- count_temp :572
-573
- count_temp :573
-574
- count_temp :574
-575
- count_temp :575
-576
- count_temp :576
-577
- count_temp :577
-578
- count_temp :578
-579
- count_temp :579
-580
- count_temp :580
-581
- count_temp :581
-582
- count_temp :582
-583
- count_temp :583
-584
- count_temp :584
-585
- count_temp :585
-586
- count_temp :586
-587
- count_temp :587
-588
- count_temp :588
-589
- count_temp :589
-590
- count_temp :590
-591
- count_temp :591
-592
- count_temp :592
-593
- count_temp :593
-594
- count_temp :594
-595
- count_temp :595
-596
- count_temp :596
-597
- count_temp :597
-598
- count_temp :598
-599
- count_temp :599
-600
- count_temp :600
-601
- count_temp :601
-602
- count_temp :602
-603
- count_temp :603
-604
- count_temp :604
-605
- count_temp :605
-606
- count_temp :606
-607
- count_temp :607
-608
- count_temp :608
-609
- count_temp :609
-610
- count_temp :610
-611
- count_temp :611
-612
- count_temp :612
-613
- count_temp :613
-614
- count_temp :614
-615
- count_temp :615
-616
- count_temp :616
-617
- count_temp :617
-618
- count_temp :618
-619
- count_temp :619
-620
- count_temp :620
-621
- count_temp :621
-622
- count_temp :622
-623
- count_temp :623
-624
- count_temp :624
-625
- count_temp :625
-626
- count_temp :626
-627
- count_temp :627
-628
- count_temp :628
-629
- count_temp :629
-630
- count_temp :630
-631
- count_temp :631
-632
- count_temp :632
-633
- count_temp :633
-634
- count_temp :634
-635
- count_temp :635
-636
- count_temp :636
-637
- count_temp :637
-638
- count_temp :638
-639
- count_temp :639
-640
- count_temp :640
-641
- count_temp :641
-642
- count_temp :642
-643
- count_temp :643
-644
- count_temp :644
-645
- count_temp :645
-646
- count_temp :646
-647
- count_temp :647
-648
- count_temp :648
-649
- count_temp :649
-650
- count_temp :650
-651
- count_temp :651
-652
- count_temp :652
-653
- count_temp :653
-654
- count_temp :654
-655
- count_temp :655
-656
- count_temp :656
-657
- count_temp :657
-658
- count_temp :658
-659
- count_temp :659
-660
- count_temp :660
-661
- count_temp :661
-662
- count_temp :662
-663
- count_temp :663
-664
- count_temp :664
-665
- count_temp :665
-666
- count_temp :666
-667
- count_temp :667
-668
- count_temp :668
-669
- count_temp :669
-670
- count_temp :670
-671
- count_temp :671
-672
- count_temp :672
-673
- count_temp :673
-674
- count_temp :674
-675
- count_temp :675
-676
- count_temp :676
-677
- count_temp :677
-678
- count_temp :678
-679
- count_temp :679
-680
- count_temp :680
-681
- count_temp :681
-682
- count_temp :682
-683
- count_temp :683
-684
- count_temp :684
-685
- count_temp :685
-686
- count_temp :686
-687
- count_temp :687
-688
- count_temp :688
-689
- count_temp :689
-690
- count_temp :690
-691
- count_temp :691
-692
- count_temp :692
-693
- count_temp :693
-694
- count_temp :694
-695
- count_temp :695
-696
- count_temp :696
-697
- count_temp :697
-698
- count_temp :698
-699
- count_temp :699
-700
- count_temp :700
-701
- count_temp :701
-702
- count_temp :702
-703
- count_temp :703
-704
- count_temp :704
-705
- count_temp :705
-706
- count_temp :706
-707
- count_temp :707
-708
- count_temp :708
-709
- count_temp :709
-710
- count_temp :710
-711
- count_temp :711
-712
- count_temp :712
-713
- count_temp :713
-714
- count_temp :714
-715
- count_temp :715
-716
- count_temp :716
-717
- count_temp :717
-718
- count_temp :718
-719
- count_temp :719
-720
- count_temp :720
-721
- count_temp :721
-722
- count_temp :722
-723
- count_temp :723
-724
- count_temp :724
-725
- count_temp :725
-726
- count_temp :726
-727
- count_temp :727
-728
- count_temp :728
-729
- count_temp :729
-730
- count_temp :730
-731
- count_temp :731
-732
- count_temp :732
-733
- count_temp :733
-734
- count_temp :734
-735
- count_temp :735
-736
- count_temp :736
-737
- count_temp :737
-738
- count_temp :738
-739
- count_temp :739
-740
- count_temp :740
-741
- count_temp :741
-742
- count_temp :742
-743
- count_temp :743
-744
- count_temp :744
-745
- count_temp :745
-746
- count_temp :746
-747
- count_temp :747
-748
- count_temp :748
-749
- count_temp :749
-750
- count_temp :750
-751
- count_temp :751
-752
- count_temp :752
-753
- count_temp :753
-754
- count_temp :754
-755
- count_temp :755
-756
- count_temp :756
-757
- count_temp :757
-758
- count_temp :758
-759
- count_temp :759
-760
- count_temp :760
-761
- count_temp :761
-762
- count_temp :762
-763
- count_temp :763
-764
- count_temp :764
-765
- count_temp :765
-766
- count_temp :766
-767
- count_temp :767
-768
- count_temp :768
-769
- count_temp :769
-770
- count_temp :770
-771
- count_temp :771
-772
- count_temp :772
-773
- count_temp :773
-774
- count_temp :774
-775
- count_temp :775
-776
- count_temp :776
-777
- count_temp :777
-778
- count_temp :778
-779
- count_temp :779
-780
- count_temp :780
-781
- count_temp :781
-782
- count_temp :782
-783
- count_temp :783
-784
- count_temp :784
-785
- count_temp :785
-786
- count_temp :786
-787
- count_temp :787
-788
- count_temp :788
-789
- count_temp :789
-790
- count_temp :790
-791
- count_temp :791
-792
- count_temp :792
-793
- count_temp :793
-794
- count_temp :794
-795
- count_temp :795
-796
- count_temp :796
-797
- count_temp :797
-798
- count_temp :798
-799
- count_temp :799
-800
- count_temp :800
-801
- count_temp :801
-802
- count_temp :802
-803
- count_temp :803
-804
- count_temp :804
-805
- count_temp :805
-806
- count_temp :806
-807
- count_temp :807
-808
- count_temp :808
-809
- count_temp :809
-810
- count_temp :810
-811
- count_temp :811
-812
- count_temp :812
-813
- count_temp :813
-814
- count_temp :814
-815
- count_temp :815
-816
- count_temp :816
-817
- count_temp :817
-818
- count_temp :818
-819
- count_temp :819
-820
- count_temp :820
-821
- count_temp :821
-822
- count_temp :822
-823
- count_temp :823
-824
- count_temp :824
-825
- count_temp :825
-826
- count_temp :826
-827
- count_temp :827
-828
- count_temp :828
-829
- count_temp :829
-830
- count_temp :830
-831
- count_temp :831
-832
- count_temp :832
-833
- count_temp :833
-834
- count_temp :834
-835
- count_temp :835
-836
- count_temp :836
-837
- count_temp :837
-838
- count_temp :838
-839
- count_temp :839
-840
- count_temp :840
-841
- count_temp :841
-842
- count_temp :842
-843
- count_temp :843
-844
- count_temp :844
-845
- count_temp :845
-846
- count_temp :846
-847
- count_temp :847
-848
- count_temp :848
-849
- count_temp :849
-850
- count_temp :850
-851
- count_temp :851
-852
- count_temp :852
-853
- count_temp :853
-854
- count_temp :854
-855
- count_temp :855
-856
- count_temp :856
-857
- count_temp :857
-858
- count_temp :858
-859
- count_temp :859
-860
- count_temp :860
-861
- count_temp :861
-862
- count_temp :862
-863
- count_temp :863
-864
- count_temp :864
-865
- count_temp :865
-866
- count_temp :866
-867
- count_temp :867
-868
- count_temp :868
-869
- count_temp :869
-870
- count_temp :870
-871
- count_temp :871
-872
- count_temp :872
-873
- count_temp :873
-874
- count_temp :874
-875
- count_temp :875
-876
- count_temp :876
-877
- count_temp :877
-878
- count_temp :878
-879
- count_temp :879
-880
- count_temp :880
-881
- count_temp :881
-882
- count_temp :882
-883
- count_temp :883
-884
- count_temp :884
-885
- count_temp :885
-886
- count_temp :886
-887
- count_temp :887
-888
- count_temp :888
-889
- count_temp :889
-890
- count_temp :890
-891
- count_temp :891
-892
- count_temp :892
-893
- count_temp :893
-894
- count_temp :894
-895
- count_temp :895
-896
- count_temp :896
-897
- count_temp :897
-898
- count_temp :898
-899
- count_temp :899
-900
- count_temp :900
-901
- count_temp :901
-902
- count_temp :902
-903
- count_temp :903
-904
- count_temp :904
-905
- count_temp :905
-906
- count_temp :906
-907
- count_temp :907
-908
- count_temp :908
-909
- count_temp :909
-910
- count_temp :910
-911
- count_temp :911
-912
- count_temp :912
-913
- count_temp :913
-914
- count_temp :914
-915
- count_temp :915
-916
- count_temp :916
-917
- count_temp :917
-918
- count_temp :918
-919
- count_temp :919
-920
- count_temp :920
-921
- count_temp :921
-922
- count_temp :922
-923
- count_temp :923
-924
- count_temp :924
-925
- count_temp :925
-926
- count_temp :926
-927
- count_temp :927
-928
- count_temp :928
-929
- count_temp :929
-930
- count_temp :930
-931
- count_temp :931
-932
- count_temp :932
-933
- count_temp :933
-934
- count_temp :934
-935
- count_temp :935
-936
- count_temp :936
-937
- count_temp :937
-938
- count_temp :938
-939
- count_temp :939
-940
- count_temp :940
-941
- count_temp :941
-942
- count_temp :942
-943
- count_temp :943
-944
- count_temp :944
-945
- count_temp :945
-946
- count_temp :946
-947
- count_temp :947
-948
- count_temp :948
-949
- count_temp :949
-950
- count_temp :950
-951
- count_temp :951
-952
- count_temp :952
-953
- count_temp :953
-954
- count_temp :954
-955
- count_temp :955
-956
- count_temp :956
-957
- count_temp :957
-958
- count_temp :958
-959
- count_temp :959
-960
- count_temp :960
-961
- count_temp :961
-962
- count_temp :962
-963
- count_temp :963
-964
- count_temp :964
-965
- count_temp :965
-966
- count_temp :966
-967
- count_temp :967
-968
- count_temp :968
-969
- count_temp :969
-970
- count_temp :970
-971
- count_temp :971
-972
- count_temp :972
-973
- count_temp :973
-974
- count_temp :974
-975
- count_temp :975
-976
- count_temp :976
-977
- count_temp :977
-978
- count_temp :978
-979
- count_temp :979
-980
- count_temp :980
-981
- count_temp :981
-982
- count_temp :982
-983
- count_temp :983
-984
- count_temp :984
-985
- count_temp :985
-986
- count_temp :986
-987
- count_temp :987
-988
- count_temp :988
-989
- count_temp :989
-990
- count_temp :990
-991
- count_temp :991
-992
- count_temp :992
-993
- count_temp :993
-994
- count_temp :994
-995
- count_temp :995
-996
- count_temp :996
-997
- count_temp :997
-998
- count_temp :998
-999
- count_temp :999
-1000
- count_temp :1000
-1001
- count_temp :1001
-1002
- count_temp :1002
-1003
- count_temp :1003
-1004
- count_temp :1004
-1005
- count_temp :1005
-1006
- count_temp :1006
-1007
- count_temp :1007
-1008
- count_temp :1008
-1009
- count_temp :1009
-1010
- count_temp :1010
-1011
- count_temp :1011
-1012
- count_temp :1012
-1013
- count_temp :1013
-1014
- count_temp :1014
-1015
- count_temp :1015
-1016
- count_temp :1016
-1017
- count_temp :1017
-1018
- count_temp :1018
-1019
- count_temp :1019
-1020
- count_temp :1020
-1021
- count_temp :1021
-1022
- count_temp :1022
-1023
- count_temp :1023
-1024
- count_temp :1024
-1025
- count_temp :1025
-1026
- count_temp :1026
-1027
- count_temp :1027
-1028
- count_temp :1028
-1029
- count_temp :1029
-1030
- count_temp :1030
-1031
- count_temp :1031
-1032
- count_temp :1032
-1033
- count_temp :1033
-1034
- count_temp :1034
-1035
- count_temp :1035
-1036
- count_temp :1036
-1037
- count_temp :1037
-1038
- count_temp :1038
-1039
- count_temp :1039
-1040
- count_temp :1040
-1041
- count_temp :1041
-1042
- count_temp :1042
-1043
- count_temp :1043
-1044
- count_temp :1044
-1045
- count_temp :1045
-1046
- count_temp :1046
-1047
- count_temp :1047
-1048
- count_temp :1048
-1049
- count_temp :1049
-1050
- count_temp :1050
-1051
- count_temp :1051
-1052
- count_temp :1052
-1053
- count_temp :1053
-1054
- count_temp :1054
-1055
- count_temp :1055
-1056
- count_temp :1056
-1057
- count_temp :1057
-1058
- count_temp :1058
-1059
- count_temp :1059
-1060
- count_temp :1060
-1061
- count_temp :1061
-1062
- count_temp :1062
-1063
- count_temp :1063
-1064
- count_temp :1064
-1065
- count_temp :1065
-1066
- count_temp :1066
-1067
- count_temp :1067
-1068
- count_temp :1068
-1069
- count_temp :1069
-1070
- count_temp :1070
-1071
- count_temp :1071
-1072
- count_temp :1072
-1073
- count_temp :1073
-1074
- count_temp :1074
-1075
- count_temp :1075
-1076
- count_temp :1076
-1077
- count_temp :1077
-1078
- count_temp :1078
-1079
- count_temp :1079
-1080
- count_temp :1080
-1081
- count_temp :1081
-1082
- count_temp :1082
-1083
- count_temp :1083
-1084
- count_temp :1084
-1085
- count_temp :1085
-1086
- count_temp :1086
-1087
- count_temp :1087
-1088
- count_temp :1088
-1089
- count_temp :1089
-1090
- count_temp :1090
-1091
- count_temp :1091
-1092
- count_temp :1092
-1093
- count_temp :1093
-1094
- count_temp :1094
-1095
- count_temp :1095
-1096
- count_temp :1096
-1097
- count_temp :1097
-1098
- count_temp :1098
-1099
- count_temp :1099
-1100
- count_temp :1100
-1101
- count_temp :1101
-1102
- count_temp :1102
-1103
- count_temp :1103
-1104
- count_temp :1104
-1105
- count_temp :1105
-1106
- count_temp :1106
-1107
- count_temp :1107
-1108
- count_temp :1108
-1109
- count_temp :1109
-1110
- count_temp :1110
-1111
- count_temp :1111
-1112
- count_temp :1112
-1113
- count_temp :1113
-1114
- count_temp :1114
-1115
- count_temp :1115
-1116
- count_temp :1116
-1117
- count_temp :1117
-1118
- count_temp :1118
-1119
- count_temp :1119
-1120
- count_temp :1120
-1121
- count_temp :1121
-1122
- count_temp :1122
-1123
- count_temp :1123
-1124
- count_temp :1124
-1125
- count_temp :1125
-1126
- count_temp :1126
-1127
- count_temp :1127
-1128
- count_temp :1128
-1129
- count_temp :1129
-1130
- count_temp :1130
-1131
- count_temp :1131
-1132
- count_temp :1132
-1133
- count_temp :1133
-1134
- count_temp :1134
-1135
- count_temp :1135
-1136
- count_temp :1136
-1137
- count_temp :1137
-1138
- count_temp :1138
-1139
- count_temp :1139
-1140
- count_temp :1140
-1141
- count_temp :1141
-1142
- count_temp :1142
-1143
- count_temp :1143
-1144
- count_temp :1144
-1145
- count_temp :1145
-1146
- count_temp :1146
-1147
- count_temp :1147
-1148
- count_temp :1148
-1149
- count_temp :1149
-1150
- count_temp :1150
-1151
- count_temp :1151
-1152
- count_temp :1152
-1153
- count_temp :1153
-1154
- count_temp :1154
-1155
- count_temp :1155
-1156
- count_temp :1156
-1157
- count_temp :1157
-1158
- count_temp :1158
-1159
- count_temp :1159
-1160
- count_temp :1160
-1161
- count_temp :1161
-1162
- count_temp :1162
-1163
- count_temp :1163
-1164
- count_temp :1164
-1165
- count_temp :1165
-1166
- count_temp :1166
-1167
- count_temp :1167
-1168
- count_temp :1168
-1169
- count_temp :1169
-1170
- count_temp :1170
-1171
- count_temp :1171
-1172
- count_temp :1172
-1173
- count_temp :1173
-1174
- count_temp :1174
-1175
- count_temp :1175
-1176
- count_temp :1176
-1177
- count_temp :1177
-1178
- count_temp :1178
-1179
- count_temp :1179
-1180
- count_temp :1180
-1181
- count_temp :1181
-1182
- count_temp :1182
-1183
- count_temp :1183
-1184
- count_temp :1184
-1185
- count_temp :1185
-1186
- count_temp :1186
-1187
- count_temp :1187
-1188
- count_temp :1188
-1189
- count_temp :1189
-1190
- count_temp :1190
-1191
- count_temp :1191
-1192
- count_temp :1192
-1193
- count_temp :1193
-1194
- count_temp :1194
-1195
- count_temp :1195
-1196
- count_temp :1196
-1197
- count_temp :1197
-1198
- count_temp :1198
-1199
- count_temp :1199
-1200
- count_temp :1200
-1201
- count_temp :1201
-1202
- count_temp :1202
-1203
- count_temp :1203
-1204
- count_temp :1204
-1205
- count_temp :1205
-1206
- count_temp :1206
-1207
- count_temp :1207
-1208
- count_temp :1208
-1209
- count_temp :1209
-1210
- count_temp :1210
-1211
- count_temp :1211
-1212
- count_temp :1212
-1213
- count_temp :1213
-1214
- count_temp :1214
-1215
- count_temp :1215
-1216
- count_temp :1216
-1217
- count_temp :1217
-1218
- count_temp :1218
-1219
- count_temp :1219
-1220
- count_temp :1220
-1221
- count_temp :1221
-1222
- count_temp :1222
-1223
- count_temp :1223
-1224
- count_temp :1224
-1225
- count_temp :1225
-1226
- count_temp :1226
-1227
- count_temp :1227
-1228
- count_temp :1228
-1229
- count_temp :1229
-1230
- count_temp :1230
-1231
- count_temp :1231
-1232
- count_temp :1232
-1233
- count_temp :1233
-1234
- count_temp :1234
-1235
- count_temp :1235
-1236
- count_temp :1236
-1237
- count_temp :1237
-1238
- count_temp :1238
-1239
- count_temp :1239
-1240
- count_temp :1240
-1241
- count_temp :1241
-1242
- count_temp :1242
-1243
- count_temp :1243
-1244
- count_temp :1244
-1245
- count_temp :1245
-1246
- count_temp :1246
-1247
- count_temp :1247
-1248
- count_temp :1248
-1249
- count_temp :1249
-1250
- count_temp :1250
-1251
- count_temp :1251
-1252
- count_temp :1252
-1253
- count_temp :1253
-1254
- count_temp :1254
-1255
- count_temp :1255
-1256
- count_temp :1256
-1257
- count_temp :1257
-1258
- count_temp :1258
-1259
- count_temp :1259
-1260
- count_temp :1260
-1261
- count_temp :1261
-1262
- count_temp :1262
-1263
- count_temp :1263
-1264
- count_temp :1264
-1265
- count_temp :1265
-1266
- count_temp :1266
-1267
- count_temp :1267
-1268
- count_temp :1268
-1269
- count_temp :1269
-1270
- count_temp :1270
-1271
- count_temp :1271
-1272
- count_temp :1272
-1273
- count_temp :1273
-1274
- count_temp :1274
-1275
- count_temp :1275
-1276
- count_temp :1276
-1277
- count_temp :1277
-1278
- count_temp :1278
-1279
- count_temp :1279
-1280
- count_temp :1280
-1281
- count_temp :1281
-1282
- count_temp :1282
-1283
- count_temp :1283
-1284
- count_temp :1284
-1285
- count_temp :1285
-1286
- count_temp :1286
-1287
- count_temp :1287
-1288
- count_temp :1288
-1289
- count_temp :1289
-1290
- count_temp :1290
-1291
- count_temp :1291
-1292
- count_temp :1292
-1293
- count_temp :1293
-1294
- count_temp :1294
-1295
- count_temp :1295
-1296
- count_temp :1296
-1297
- count_temp :1297
-1298
- count_temp :1298
-1299
- count_temp :1299
-1300
- count_temp :1300
-1301
- count_temp :1301
-1302
- count_temp :1302
-1303
- count_temp :1303
-1304
- count_temp :1304
-1305
- count_temp :1305
-1306
- count_temp :1306
-1307
- count_temp :1307
-1308
- count_temp :1308
-1309
- count_temp :1309
-1310
- count_temp :1310
-1311
- count_temp :1311
-1312
- count_temp :1312
-1313
- count_temp :1313
-1314
- count_temp :1314
-1315
- count_temp :1315
-1316
- count_temp :1316
-1317
- count_temp :1317
-1318
- count_temp :1318
-1319
- count_temp :1319
-1320
- count_temp :1320
-1321
- count_temp :1321
-1322
- count_temp :1322
-1323
- count_temp :1323
-1324
- count_temp :1324
-1325
- count_temp :1325
-1326
- count_temp :1326
-1327
- count_temp :1327
-1328
- count_temp :1328
-1329
- count_temp :1329
-1330
- count_temp :1330
-1331
- count_temp :1331
-1332
- count_temp :1332
-1333
- count_temp :1333
-1334
- count_temp :1334
-1335
- count_temp :1335
-1336
- count_temp :1336
-1337
- count_temp :1337
-1338
- count_temp :1338
-1339
- count_temp :1339
-1340
- count_temp :1340
-1341
- count_temp :1341
-1342
- count_temp :1342
-1343
- count_temp :1343
-1344
- count_temp :1344
-1345
- count_temp :1345
-1346
- count_temp :1346
-1347
- count_temp :1347
-1348
- count_temp :1348
-1349
- count_temp :1349
-1350
- count_temp :1350
-1351
- count_temp :1351
-1352
- count_temp :1352
-1353
- count_temp :1353
-1354
- count_temp :1354
-1355
- count_temp :1355
-1356
- count_temp :1356
-1357
- count_temp :1357
-1358
- count_temp :1358
-1359
- count_temp :1359
-1360
- count_temp :1360
-1361
- count_temp :1361
-1362
- count_temp :1362
-1363
- count_temp :1363
-1364
- count_temp :1364
-1365
- count_temp :1365
-1366
- count_temp :1366
-1367
- count_temp :1367
-1368
- count_temp :1368
-1369
- count_temp :1369
-1370
- count_temp :1370
-1371
- count_temp :1371
-1372
- count_temp :1372
-1373
- count_temp :1373
-1374
- count_temp :1374
-1375
- count_temp :1375
-1376
- count_temp :1376
-1377
- count_temp :1377
-1378
- count_temp :1378
-1379
- count_temp :1379
-1380
- count_temp :1380
-1381
- count_temp :1381
-1382
- count_temp :1382
-1383
- count_temp :1383
-1384
- count_temp :1384
-1385
- count_temp :1385
-1386
- count_temp :1386
-1387
- count_temp :1387
-1388
- count_temp :1388
-1389
- count_temp :1389
-1390
- count_temp :1390
-1391
- count_temp :1391
-1392
- count_temp :1392
-1393
- count_temp :1393
-1394
- count_temp :1394
-1395
- count_temp :1395
-1396
- count_temp :1396
-1397
- count_temp :1397
-1398
- count_temp :1398
-1399
- count_temp :1399
-1400
- count_temp :1400
-1401
- count_temp :1401
-1402
- count_temp :1402
-1403
- count_temp :1403
-1404
- count_temp :1404
-1405
- count_temp :1405
-1406
- count_temp :1406
-1407
- count_temp :1407
-1408
- count_temp :1408
-1409
- count_temp :1409
-1410
- count_temp :1410
-1411
- count_temp :1411
-1412
- count_temp :1412
-1413
- count_temp :1413
-1414
- count_temp :1414
-1415
- count_temp :1415
-1416
- count_temp :1416
-1417
- count_temp :1417
-1418
- count_temp :1418
-1419
- count_temp :1419
-1420
- count_temp :1420
-1421
- count_temp :1421
-1422
- count_temp :1422
-1423
- count_temp :1423
-1424
- count_temp :1424
-1425
- count_temp :1425
-1426
- count_temp :1426
-1427
- count_temp :1427
-1428
- count_temp :1428
-1429
- count_temp :1429
-1430
- count_temp :1430
-1431
- count_temp :1431
-1432
- count_temp :1432
-1433
- count_temp :1433
-1434
- count_temp :1434
-1435
- count_temp :1435
-1436
- count_temp :1436
-1437
- count_temp :1437
-1438
- count_temp :1438
-1439
- count_temp :1439
-1440
- count_temp :1440
-1441
- count_temp :1441
-1442
- count_temp :1442
-1443
- count_temp :1443
-1444
- count_temp :1444
-1445
- count_temp :1445
-1446
- count_temp :1446
-1447
- count_temp :1447
-1448
- count_temp :1448
-1449
- count_temp :1449
-1450
- count_temp :1450
-1451
- count_temp :1451
-1452
- count_temp :1452
-1453
- count_temp :1453
-1454
- count_temp :1454
-1455
- count_temp :1455
-1456
- count_temp :1456
-1457
- count_temp :1457
-1458
- count_temp :1458
-1459
- count_temp :1459
-1460
- count_temp :1460
-1461
- count_temp :1461
-1462
- count_temp :1462
-1463
- count_temp :1463
-1464
- count_temp :1464
-1465
- count_temp :1465
-1466
- count_temp :1466
-1467
- count_temp :1467
-1468
- count_temp :1468
-1469
- count_temp :1469
-1470
- count_temp :1470
-1471
- count_temp :1471
-1472
- count_temp :1472
-1473
- count_temp :1473
-1474
- count_temp :1474
-1475
- count_temp :1475
-1476
- count_temp :1476
-1477
- count_temp :1477
-1478
- count_temp :1478
-1479
- count_temp :1479
-1480
- count_temp :1480
-1481
- count_temp :1481
-1482
- count_temp :1482
-1483
- count_temp :1483
-1484
- count_temp :1484
-1485
- count_temp :1485
-1486
- count_temp :1486
-1487
- count_temp :1487
-1488
- count_temp :1488
-1489
- count_temp :1489
-1490
- count_temp :1490
-1491
- count_temp :1491
-1492
- count_temp :1492
-1493
- count_temp :1493
-1494
- count_temp :1494
-1495
- count_temp :1495
-1496
- count_temp :1496
-1497
- count_temp :1497
-1498
- count_temp :1498
-1499
- count_temp :1499
-1500
- count_temp :1500
-1501
- count_temp :1501
-1502
- count_temp :1502
-1503
- count_temp :1503
-1504
- count_temp :1504
-1505
- count_temp :1505
-1506
- count_temp :1506
-1507
- count_temp :1507
-1508
- count_temp :1508
-1509
- count_temp :1509
-1510
- count_temp :1510
-1511
- count_temp :1511
-1512
- count_temp :1512
-1513
- count_temp :1513
-1514
- count_temp :1514
-1515
- count_temp :1515
-1516
- count_temp :1516
-1517
- count_temp :1517
-1518
- count_temp :1518
-1519
- count_temp :1519
-1520
- count_temp :1520
-1521
- count_temp :1521
-1522
- count_temp :1522
-1523
- count_temp :1523
-1524
- count_temp :1524
-1525
- count_temp :1525
-1526
- count_temp :1526
-1527
- count_temp :1527
-1528
- count_temp :1528
-1529
- count_temp :1529
-1530
- count_temp :1530
-1531
- count_temp :1531
-1532
- count_temp :1532
-1533
- count_temp :1533
-1534
- count_temp :1534
-1535
- count_temp :1535
-1536
- count_temp :1536
-1537
- count_temp :1537
-1538
- count_temp :1538
-1539
- count_temp :1539
-1540
- count_temp :1540
-1541
- count_temp :1541
-1542
- count_temp :1542
-1543
- count_temp :1543
-1544
- count_temp :1544
-1545
- count_temp :1545
-1546
- count_temp :1546
-1547
- count_temp :1547
-1548
- count_temp :1548
-1549
- count_temp :1549
-1550
- count_temp :1550
-1551
- count_temp :1551
-1552
- count_temp :1552
-1553
- count_temp :1553
-1554
- count_temp :1554
-1555
- count_temp :1555
-1556
- count_temp :1556
-1557
- count_temp :1557
-1558
- count_temp :1558
-1559
- count_temp :1559
-1560
- count_temp :1560
-1561
- count_temp :1561
-1562
- count_temp :1562
-1563
- count_temp :1563
-1564
- count_temp :1564
-1565
- count_temp :1565
-1566
- count_temp :1566
-1567
- count_temp :1567
-1568
- count_temp :1568
-1569
- count_temp :1569
-1570
- count_temp :1570
-1571
- count_temp :1571
-1572
- count_temp :1572
-1573
- count_temp :1573
-1574
- count_temp :1574
-1575
- count_temp :1575
-1576
- count_temp :1576
-1577
- count_temp :1577
-1578
- count_temp :1578
-1579
- count_temp :1579
-1580
- count_temp :1580
-1581
- count_temp :1581
-1582
- count_temp :1582
-1583
- count_temp :1583
-1584
- count_temp :1584
-1585
- count_temp :1585
-1586
- count_temp :1586
-1587
- count_temp :1587
-1588
- count_temp :1588
-1589
- count_temp :1589
-1590
- count_temp :1590
-1591
- count_temp :1591
-1592
- count_temp :1592
-1593
- count_temp :1593
-1594
- count_temp :1594
-1595
- count_temp :1595
-1596
- count_temp :1596
-1597
- count_temp :1597
-1598
- count_temp :1598
-1599
- count_temp :1599
-1600
- count_temp :1600
-1601
- count_temp :1601
-1602
- count_temp :1602
-1603
- count_temp :1603
-1604
- count_temp :1604
-1605
- count_temp :1605
-1606
- count_temp :1606
-1607
- count_temp :1607
-1608
- count_temp :1608
-1609
- count_temp :1609
-1610
- count_temp :1610
-1611
- count_temp :1611
-1612
- count_temp :1612
-1613
- count_temp :1613
-1614
- count_temp :1614
-1615
- count_temp :1615
-1616
- count_temp :1616
-1617
- count_temp :1617
-1618
- count_temp :1618
-1619
- count_temp :1619
-1620
- count_temp :1620
-1621
- count_temp :1621
-1622
- count_temp :1622
-1623
- count_temp :1623
-1624
- count_temp :1624
-1625
- count_temp :1625
-1626
- count_temp :1626
-1627
- count_temp :1627
-1628
- count_temp :1628
-1629
- count_temp :1629
-1630
- count_temp :1630
-1631
- count_temp :1631
-1632
- count_temp :1632
-1633
- count_temp :1633
-1634
- count_temp :1634
-1635
- count_temp :1635
-1636
- count_temp :1636
-1637
- count_temp :1637
-1638
- count_temp :1638
-1639
- count_temp :1639
-1640
- count_temp :1640
-1641
- count_temp :1641
-1642
- count_temp :1642
-1643
- count_temp :1643
-1644
- count_temp :1644
-1645
- count_temp :1645
-1646
- count_temp :1646
-1647
- count_temp :1647
-1648
- count_temp :1648
-1649
- count_temp :1649
-1650
- count_temp :1650
-1651
- count_temp :1651
-1652
- count_temp :1652
-1653
- count_temp :1653
-1654
- count_temp :1654
-1655
- count_temp :1655
-1656
- count_temp :1656
-1657
- count_temp :1657
-1658
- count_temp :1658
-1659
- count_temp :1659
-1660
- count_temp :1660
-1661
- count_temp :1661
-1662
- count_temp :1662
-1663
- count_temp :1663
-1664
- count_temp :1664
-1665
- count_temp :1665
-1666
- count_temp :1666
-1667
- count_temp :1667
-1668
- count_temp :1668
-1669
- count_temp :1669
-1670
- count_temp :1670
-1671
- count_temp :1671
-1672
- count_temp :1672
-1673
- count_temp :1673
-1674
- count_temp :1674
-1675
- count_temp :1675
-1676
- count_temp :1676
-1677
- count_temp :1677
-1678
- count_temp :1678
-1679
- count_temp :1679
-1680
- count_temp :1680
-1681
- count_temp :1681
-1682
- count_temp :1682
-1683
- count_temp :1683
-1684
- count_temp :1684
-1685
- count_temp :1685
-1686
- count_temp :1686
-1687
- count_temp :1687
-1688
- count_temp :1688
-1689
- count_temp :1689
-1690
- count_temp :1690
-1691
- count_temp :1691
-1692
- count_temp :1692
-1693
- count_temp :1693
-1694
- count_temp :1694
-1695
- count_temp :1695
-1696
- count_temp :1696
-1697
- count_temp :1697
-1698
- count_temp :1698
-1699
- count_temp :1699
-1700
- count_temp :1700
-1701
- count_temp :1701
-1702
- count_temp :1702
-1703
- count_temp :1703
-1704
- count_temp :1704
-1705
- count_temp :1705
-1706
- count_temp :1706
-1707
- count_temp :1707
-1708
- count_temp :1708
-1709
- count_temp :1709
-1710
- count_temp :1710
-1711
- count_temp :1711
-1712
- count_temp :1712
-1713
- count_temp :1713
-1714
- count_temp :1714
-1715
- count_temp :1715
-1716
- count_temp :1716
-1717
- count_temp :1717
-1718
- count_temp :1718
-1719
- count_temp :1719
-1720
- count_temp :1720
-1721
- count_temp :1721
-1722
- count_temp :1722
-1723
- count_temp :1723
-1724
- count_temp :1724
-1725
- count_temp :1725
-1726
- count_temp :1726
-1727
- count_temp :1727
-1728
- count_temp :1728
-1729
- count_temp :1729
-1730
- count_temp :1730
-1731
- count_temp :1731
-1732
- count_temp :1732
-1733
- count_temp :1733
-1734
- count_temp :1734
-1735
- count_temp :1735
-1736
- count_temp :1736
-1737
- count_temp :1737
-1738
- count_temp :1738
-1739
- count_temp :1739
-1740
- count_temp :1740
-1741
- count_temp :1741
-1742
- count_temp :1742
-1743
- count_temp :1743
-1744
- count_temp :1744
-1745
- count_temp :1745
-1746
- count_temp :1746
-1747
- count_temp :1747
-1748
- count_temp :1748
-1749
- count_temp :1749
-1750
- count_temp :1750
-1751
- count_temp :1751
-1752
- count_temp :1752
-1753
- count_temp :1753
-1754
- count_temp :1754
-1755
- count_temp :1755
-1756
- count_temp :1756
-1757
- count_temp :1757
-1758
- count_temp :1758
-1759
- count_temp :1759
-1760
- count_temp :1760
-1761
- count_temp :1761
-1762
- count_temp :1762
-1763
- count_temp :1763
-1764
- count_temp :1764
-1765
- count_temp :1765
-1766
- count_temp :1766
-1767
- count_temp :1767
-1768
- count_temp :1768
-1769
- count_temp :1769
-1770
- count_temp :1770
-1771
- count_temp :1771
-1772
- count_temp :1772
-1773
- count_temp :1773
-1774
- count_temp :1774
-1775
- count_temp :1775
-1776
- count_temp :1776
-1777
- count_temp :1777
-1778
- count_temp :1778
-1779
- count_temp :1779
-1780
- count_temp :1780
-1781
- count_temp :1781
-1782
- count_temp :1782
-1783
- count_temp :1783
-1784
- count_temp :1784
-1785
- count_temp :1785
-1786
- count_temp :1786
-1787
- count_temp :1787
-1788
- count_temp :1788
-1789
- count_temp :1789
-1790
- count_temp :1790
-1791
- count_temp :1791
-1792
- count_temp :1792
-1793
- count_temp :1793
-1794
- count_temp :1794
-1795
- count_temp :1795
-1796
- count_temp :1796
-1797
- count_temp :1797
-1798
- count_temp :1798
-1799
- count_temp :1799
-1800
- count_temp :1800
-1801
- count_temp :1801
-1802
- count_temp :1802
-1803
- count_temp :1803
-1804
- count_temp :1804
-1805
- count_temp :1805
-1806
- count_temp :1806
-1807
- count_temp :1807
-1808
- count_temp :1808
-1809
- count_temp :1809
-1810
- count_temp :1810
-1811
- count_temp :1811
-1812
- count_temp :1812
-1813
- count_temp :1813
-1814
- count_temp :1814
-1815
- count_temp :1815
-1816
- count_temp :1816
-1817
- count_temp :1817
-1818
- count_temp :1818
-1819
- count_temp :1819
-1820
- count_temp :1820
-1821
- count_temp :1821
-1822
- count_temp :1822
-1823
- count_temp :1823
-1824
- count_temp :1824
-1825
- count_temp :1825
-1826
- count_temp :1826
-1827
- count_temp :1827
-1828
- count_temp :1828
-1828
- count_temp :1829
-1829
- count_temp :1830
-1830
- count_temp :1831
-1831
- count_temp :1832
-1832
- count_temp :1833
-1833
- count_temp :1834
-1834
- count_temp :1835
-1835
- count_temp :1836
-1836
- count_temp :1837
-1837
- count_temp :1838
-1838
- count_temp :1839
-1839
- count_temp :1840
-1840
- count_temp :1841
-1841
- count_temp :1842
-1842
- count_temp :1843
-1843
- count_temp :1844
-1844
- count_temp :1845
-1845
- count_temp :1846
-1846
- count_temp :1847
-1847
- count_temp :1848
-1848
- count_temp :1849
-1849
- count_temp :1850
-1850
- count_temp :1851
-1851
- count_temp :1852
-1852
- count_temp :1853
-1853
- count_temp :1854
-1854
- count_temp :1855
-1855
- count_temp :1856
-1856
- count_temp :1857
-1857
- count_temp :1858
-1858
- count_temp :1859
-1859
- count_temp :1860
-1860
- count_temp :1861
-1861
- count_temp :1862
-1862
- count_temp :1863
-1863
- count_temp :1864
-1864
- count_temp :1865
-1865
- count_temp :1866
-1866
- count_temp :1867
-1867
- count_temp :1868
-1868
- count_temp :1869
-1869
- count_temp :1870
-1870
- count_temp :1871
-1871
- count_temp :1872
-1872
- count_temp :1873
-1873
- count_temp :1874
-1874
- count_temp :1875
-1875
- count_temp :1876
-1876
- count_temp :1877
-1877
- count_temp :1878
-1878
- count_temp :1879
-1879
- count_temp :1880
-1880
- count_temp :1881
-1881
- count_temp :1882
-1882
- count_temp :1883
-1883
- count_temp :1884
-1884
- count_temp :1885
-1885
- count_temp :1886
-1886
- count_temp :1887
-1887
- count_temp :1888
-1888
- count_temp :1889
-1889
- count_temp :1890
-1890
- count_temp :1891
-1891
- count_temp :1892
-1892
- count_temp :1893
-1893
- count_temp :1894
-1894
- count_temp :1895
-1895
- count_temp :1896
-1896
- count_temp :1897
-1897
- count_temp :1898
-1898
- count_temp :1899
-1899
- count_temp :1900
-1900
- count_temp :1901
-1901
- count_temp :1902
-1902
- count_temp :1903
-1903
- count_temp :1904
-1904
- count_temp :1905
-1905
- count_temp :1906
-1906
- count_temp :1907
-1907
- count_temp :1908
-1908
- count_temp :1909
-1909
- count_temp :1910
-1910
- count_temp :1911
-1911
- count_temp :1912
-1912
- count_temp :1913
-1913
- count_temp :1914
-1914
- count_temp :1915
-1915
- count_temp :1916
-1916
- count_temp :1917
-1917
- count_temp :1918
-1918
- count_temp :1919
-1919
- count_temp :1920
-1920
- count_temp :1921
-1921
- count_temp :1922
-1922
- count_temp :1923
-1923
- count_temp :1924
-1924
- count_temp :1925
-1925
- count_temp :1926
-1926
- count_temp :1927
-1927
- count_temp :1928
-1928
- count_temp :1929
-1929
- count_temp :1930
-1930
- count_temp :1931
-1931
- count_temp :1932
-1932
- count_temp :1933
-1933
- count_temp :1934
-1934
- count_temp :1935
-1935
- count_temp :1936
-1936
- count_temp :1937
-1937
- count_temp :1938
-1938
- count_temp :1939
-1939
- count_temp :1940
-1940
- count_temp :1941
-1941
- count_temp :1942
-1942
- count_temp :1943
-1943
- count_temp :1944
-1944
- count_temp :1945
-1945
- count_temp :1946
-1946
- count_temp :1947
-1947
- count_temp :1948
-1948
- count_temp :1949
-1949
- count_temp :1950
-1950
- count_temp :1951
-1951
- count_temp :1952
-1952
- count_temp :1953
-1953
- count_temp :1954
-1954
- count_temp :1955
-1955
- count_temp :1956
-1956
- count_temp :1957
-1957
- count_temp :1958
-1958
- count_temp :1959
-1959
- count_temp :1960
-1960
- count_temp :1961
-1961
- count_temp :1962
-1962
- count_temp :1963
-1963
- count_temp :1964
-1964
- count_temp :1965
-1965
- count_temp :1966
-1966
- count_temp :1967
-1967
- count_temp :1968
-1968
- count_temp :1969
-1969
- count_temp :1970
-1970
- count_temp :1971
-1971
- count_temp :1972
-1972
- count_temp :1973
-1973
- count_temp :1974
-1974
- count_temp :1975
-1975
- count_temp :1976
-1976
- count_temp :1977
-1977
- count_temp :1978
-1978
- count_temp :1979
-1979
- count_temp :1980
-1980
- count_temp :1981
-1981
- count_temp :1982
-1982
- count_temp :1983
-1983
- count_temp :1984
-1984
- count_temp :1985
-1985
- count_temp :1986
-1986
- count_temp :1987
-1987
- count_temp :1988
-1988
- count_temp :1989
-1989
- count_temp :1990
-1990
- count_temp :1991
-1991
- count_temp :1992
-1992
- count_temp :1993
-1993
- count_temp :1994
-1994
- count_temp :1995
-1995
- count_temp :1996
-1996
- count_temp :1997
-1997
- count_temp :1998
-1998
- count_temp :1999
-1999
- count_temp :2000
-2000
- count_temp :2001
-2001
- count_temp :2002
-2002
- count_temp :2003
-2003
- count_temp :2004
-2004
- count_temp :2005
-2005
- count_temp :2006
-2006
- count_temp :2007
-2007
- count_temp :2008
-2008
- count_temp :2009
-2009
- count_temp :2010
-2010
- count_temp :2011
-2011
- count_temp :2012
-2012
- count_temp :2013
-2013
- count_temp :2014
-2014
- count_temp :2015
-2015
- count_temp :2016
-2016
- count_temp :2017
-2017
- count_temp :2018
-2018
- count_temp :2019
-2019
- count_temp :2020
-2020
- count_temp :2021
-2021
- count_temp :2022
-2022
- count_temp :2023
-2023
- count_temp :2024
-2024
- count_temp :2025
-2025
- count_temp :2026
-2026
- count_temp :2027
-2027
- count_temp :2028
-2028
- count_temp :2029
-2029
- count_temp :2030
-2030
- count_temp :2031
-2031
- count_temp :2032
-2032
- count_temp :2033
-2033
- count_temp :2034
-2034
- count_temp :2035
-2035
- count_temp :2036
-2036
- count_temp :2037
-2037
- count_temp :2038
-2038
- count_temp :2039
-2039
- count_temp :2040
-2040
- count_temp :2041
-2041
- count_temp :2042
-2042
- count_temp :2043
-2043
- count_temp :2044
-2044
- count_temp :2045
-2045
- count_temp :2046
+======================
+======================
+ GLS: 
+======================
+======================
+ mafft: 
+======================
+======================
+ iqtree: 
+IQ-TREE version 3.0.1 for Linux x86 64-bit built May  5 2025
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    biocode-2024 (AVX2, FMA3, 62 GB RAM)
+Command: ./iqtree-3.0.1-Linux-intel/bin/iqtree3 -s ./align.fasta -m GTR+G -B 1000 -T AUTO --prefix ./IqOut//result
+Seed:    574647 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Thu Jun  5 10:52:47 2025
+Kernel:  AVX+FMA - auto-detect threads (28 CPU cores detected)
+
+Reading alignment file ./align.fasta ... Fasta format detected
+Reading fasta file: done in 0.0208845 secs using 81.42% CPU
+Alignment most likely contains DNA/RNA sequences
+Constructing alignment: done in 0.0179168 secs using 1103% CPU
+Alignment has 2047 sequences with 1786 columns, 1781 distinct patterns
+1557 parsimony-informative, 56 singleton sites, 173 constant sites
+           Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 0.00943208 secs using 2728% CPU
+   1  _i1         13.66%    failed      0.00%
+   2  _i144       13.94%    passed     12.68%
+   3  134         14.67%    passed     34.25%
+   4  _i400       14.00%    passed     27.32%
+   5  _i401       14.05%    passed     74.58%
+   6  _i403       14.22%    passed     99.20%
+   7  680         14.45%    passed     94.03%
+   8  806         14.56%    passed     36.42%
+   9  1046        14.33%    passed     72.76%
+  10  _i2186      14.00%    passed     29.75%
+  11  _i2994      14.05%    passed     82.56%
+  12  _i2995      14.17%    passed     79.49%
+  13  _i2996      14.22%    passed     86.92%
+  14  _i3349      14.28%    passed     86.99%
+  15  2015        14.78%    passed     45.77%
+  16  2533        14.39%    passed     92.54%
+  17  3951        14.33%    passed     45.35%
+  18  _i10267     14.17%    passed     85.44%
+  19  _i11122     14.45%    passed     39.48%
+  20  5795        14.61%    passed     14.20%
+  21  6201        14.61%    passed     56.64%
+  22  _i15769     14.17%    passed     96.67%
+  23  _i15771     14.17%    passed     88.79%
+  24  _i15982     14.39%    passed     83.58%
+  25  _i15985     14.39%    passed     86.85%
+  26  8093        14.45%    passed     90.76%
+  27  _i17208     14.39%    passed     87.17%
+  28  8843        14.45%    passed     90.60%
+  29  9137        14.50%    passed     70.14%
+  30  10105       14.56%    passed     62.78%
+  31  _i20247     14.22%    passed     76.96%
+  32  10157       14.28%    passed     24.88%
+  33  _i20597     14.22%    passed     75.86%
+  34  _i20601     14.22%    passed     84.28%
+  35  10508       14.22%    passed     76.69%
+  36  10681       14.28%    passed     84.93%
+  37  _i22313     14.22%    passed     75.86%
+  38  _i22314     14.22%    passed     76.40%
+  39  _i22315     14.22%    passed     76.40%
+  40  _i22316     14.22%    passed     71.71%
+  41  _i22318     14.22%    passed     59.22%
+  42  _i22319     14.22%    passed     51.62%
+  43  _i22646     14.22%    passed     52.75%
+  44  12094       14.22%    passed     47.91%
+  45  13920       14.22%    passed     32.29%
+  46  _i28493     14.22%    passed     51.62%
+  47  14904       14.28%    passed     62.59%
+  48  15531       14.33%    passed     68.10%
+  49  _i32396     14.22%    passed     61.34%
+  50  _i32397     14.28%    passed     59.30%
+  51  16992       14.39%    passed     14.75%
+  52  17593       14.28%    passed     46.77%
+  53  _i36012     14.33%    passed     67.99%
+  54  _i36014     14.33%    passed     67.99%
+  55  18084       14.39%    passed     58.00%
+  56  18332       14.33%    passed     59.40%
+  57  18725       14.28%    passed     48.73%
+  58  _i39200     14.22%    passed     61.67%
+  59  _i39202     14.17%    passed     67.72%
+  60  19670       14.11%    passed     53.96%
+  61  21166       14.22%    passed     71.21%
+  62  22874       14.33%    passed     61.50%
+  63  _i46071     14.22%    passed     80.22%
+  64  24048       14.33%    passed     96.12%
+  65  _i49568     14.22%    passed     59.43%
+  66  _i49570     14.22%    passed     42.76%
+  67  25168       14.33%    passed     64.25%
+  68  _i51800     14.22%    passed     33.35%
+  69  25902       14.11%    passed     59.32%
+  70  25936       14.28%    passed     38.94%
+  71  29055       14.17%    passed     39.50%
+  72  30131       14.50%    passed     93.67%
+  73  31219       14.39%    passed     81.77%
+  74  _i63413     14.17%    passed     95.08%
+  75  _i63414     14.17%    passed     94.38%
+  76  _i63415     14.17%    passed     90.51%
+  77  31806       14.33%    passed     88.73%
+  78  _i65851     14.17%    passed     95.41%
+  79  33262       14.22%    passed     80.72%
+  80  33767       14.28%    passed     62.12%
+  81  34238       14.28%    passed     51.15%
+  82  _i71416     14.17%    passed     97.05%
+  83  _i71417     14.17%    passed     95.05%
+  84  _i71418     14.17%    passed     91.43%
+  85  35961       14.33%    passed     45.73%
+  86  _i72162     14.17%    passed     98.01%
+  87  36087       14.17%    passed     95.47%
+  88  _i72888     14.17%    passed     94.80%
+  89  36479       14.17%    passed     96.73%
+  90  36522       14.17%    passed     91.73%
+  91  36746       14.22%    passed     72.89%
+  92  _i74222     14.11%    passed     96.89%
+  93  _i74223     14.11%    passed     96.95%
+  94  37468       14.17%    passed     86.94%
+  95  _i75031     14.11%    passed     95.53%
+  96  _i75032     14.11%    passed     95.77%
+  97  _i75931     14.11%    passed     93.67%
+  98  _i76028     14.11%    passed     83.54%
+  99  _i76029     14.11%    passed     85.34%
+ 100  38446       14.17%    passed     77.06%
+ 101  _i77121     14.11%    passed     86.29%
+ 102  38702       14.22%    passed     81.52%
+ 103  _i77514     14.11%    passed     82.91%
+ 104  _i77515     14.11%    passed     82.91%
+ 105  38906       14.11%    passed     83.16%
+ 106  39107       14.05%    passed     94.04%
+ 107  39659       14.17%    passed     76.92%
+ 108  _i80534     14.11%    passed     89.46%
+ 109  _i82288     14.11%    passed     90.45%
+ 110  41141       14.17%    passed     88.55%
+ 111  42281       14.11%    passed     83.24%
+ 112  42772       14.17%    passed     64.67%
+ 113  42980       14.17%    passed     80.72%
+ 114  43368       14.11%    passed     58.67%
+ 115  _i90309     14.11%    passed     93.91%
+ 116  _i90310     14.11%    passed     90.86%
+ 117  45312       14.11%    passed     98.72%
+ 118  _i92866     14.11%    passed     90.35%
+ 119  _i92867     14.17%    passed     93.85%
+ 120  46670       14.28%    passed     79.14%
+ 121  47006       14.22%    passed     98.01%
+ 122  48518       14.17%    passed     78.06%
+ 123  _i104487    14.05%    passed     94.79%
+ 124  _i104741    14.11%    passed     91.78%
+ 125  52780       14.28%    passed     84.24%
+ 126  52930       14.28%    passed     57.30%
+ 127  53862       14.39%    passed     47.64%
+ 128  _i108088    14.11%    passed     94.25%
+ 129  _i108089    14.11%    passed     93.79%
+ 130  54236       14.39%    passed     78.19%
+ 131  _i109226    14.11%    passed     93.93%
+ 132  _i109227    14.11%    passed     93.93%
+ 133  54663       14.17%    passed     43.28%
+ 134  54791       14.17%    passed     41.05%
+ 135  55077       14.33%    passed     97.97%
+ 136  _i116734    14.05%    passed     96.46%
+ 137  _i120092    14.05%    passed     98.12%
+ 138  60285       14.22%    passed     80.62%
+ 139  60401       14.00%    passed     94.03%
+ 140  _i124268    14.17%    passed     87.30%
+ 141  62145       14.11%    passed     77.38%
+ 142  62169       14.22%    passed     83.23%
+ 143  _i127302    14.11%    passed     89.99%
+ 144  _i127303    14.11%    passed     87.01%
+ 145  _i127304    14.17%    passed     89.00%
+ 146  _i129012    14.28%    passed     88.72%
+ 147  66044       14.33%    passed     54.55%
+ 148  66716       14.45%    passed     96.28%
+ 149  _i135868    14.17%    passed     75.25%
+ 150  _i135952    14.22%    passed     58.42%
+ 151  67987       14.22%    passed     62.76%
+ 152  69490       14.33%    passed     43.77%
+ 153  _i139319    14.11%    passed     80.38%
+ 154  69910       13.94%    passed     34.34%
+ 155  _i140074    14.11%    passed     88.81%
+ 156  _i140378    14.17%    passed     82.11%
+ 157  70382       14.17%    passed     47.54%
+ 158  70585       14.05%    passed     47.71%
+ 159  71027       14.17%    passed     36.62%
+ 160  _i143902    14.11%    passed     76.25%
+ 161  _i143903    14.11%    passed     69.22%
+ 162  _i143948    14.22%    passed     62.57%
+ 163  _i144488    14.33%    passed     93.90%
+ 164  72261       14.33%    passed     91.76%
+ 165  72589       14.28%    passed     96.19%
+ 166  _i145888    14.22%    passed     64.06%
+ 167  73248       14.50%    passed     97.61%
+ 168  _i146750    14.28%    passed     60.95%
+ 169  73442       14.39%    passed     87.36%
+ 170  73744       14.45%    passed     84.94%
+ 171  74236       14.39%    passed     71.56%
+ 172  _i149328    14.11%    passed     76.25%
+ 173  _i150994    14.28%    passed     94.69%
+ 174  _i151401    14.28%    passed     99.78%
+ 175  76277       14.33%    passed     95.86%
+ 176  76345       14.39%    passed     88.94%
+ 177  _i154018    14.33%    passed     99.11%
+ 178  _i154167    14.39%    passed     96.70%
+ 179  77101       14.45%    passed     96.02%
+ 180  78708       14.45%    passed     97.36%
+ 181  79017       14.33%    passed     69.86%
+ 182  _i160662    14.22%    passed     80.42%
+ 183  _i160663    14.22%    passed     81.15%
+ 184  _i160665    14.22%    passed     84.61%
+ 185  80408       14.50%    passed     60.88%
+ 186  81650       14.33%    passed     77.77%
+ 187  _i163835    14.22%    passed     88.18%
+ 188  _i164644    14.22%    passed     86.38%
+ 189  83147       14.33%    passed     82.33%
+ 190  83242       14.33%    passed     61.95%
+ 191  83919       14.45%    passed     98.28%
+ 192  _i169895    14.22%    passed     81.98%
+ 193  85053       14.28%    passed     91.17%
+ 194  85230       14.45%    passed     52.53%
+ 195  _i174198    14.11%    passed     90.18%
+ 196  _i174615    14.28%    passed     83.28%
+ 197  87496       14.39%    passed     79.16%
+ 198  _i176293    14.28%    passed     88.97%
+ 199  89425       14.33%    passed     74.11%
+ 200  91576       14.45%    passed     72.73%
+ 201  _i184930    14.11%    passed     91.97%
+ 202  _i184931    14.11%    passed     87.61%
+ 203  92941       14.45%    passed     80.32%
+ 204  _i186017    14.17%    passed     93.97%
+ 205  94145       14.33%    passed     95.93%
+ 206  _i189481    14.17%    passed     98.26%
+ 207  94841       14.33%    passed     23.86%
+ 208  95115       14.39%    passed     43.71%
+ 209  _i190288    14.11%    passed     94.83%
+ 210  _i190289    14.17%    passed     95.62%
+ 211  _i190290    14.17%    passed     95.62%
+ 212  _i190291    14.17%    passed     95.62%
+ 213  _i190292    14.17%    passed     93.17%
+ 214  _i190293    14.17%    passed     90.02%
+ 215  _i190294    14.17%    passed     88.86%
+ 216  _i190295    14.17%    passed     88.86%
+ 217  _i190296    14.28%    passed     91.67%
+ 218  _i190297    14.28%    passed     91.54%
+ 219  _i190846    14.39%    passed     89.59%
+ 220  95432       14.56%    passed     50.06%
+ 221  _i193534    14.39%    passed     81.11%
+ 222  96806       14.45%    passed     78.29%
+ 223  97098       14.45%    passed     68.27%
+ 224  _i196447    14.28%    passed     92.14%
+ 225  _i196449    14.22%    passed     95.14%
+ 226  98220       14.45%    passed     92.18%
+ 227  98636       14.39%    passed     63.86%
+ 228  _i197857    14.28%    passed     86.56%
+ 229  _i198112    14.28%    passed     86.12%
+ 230  _i198113    14.28%    passed     86.12%
+ 231  _i198116    14.33%    passed     81.44%
+ 232  _i198117    14.33%    passed     83.82%
+ 233  _i198118    14.33%    passed     84.58%
+ 234  99231       14.45%    passed     84.70%
+ 235  99579       14.39%    passed     82.03%
+ 236  100023      14.50%    passed     96.68%
+ 237  103961      14.45%    passed     69.11%
+ 238  104508      14.50%    passed     97.43%
+ 239  105014      14.50%    passed     84.62%
+ 240  _i211535    14.28%    passed     86.09%
+ 241  _i211536    14.28%    passed     91.74%
+ 242  105860      14.22%    passed     79.72%
+ 243  _i212281    14.33%    passed     87.39%
+ 244  106790      14.50%    passed     89.02%
+ 245  _i213644    14.33%    passed     85.86%
+ 246  106873      14.56%    passed     99.92%
+ 247  _i214318    14.33%    passed     85.86%
+ 248  107408      14.50%    passed     92.93%
+ 249  107636      14.39%    passed     81.67%
+ 250  _i216918    14.33%    passed     82.11%
+ 251  _i217069    14.33%    passed     85.94%
+ 252  108550      14.33%    passed     71.02%
+ 253  108770      14.33%    passed     86.86%
+ 254  _i217708    14.33%    passed     80.75%
+ 255  109134      14.56%    passed     51.02%
+ 256  109342      14.39%    passed     95.18%
+ 257  _i221598    14.28%    passed     99.11%
+ 258  _i221599    14.28%    passed     99.24%
+ 259  _i221650    14.28%    passed     97.69%
+ 260  _i225101    14.33%    passed     96.68%
+ 261  _i225102    14.39%    passed     95.41%
+ 262  112651      14.50%    passed     83.28%
+ 263  113226      14.39%    passed     96.73%
+ 264  114356      14.39%    passed     89.77%
+ 265  _i233831    14.28%    passed     90.17%
+ 266  117049      14.39%    passed     53.44%
+ 267  _i235883    14.28%    passed     88.70%
+ 268  118174      14.56%    passed     85.55%
+ 269  _i236437    14.28%    passed     88.24%
+ 270  118375      14.33%    passed     99.83%
+ 271  119481      14.67%    passed     61.08%
+ 272  _i241627    14.28%    passed     99.24%
+ 273  _i241628    14.33%    passed     99.56%
+ 274  _i241701    14.39%    passed     95.67%
+ 275  _i241936    14.39%    passed     96.93%
+ 276  121091      14.39%    passed     90.46%
+ 277  121444      14.33%    passed     99.40%
+ 278  121731      14.56%    passed     93.43%
+ 279  _i245429    14.50%    passed     85.99%
+ 280  122708      14.61%    passed     80.79%
+ 281  122712      14.50%    passed     72.91%
+ 282  _i245711    14.33%    passed     99.63%
+ 283  _i245712    14.39%    passed     99.76%
+ 284  _i245713    14.39%    passed     99.35%
+ 285  124221      14.45%    passed     92.09%
+ 286  _i249105    14.39%    passed     96.20%
+ 287  _i252174    14.39%    passed     90.74%
+ 288  _i252175    14.39%    passed     91.87%
+ 289  126452      14.56%    passed     92.92%
+ 290  126628      14.33%    passed     74.51%
+ 291  _i253491    14.39%    passed     92.50%
+ 292  127062      14.45%    passed     78.56%
+ 293  128679      14.45%    passed     87.88%
+ 294  _i260552    14.39%    passed     95.06%
+ 295  _i261342    14.45%    passed     78.12%
+ 296  130681      14.50%    passed     63.09%
+ 297  131457      14.61%    passed     72.03%
+ 298  131961      14.61%    passed     91.55%
+ 299  132281      14.28%    passed     96.50%
+ 300  _i266139    14.39%    passed     99.95%
+ 301  _i266179    14.39%    passed     97.55%
+ 302  133119      14.39%    passed     88.94%
+ 303  133922      14.67%    passed     91.11%
+ 304  135337      14.45%    passed     98.78%
+ 305  _i271810    14.33%    passed     98.79%
+ 306  _i271811    14.33%    passed     97.60%
+ 307  136094      14.61%    passed     86.05%
+ 308  139606      14.33%    passed     94.52%
+ 309  _i280166    14.33%    passed     99.44%
+ 310  _i280167    14.33%    passed     99.44%
+ 311  _i280168    14.33%    passed     99.25%
+ 312  _i280169    14.33%    passed     98.74%
+ 313  _i281392    14.39%    passed     95.12%
+ 314  141134      14.56%    passed     83.38%
+ 315  142552      14.61%    passed     76.82%
+ 316  _i285233    14.33%    passed     98.92%
+ 317  144078      14.45%    passed     91.80%
+ 318  147762      14.50%    passed     87.21%
+ 319  _i296910    14.33%    passed     98.45%
+ 320  _i296911    14.33%    passed     99.56%
+ 321  _i296912    14.39%    passed     99.64%
+ 322  148882      14.56%    passed     65.37%
+ 323  151904      14.50%    passed     97.82%
+ 324  153592      14.45%    passed     90.75%
+ 325  _i307856    14.33%    passed     90.16%
+ 326  _i307857    14.33%    passed     91.35%
+ 327  154074      14.33%    passed     94.47%
+ 328  155594      14.45%    passed     89.99%
+ 329  _i311516    14.33%    passed     95.52%
+ 330  155750      14.33%    passed     99.47%
+ 331  155794      14.28%    passed     85.97%
+ 332  _i311677    14.33%    passed     99.81%
+ 333  _i311678    14.33%    passed     99.99%
+ 334  _i311679    14.39%    passed     98.30%
+ 335  _i313339    14.45%    passed     99.74%
+ 336  156765      14.67%    passed     96.61%
+ 337  156803      14.56%    passed     97.34%
+ 338  _i314041    14.39%    passed     96.82%
+ 339  157934      14.33%    passed     76.87%
+ 340  _i317984    14.39%    passed     93.01%
+ 341  159032      14.50%    passed     88.37%
+ 342  159099      14.45%    passed     91.08%
+ 343  _i318861    14.39%    passed     99.95%
+ 344  159604      14.50%    passed     98.23%
+ 345  _i321124    14.39%    passed     99.99%
+ 346  _i321321    14.39%    passed     99.54%
+ 347  160795      14.45%    passed     94.42%
+ 348  161207      14.56%    passed     96.03%
+ 349  _i324244    14.39%    passed     99.65%
+ 350  _i324245    14.39%    passed     98.45%
+ 351  162239      14.39%    passed     88.37%
+ 352  162701      14.33%    passed     99.22%
+ 353  163038      14.50%    passed     80.97%
+ 354  _i328993    14.33%    passed     99.92%
+ 355  _i328994    14.33%    passed     98.85%
+ 356  _i328995    14.33%    passed     95.66%
+ 357  _i328996    14.33%    passed     94.30%
+ 358  _i329313    14.33%    passed     92.78%
+ 359  _i331276    14.33%    passed     92.15%
+ 360  _i331278    14.33%    passed     94.73%
+ 361  _i331279    14.33%    passed     94.23%
+ 362  165685      14.39%    passed     93.52%
+ 363  166042      14.22%    passed     89.01%
+ 364  166191      14.33%    passed     79.95%
+ 365  _i333550    14.33%    passed     93.02%
+ 366  166870      14.39%    passed     90.63%
+ 367  _i334226    14.33%    passed     91.81%
+ 368  167233      14.39%    passed     83.93%
+ 369  167362      14.33%    passed     86.57%
+ 370  _i335186    14.33%    passed     93.71%
+ 371  167622      14.39%    passed     87.03%
+ 372  _i335780    14.33%    passed     92.17%
+ 373  167965      14.22%    passed     76.75%
+ 374  168176      14.33%    passed     82.29%
+ 375  _i339808    14.33%    passed     92.15%
+ 376  _i339809    14.33%    passed     91.90%
+ 377  _i340074    14.33%    passed     90.36%
+ 378  170208      14.28%    passed     62.67%
+ 379  172054      14.28%    passed     78.44%
+ 380  173583      14.45%    passed     80.43%
+ 381  _i348482    14.39%    passed     91.84%
+ 382  174256      14.39%    passed     83.68%
+ 383  174309      14.45%    passed     86.28%
+ 384  175427      14.39%    passed     98.95%
+ 385  _i352756    14.33%    passed     98.48%
+ 386  _i352757    14.33%    passed     95.59%
+ 387  _i352758    14.33%    passed     89.20%
+ 388  _i353363    14.33%    passed     94.76%
+ 389  176689      14.39%    passed     86.20%
+ 390  176881      14.45%    passed     95.45%
+ 391  178793      14.39%    passed     84.81%
+ 392  179257      14.45%    passed     75.17%
+ 393  _i358946    14.33%    passed     98.48%
+ 394  _i361093    14.33%    passed     98.37%
+ 395  _i361094    14.33%    passed     98.37%
+ 396  _i361097    14.33%    passed     98.08%
+ 397  180670      14.50%    passed     89.41%
+ 398  _i361937    14.33%    passed     97.24%
+ 399  _i366754    14.39%    passed     97.32%
+ 400  _i368038    14.33%    passed     90.11%
+ 401  _i368193    14.33%    passed     88.64%
+ 402  184086      14.33%    passed     91.29%
+ 403  184115      14.22%    passed     89.87%
+ 404  184244      14.39%    passed     93.57%
+ 405  _i373920    14.33%    passed     96.91%
+ 406  187323      14.39%    passed     99.48%
+ 407  187794      14.33%    passed     97.15%
+ 408  _i376730    14.33%    passed     96.23%
+ 409  _i376731    14.33%    passed     96.74%
+ 410  188604      14.33%    passed     91.55%
+ 411  190072      14.39%    passed     72.62%
+ 412  190863      14.39%    passed     82.67%
+ 413  192811      14.45%    passed     95.16%
+ 414  _i386615    14.33%    passed     98.85%
+ 415  193311      14.45%    passed     93.13%
+ 416  _i388455    14.33%    passed     99.18%
+ 417  194310      14.33%    passed     98.90%
+ 418  196228      14.45%    passed     94.40%
+ 419  _i394139    14.33%    passed     98.48%
+ 420  _i394140    14.33%    passed     98.48%
+ 421  _i394501    14.39%    passed     97.49%
+ 422  197262      14.39%    passed     64.58%
+ 423  197450      14.50%    passed     83.88%
+ 424  197674      14.33%    passed     88.10%
+ 425  _i395992    14.33%    passed     99.99%
+ 426  197997      14.33%    passed     97.02%
+ 427  198360      14.39%    passed     91.08%
+ 428  _i397201    14.33%    passed     99.51%
+ 429  _i397202    14.33%    passed     95.24%
+ 430  _i397203    14.33%    passed     94.51%
+ 431  _i397204    14.33%    passed     97.21%
+ 432  _i397206    14.33%    passed     97.59%
+ 433  198682      14.33%    passed     99.77%
+ 434  199237      14.39%    passed     97.40%
+ 435  _i399688    14.33%    passed     94.90%
+ 436  _i400172    14.39%    passed     95.45%
+ 437  _i400174    14.39%    passed     93.52%
+ 438  200092      14.39%    passed     95.22%
+ 439  200113      14.39%    passed     95.35%
+ 440  200345      14.33%    passed     99.75%
+ 441  202218      14.33%    passed     90.53%
+ 442  202525      14.45%    passed     96.28%
+ 443  203378      14.28%    passed     92.53%
+ 444  _i409605    14.33%    passed     99.18%
+ 445  _i409606    14.33%    passed     98.83%
+ 446  _i409607    14.33%    passed     99.34%
+ 447  _i409608    14.33%    passed     98.29%
+ 448  _i411238    14.33%    passed     97.12%
+ 449  _i411240    14.33%    passed     97.14%
+ 450  205622      14.33%    passed     90.33%
+ 451  205687      14.28%    passed     87.12%
+ 452  205866      14.33%    passed     92.44%
+ 453  _i413724    14.33%    passed     98.55%
+ 454  206938      14.33%    passed     88.94%
+ 455  207243      14.45%    passed     82.03%
+ 456  _i414721    14.33%    passed     99.34%
+ 457  _i414722    14.33%    passed     99.34%
+ 458  207562      14.39%    passed     78.10%
+ 459  _i417194    14.33%    passed     96.92%
+ 460  208632      14.33%    passed     83.90%
+ 461  208892      14.45%    passed     95.04%
+ 462  215524      14.33%    passed     98.32%
+ 463  215600      14.39%    passed     92.13%
+ 464  217299      14.33%    passed     91.60%
+ 465  _i434834    14.33%    passed     99.18%
+ 466  _i434835    14.33%    passed     98.69%
+ 467  _i434836    14.33%    passed     99.25%
+ 468  217813      14.33%    passed     97.75%
+ 469  218017      14.33%    passed     94.44%
+ 470  _i438587    14.33%    passed     94.46%
+ 471  220698      14.45%    passed     87.50%
+ 472  _i443482    14.33%    passed     89.14%
+ 473  _i443525    14.33%    passed     95.09%
+ 474  _i443782    14.45%    passed     91.91%
+ 475  221885      14.45%    passed     78.18%
+ 476  221938      14.56%    passed     92.15%
+ 477  222500      14.33%    passed     89.51%
+ 478  _i446588    14.33%    passed     90.90%
+ 479  224135      14.39%    passed     99.49%
+ 480  225161      14.56%    passed     78.93%
+ 481  _i453754    14.33%    passed     98.66%
+ 482  _i453757    14.45%    passed     98.98%
+ 483  227106      14.56%    passed     88.69%
+ 484  227625      14.56%    passed     78.79%
+ 485  _i457820    14.33%    passed     97.64%
+ 486  _i457821    14.33%    passed     96.32%
+ 487  231027      14.28%    passed     52.25%
+ 488  _i462131    14.33%    passed     95.07%
+ 489  231153      14.33%    passed     55.55%
+ 490  _i467060    14.39%    passed     78.07%
+ 491  233660      14.45%    passed     61.58%
+ 492  233973      14.39%    passed     50.21%
+ 493  _i469272    14.33%    passed     97.77%
+ 494  _i469273    14.33%    passed     98.10%
+ 495  _i469274    14.39%    passed     92.26%
+ 496  234642      14.45%    passed     48.30%
+ 497  235176      14.50%    passed     98.44%
+ 498  _i471017    14.33%    passed     96.79%
+ 499  _i471019    14.33%    passed     94.18%
+ 500  _i471020    14.33%    passed     93.91%
+ 501  _i471021    14.33%    passed     93.91%
+ 502  235526      14.39%    passed     96.01%
+ 503  236618      14.33%    passed     88.35%
+ 504  _i473839    14.39%    passed     95.62%
+ 505  236967      14.45%    passed     88.26%
+ 506  237949      14.45%    passed     95.44%
+ 507  _i476527    14.33%    passed     92.79%
+ 508  _i476866    14.39%    passed     95.84%
+ 509  238653      14.45%    passed     99.37%
+ 510  240311      14.56%    passed     86.22%
+ 511  _i482531    14.33%    passed     92.79%
+ 512  241328      14.39%    passed     92.13%
+ 513  241572      14.39%    passed     87.22%
+ 514  _i485565    14.33%    passed     90.32%
+ 515  _i485743    14.33%    passed     95.87%
+ 516  242896      14.33%    passed     98.82%
+ 517  242973      14.45%    passed     95.01%
+ 518  243401      14.45%    passed     69.90%
+ 519  _i487578    14.33%    passed     96.80%
+ 520  _i487579    14.39%    passed     97.59%
+ 521  _i487580    14.39%    passed     95.88%
+ 522  243851      14.39%    passed     96.56%
+ 523  244333      14.39%    passed     97.74%
+ 524  _i489698    14.50%    passed     87.35%
+ 525  245282      14.50%    passed     89.05%
+ 526  245472      14.50%    passed     85.22%
+ 527  247365      14.39%    passed     57.02%
+ 528  _i497441    14.17%    passed     91.22%
+ 529  _i497445    14.28%    passed     93.67%
+ 530  248934      14.56%    passed     84.72%
+ 531  _i497908    14.39%    passed     89.59%
+ 532  248952      14.45%    passed     87.08%
+ 533  249041      14.39%    passed     74.45%
+ 534  249404      14.28%    passed     96.85%
+ 535  _i500592    14.17%    passed     89.79%
+ 536  250474      14.50%    passed     93.27%
+ 537  250605      14.33%    passed     88.91%
+ 538  _i503398    14.17%    passed     96.66%
+ 539  254872      14.39%    passed     96.88%
+ 540  _i518486    14.17%    passed     98.13%
+ 541  _i518487    14.17%    passed     95.07%
+ 542  259422      14.22%    passed     98.27%
+ 543  260049      14.17%    passed     98.70%
+ 544  260497      14.56%    passed     99.22%
+ 545  _i521633    14.22%    passed     96.22%
+ 546  _i521741    14.22%    passed     98.04%
+ 547  _i521742    14.17%    passed     98.24%
+ 548  261045      14.39%    passed     93.43%
+ 549  _i523443    14.33%    passed     94.58%
+ 550  _i524942    14.39%    passed     94.96%
+ 551  262554      14.50%    passed     87.62%
+ 552  262629      14.39%    passed     96.65%
+ 553  262860      14.50%    passed     91.64%
+ 554  263765      14.22%    passed     53.82%
+ 555  _i527861    14.22%    passed     97.88%
+ 556  _i528843    14.22%    passed     91.76%
+ 557  _i528844    14.22%    passed     93.09%
+ 558  265114      14.28%    passed     96.36%
+ 559  _i531543    14.61%    passed     98.36%
+ 560  266004      14.78%    passed     53.77%
+ 561  _i532966    14.61%    passed     97.63%
+ 562  _i533000    14.61%    passed     86.66%
+ 563  _i534299    14.61%    passed     83.01%
+ 564  267701      14.73%    passed     92.92%
+ 565  268253      14.67%    passed     73.44%
+ 566  268543      14.67%    passed     76.48%
+ 567  _i537952    14.61%    passed     93.15%
+ 568  _i539984    14.61%    passed     82.31%
+ 569  _i539985    14.61%    passed     81.40%
+ 570  270033      14.84%    passed     67.02%
+ 571  _i541033    14.61%    passed     83.13%
+ 572  271325      14.78%    passed     76.22%
+ 573  271798      14.61%    passed     84.11%
+ 574  272121      14.61%    passed     65.63%
+ 575  272741      14.73%    passed     87.38%
+ 576  276328      14.39%    passed     63.60%
+ 577  277064      14.45%    passed     60.53%
+ 578  _i557909    14.17%    passed     94.91%
+ 579  279561      14.45%    passed     48.23%
+ 580  _i560214    14.56%    passed     97.07%
+ 581  _i560484    14.56%    passed     83.41%
+ 582  280311      14.56%    passed     73.28%
+ 583  280469      14.56%    passed     70.20%
+ 584  281300      14.67%    passed     69.09%
+ 585  _i562988    14.22%    passed     94.02%
+ 586  _i562990    14.28%    passed     95.45%
+ 587  282124      14.39%    passed     48.73%
+ 588  _i568878    14.33%    passed     95.15%
+ 589  _i568879    14.33%    passed     97.00%
+ 590  _i568880    14.33%    passed     96.15%
+ 591  285019      14.50%    passed     66.02%
+ 592  _i570228    14.33%    passed     96.15%
+ 593  _i570229    14.33%    passed     98.53%
+ 594  _i570232    14.39%    passed     99.44%
+ 595  _i570287    14.39%    passed     98.70%
+ 596  285139      14.50%    passed     97.61%
+ 597  285228      14.39%    passed     91.21%
+ 598  285409      14.45%    passed     98.37%
+ 599  _i573735    14.33%    passed     99.70%
+ 600  286981      14.50%    passed     57.82%
+ 601  288889      14.39%    passed     86.75%
+ 602  _i579176    14.33%    passed     94.48%
+ 603  _i579177    14.39%    passed     90.33%
+ 604  _i579200    14.39%    passed     77.34%
+ 605  290834      14.39%    passed     75.42%
+ 606  292346      14.50%    passed     47.29%
+ 607  294280      14.50%    passed     60.58%
+ 608  _i589266    14.33%    passed     97.28%
+ 609  _i591961    14.39%    passed     92.17%
+ 610  _i591962    14.39%    passed     91.15%
+ 611  296573      14.45%    passed     95.82%
+ 612  297628      14.39%    passed     97.12%
+ 613  297692      14.50%    passed     91.08%
+ 614  298632      14.45%    passed     81.51%
+ 615  _i598637    14.33%    passed     97.79%
+ 616  _i598638    14.33%    passed     96.87%
+ 617  _i599199    14.39%    passed     94.73%
+ 618  299733      14.56%    passed     97.84%
+ 619  300314      14.39%    passed     94.41%
+ 620  _i601311    14.39%    passed     86.47%
+ 621  _i601644    14.39%    passed     89.82%
+ 622  301037      14.56%    passed     85.91%
+ 623  _i602214    14.39%    passed     85.95%
+ 624  301141      14.39%    passed     67.18%
+ 625  301834      14.56%    passed     85.42%
+ 626  303338      14.67%    passed     53.77%
+ 627  _i609733    14.33%    passed     97.10%
+ 628  _i609734    14.39%    passed     95.75%
+ 629  _i609735    14.39%    passed     81.75%
+ 630  _i610462    14.39%    passed     78.96%
+ 631  305237      14.56%    passed     24.02%
+ 632  305701      14.56%    passed     23.86%
+ 633  _i611429    14.39%    passed     79.62%
+ 634  _i611430    14.39%    passed     69.03%
+ 635  305774      14.84%    passed     24.01%
+ 636  _i612464    14.45%    passed     55.43%
+ 637  _i612477    14.45%    passed     46.58%
+ 638  _i612478    14.56%    passed     45.27%
+ 639  306334      14.61%    passed      5.90%
+ 640  _i612882    14.56%    passed     45.16%
+ 641  _i612883    14.56%    passed     35.85%
+ 642  306654      14.56%    passed      9.03%
+ 643  _i614573    14.56%    passed     37.05%
+ 644  _i614576    14.56%    passed     45.84%
+ 645  _i614605    14.56%    passed     49.77%
+ 646  307307      14.56%    passed     30.06%
+ 647  307312      14.56%    passed     48.10%
+ 648  307334      14.56%    passed     26.27%
+ 649  307362      14.61%    passed     12.10%
+ 650  307513      14.61%    passed     15.39%
+ 651  _i615225    14.45%    passed     30.85%
+ 652  _i615280    14.45%    passed     21.40%
+ 653  307673      14.45%    passed      9.97%
+ 654  307691      14.45%    passed     10.78%
+ 655  308267      14.50%    passed      5.11%
+ 656  _i617908    14.50%    passed     45.41%
+ 657  _i617909    14.50%    passed     45.41%
+ 658  309662      14.67%    passed     11.45%
+ 659  310375      14.56%    passed      9.15%
+ 660  _i623194    14.50%    passed     42.37%
+ 661  _i623195    14.50%    passed     42.37%
+ 662  313666      14.56%    passed     25.97%
+ 663  _i629650    14.50%    passed     22.11%
+ 664  314900      14.61%    passed     17.99%
+ 665  315974      14.67%    passed     12.03%
+ 666  316978      14.50%    passed      9.85%
+ 667  _i634452    14.39%    passed     27.18%
+ 668  317415      14.45%    failed      4.39%
+ 669  317782      14.45%    failed      2.12%
+ 670  _i639542    14.39%    passed     94.47%
+ 671  _i639763    14.39%    passed     82.80%
+ 672  _i639987    14.39%    passed     69.19%
+ 673  320174      14.50%    passed     35.20%
+ 674  _i644028    14.50%    passed     49.35%
+ 675  322224      14.73%    passed     31.61%
+ 676  322367      14.56%    passed     18.19%
+ 677  _i646539    14.39%    passed     83.42%
+ 678  323272      14.73%    passed     47.52%
+ 679  323819      14.67%    passed     26.92%
+ 680  _i651737    14.50%    passed     62.78%
+ 681  325978      14.50%    passed     26.25%
+ 682  326309      14.61%    passed     41.40%
+ 683  _i653265    14.33%    passed     95.28%
+ 684  _i655203    14.33%    passed     96.31%
+ 685  327967      14.39%    passed     39.68%
+ 686  329010      14.56%    passed     49.99%
+ 687  _i658164    14.39%    passed     67.86%
+ 688  329172      14.56%    passed     84.51%
+ 689  329200      14.39%    passed     18.47%
+ 690  329699      14.61%    passed     72.49%
+ 691  _i660830    14.22%    passed     96.04%
+ 692  331021      14.67%    passed     78.19%
+ 693  _i662180    14.28%    passed     50.34%
+ 694  331184      14.33%    passed     11.84%
+ 695  _i662430    14.28%    passed     45.88%
+ 696  _i662433    14.33%    passed     33.72%
+ 697  331214      14.45%    passed     18.12%
+ 698  331312      14.39%    passed     12.71%
+ 699  _i662865    14.45%    passed     16.96%
+ 700  331427      14.45%    passed     14.86%
+ 701  331429      14.45%    passed     22.64%
+ 702  _i664195    14.17%    passed     92.63%
+ 703  _i664196    14.17%    passed     95.24%
+ 704  _i664197    14.17%    passed     95.47%
+ 705  332908      14.56%    passed     74.22%
+ 706  _i665903    14.28%    passed     99.32%
+ 707  _i665905    14.28%    passed     97.06%
+ 708  _i666035    14.28%    passed     98.73%
+ 709  _i666037    14.33%    passed     99.77%
+ 710  333162      14.39%    passed     98.41%
+ 711  _i668795    14.33%    passed     98.86%
+ 712  _i668797    14.33%    passed     99.19%
+ 713  335470      14.33%    passed     95.25%
+ 714  336427      14.33%    passed     74.01%
+ 715  336879      14.50%    passed     98.32%
+ 716  337540      14.45%    passed     89.42%
+ 717  339025      14.45%    passed     95.92%
+ 718  _i682341    14.28%    passed     99.04%
+ 719  _i682342    14.28%    passed     99.17%
+ 720  _i682343    14.28%    passed     98.23%
+ 721  341267      14.56%    passed     87.59%
+ 722  _i686165    14.28%    passed     98.70%
+ 723  _i686560    14.28%    passed     96.49%
+ 724  _i686561    14.28%    passed     98.27%
+ 725  343467      14.39%    passed     98.67%
+ 726  _i687198    14.33%    passed     95.77%
+ 727  _i687583    14.39%    passed     94.90%
+ 728  343798      14.45%    passed     87.92%
+ 729  343854      14.45%    passed     95.19%
+ 730  344459      14.45%    passed     98.48%
+ 731  _i690674    14.28%    passed     98.40%
+ 732  345420      14.39%    passed     98.82%
+ 733  345505      14.39%    passed     93.14%
+ 734  _i700097    14.28%    passed     98.70%
+ 735  _i703772    14.33%    passed     99.67%
+ 736  _i703773    14.33%    passed     99.70%
+ 737  352071      14.67%    passed     89.05%
+ 738  352228      14.39%    passed     54.35%
+ 739  _i705606    14.39%    passed     95.71%
+ 740  _i706445    14.39%    passed     96.73%
+ 741  _i706446    14.39%    passed     99.03%
+ 742  353618      14.45%    passed     78.37%
+ 743  353859      14.39%    passed     98.23%
+ 744  _i708511    14.39%    passed     97.89%
+ 745  354573      14.56%    passed     76.79%
+ 746  _i711572    14.45%    passed     95.72%
+ 747  355850      14.50%    passed     94.16%
+ 748  356026      14.50%    passed     96.61%
+ 749  358223      14.50%    passed     95.23%
+ 750  _i716971    14.28%    passed     98.70%
+ 751  _i716972    14.28%    passed     99.26%
+ 752  358537      14.45%    passed     42.69%
+ 753  361418      14.56%    passed     79.54%
+ 754  _i723031    14.28%    passed     96.94%
+ 755  _i723222    14.28%    passed     97.62%
+ 756  362404      14.33%    passed     64.24%
+ 757  362449      14.45%    passed     99.54%
+ 758  _i725425    14.28%    passed     96.94%
+ 759  _i725596    14.39%    passed     97.00%
+ 760  _i726162    14.45%    passed     92.40%
+ 761  363107      14.56%    passed     99.16%
+ 762  363239      14.39%    passed     72.74%
+ 763  366374      14.50%    passed     86.60%
+ 764  367292      14.33%    passed     95.83%
+ 765  _i736984    14.28%    passed     99.60%
+ 766  _i737242    14.28%    passed     93.83%
+ 767  _i737243    14.28%    passed     94.47%
+ 768  368634      14.39%    passed     71.93%
+ 769  _i737699    14.28%    passed     96.18%
+ 770  _i737700    14.28%    passed     95.52%
+ 771  369314      14.28%    passed     90.13%
+ 772  _i739490    14.33%    passed     92.67%
+ 773  _i739491    14.33%    passed     92.67%
+ 774  _i739540    14.33%    passed     95.45%
+ 775  _i739541    14.33%    passed     92.34%
+ 776  369816      14.28%    passed     68.09%
+ 777  _i741024    14.33%    passed     93.74%
+ 778  _i741028    14.39%    passed     99.22%
+ 779  _i743021    14.39%    passed     95.23%
+ 780  371549      14.39%    passed     71.24%
+ 781  371734      14.50%    passed     96.59%
+ 782  _i743678    14.39%    passed     99.08%
+ 783  372410      14.33%    passed     99.27%
+ 784  372863      14.45%    passed     95.30%
+ 785  _i747472    14.33%    passed     96.57%
+ 786  _i747473    14.33%    passed     95.95%
+ 787  _i747476    14.33%    passed     98.07%
+ 788  373990      14.39%    passed     99.97%
+ 789  374448      14.45%    passed     86.85%
+ 790  _i750651    14.33%    passed     97.32%
+ 791  375416      14.45%    passed     80.00%
+ 792  375666      14.39%    passed     88.52%
+ 793  376208      14.50%    passed     66.39%
+ 794  378299      14.50%    passed     95.38%
+ 795  _i757748    14.33%    passed     95.24%
+ 796  380213      14.50%    passed     74.65%
+ 797  _i761428    14.33%    passed     96.14%
+ 798  _i761429    14.33%    passed     97.03%
+ 799  381056      14.39%    passed     90.24%
+ 800  _i762315    14.33%    passed     97.44%
+ 801  _i764520    14.39%    passed     90.95%
+ 802  _i764521    14.39%    passed     92.26%
+ 803  382312      14.33%    passed     88.45%
+ 804  382401      14.50%    passed     98.06%
+ 805  _i765250    14.45%    passed     93.39%
+ 806  _i765251    14.45%    passed     93.39%
+ 807  382661      14.50%    passed     88.16%
+ 808  382780      14.45%    passed     66.12%
+ 809  _i765656    14.45%    passed     92.35%
+ 810  382882      14.45%    passed     93.40%
+ 811  383066      14.50%    passed     86.09%
+ 812  _i769585    14.39%    passed     97.73%
+ 813  384939      14.56%    passed     94.75%
+ 814  385655      14.45%    passed     98.99%
+ 815  _i772106    14.33%    passed     95.84%
+ 816  386557      14.61%    passed     86.43%
+ 817  387226      14.50%    passed     78.96%
+ 818  _i774774    14.33%    passed     92.67%
+ 819  _i774775    14.33%    passed     91.33%
+ 820  _i774777    14.45%    passed     89.86%
+ 821  387693      14.67%    passed     73.65%
+ 822  388390      14.45%    passed     92.47%
+ 823  389774      14.50%    passed     56.32%
+ 824  _i782524    14.39%    passed     88.09%
+ 825  _i782885    14.39%    passed     85.26%
+ 826  _i782886    14.39%    passed     85.26%
+ 827  _i783277    14.39%    passed     72.93%
+ 828  _i783886    14.45%    passed     65.11%
+ 829  392008      14.45%    passed     48.23%
+ 830  392834      14.61%    passed     47.65%
+ 831  393795      14.45%    passed     30.26%
+ 832  _i789390    14.39%    passed     84.92%
+ 833  394960      14.39%    passed     72.12%
+ 834  _i791148    14.28%    passed     71.40%
+ 835  395715      14.45%    passed     81.23%
+ 836  _i793782    14.33%    passed     62.18%
+ 837  _i793820    14.39%    passed     50.52%
+ 838  396904      14.39%    passed     46.64%
+ 839  396907      14.39%    passed     46.80%
+ 840  397047      14.28%    passed     55.67%
+ 841  _i794867    14.39%    passed     85.26%
+ 842  _i794868    14.39%    passed     85.26%
+ 843  _i796865    14.33%    passed     86.41%
+ 844  _i797552    14.33%    passed     68.78%
+ 845  _i797554    14.33%    passed     66.67%
+ 846  398981      14.39%    passed     66.47%
+ 847  399484      14.39%    passed     48.52%
+ 848  400058      14.50%    passed     37.35%
+ 849  400269      14.17%    passed     61.40%
+ 850  _i800564    14.39%    passed     87.97%
+ 851  401362      14.39%    passed     78.98%
+ 852  403680      14.50%    passed     72.00%
+ 853  _i807894    14.45%    passed     79.59%
+ 854  _i807895    14.45%    passed     79.59%
+ 855  405957      14.50%    passed     76.27%
+ 856  _i813299    14.45%    passed     79.59%
+ 857  407130      14.45%    passed     51.33%
+ 858  407898      14.39%    passed     36.17%
+ 859  _i817587    14.45%    passed     72.66%
+ 860  409409      14.73%    passed     18.44%
+ 861  _i819190    14.45%    passed     73.71%
+ 862  _i819208    14.45%    passed     79.87%
+ 863  409595      14.33%    passed     71.52%
+ 864  409630      14.45%    passed     32.59%
+ 865  409661      14.50%    passed     41.37%
+ 866  _i822832    14.39%    passed     76.46%
+ 867  _i824144    14.33%    passed     64.88%
+ 868  412180      14.39%    passed     51.57%
+ 869  _i824784    14.33%    passed     75.38%
+ 870  413236      14.39%    passed     35.07%
+ 871  413656      14.33%    passed     45.25%
+ 872  413956      14.39%    passed     44.48%
+ 873  415073      14.28%    passed     73.17%
+ 874  _i831522    14.28%    passed     94.47%
+ 875  _i831523    14.28%    passed     96.75%
+ 876  _i831524    14.28%    passed     96.75%
+ 877  _i831525    14.28%    passed     97.97%
+ 878  _i832388    14.28%    passed     99.67%
+ 879  _i832389    14.28%    passed     96.20%
+ 880  417118      14.45%    passed     76.32%
+ 881  _i836218    14.28%    passed     95.77%
+ 882  418111      14.33%    passed     76.56%
+ 883  418373      14.22%    passed     63.11%
+ 884  _i837480    14.28%    passed     99.67%
+ 885  _i837481    14.28%    passed     99.67%
+ 886  418854      14.33%    passed     85.53%
+ 887  _i837763    14.33%    passed     99.40%
+ 888  _i837764    14.33%    passed     98.66%
+ 889  419625      14.39%    passed     87.26%
+ 890  _i839938    14.33%    passed     98.39%
+ 891  _i839939    14.33%    passed     98.39%
+ 892  _i839940    14.33%    passed     96.50%
+ 893  _i839941    14.33%    passed     97.15%
+ 894  420364      14.17%    passed     80.13%
+ 895  _i840776    14.33%    passed     96.76%
+ 896  _i841011    14.33%    passed     96.47%
+ 897  _i841012    14.33%    passed     98.36%
+ 898  420571      14.39%    passed     90.35%
+ 899  421115      14.33%    passed     96.34%
+ 900  _i843214    14.33%    passed     95.42%
+ 901  _i843402    14.33%    passed     95.27%
+ 902  _i843526    14.33%    passed     85.46%
+ 903  421754      14.33%    passed     84.69%
+ 904  421767      14.33%    passed     89.08%
+ 905  422007      14.39%    passed     91.74%
+ 906  422667      14.50%    passed     83.76%
+ 907  423185      14.39%    passed     94.97%
+ 908  423557      14.39%    passed     66.43%
+ 909  _i847316    14.33%    passed     84.40%
+ 910  _i847937    14.28%    passed     69.30%
+ 911  424934      14.39%    passed     79.77%
+ 912  425636      14.33%    passed     27.99%
+ 913  _i855658    14.33%    passed     85.84%
+ 914  _i855907    14.33%    passed     87.48%
+ 915  _i855908    14.33%    passed     87.03%
+ 916  _i856523    14.33%    passed     84.42%
+ 917  _i857555    14.33%    passed     84.82%
+ 918  _i857556    14.33%    passed     83.41%
+ 919  _i857558    14.28%    passed     77.40%
+ 920  428931      14.28%    passed     60.87%
+ 921  _i860019    14.28%    passed     68.27%
+ 922  430017      14.33%    passed     53.56%
+ 923  430095      14.28%    passed     47.59%
+ 924  430627      14.39%    passed     49.23%
+ 925  431791      14.33%    passed     44.80%
+ 926  _i866519    14.39%    passed     83.61%
+ 927  433377      14.50%    passed     47.78%
+ 928  _i867263    14.39%    passed     80.69%
+ 929  433758      14.39%    passed     55.79%
+ 930  _i868867    14.39%    passed     80.69%
+ 931  _i871354    14.39%    passed     76.56%
+ 932  436029      14.45%    passed     54.82%
+ 933  436728      14.39%    passed     57.73%
+ 934  437607      14.45%    passed     58.78%
+ 935  _i876813    14.33%    passed     77.14%
+ 936  438409      14.39%    passed     66.74%
+ 937  438425      14.33%    passed     54.99%
+ 938  _i879809    14.33%    passed     82.30%
+ 939  441173      14.28%    passed     35.15%
+ 940  441422      14.28%    passed     88.44%
+ 941  _i882876    14.33%    passed     78.41%
+ 942  _i883635    14.39%    passed     68.16%
+ 943  441933      14.39%    passed     31.58%
+ 944  442002      14.39%    passed     67.01%
+ 945  _i884124    14.33%    passed     83.06%
+ 946  _i884125    14.33%    passed     79.74%
+ 947  _i884129    14.33%    passed     79.27%
+ 948  _i884130    14.33%    passed     79.27%
+ 949  442147      14.28%    passed     59.49%
+ 950  _i884702    14.33%    passed     72.47%
+ 951  442396      14.33%    passed     54.51%
+ 952  442439      14.39%    passed     55.38%
+ 953  443020      14.33%    passed     42.61%
+ 954  445356      14.33%    passed     39.22%
+ 955  445819      14.45%    passed     41.28%
+ 956  _i894222    14.33%    passed     84.96%
+ 957  447157      14.33%    passed     63.69%
+ 958  447385      14.50%    passed     46.57%
+ 959  448589      14.33%    passed     37.91%
+ 960  _i897258    14.28%    passed     99.67%
+ 961  _i897259    14.28%    passed     97.53%
+ 962  _i897478    14.28%    passed     94.90%
+ 963  448897      14.39%    passed     87.64%
+ 964  _i898131    14.28%    passed     92.25%
+ 965  _i898132    14.28%    passed     88.92%
+ 966  _i898133    14.28%    passed     93.10%
+ 967  449073      14.28%    passed     73.13%
+ 968  449738      14.33%    passed     91.69%
+ 969  _i899499    14.33%    passed     84.49%
+ 970  _i899550    14.50%    passed     83.59%
+ 971  449795      14.61%    passed     83.84%
+ 972  449911      14.50%    passed     59.44%
+ 973  450789      14.33%    passed     84.73%
+ 974  _i904101    14.33%    passed     86.86%
+ 975  _i904102    14.33%    passed     86.86%
+ 976  _i904105    14.39%    passed     78.90%
+ 977  _i904106    14.39%    passed     78.75%
+ 978  _i904300    14.39%    passed     69.51%
+ 979  452157      14.39%    passed     68.65%
+ 980  452189      14.45%    passed     48.77%
+ 981  452264      14.39%    passed     71.28%
+ 982  _i904829    14.45%    passed     68.75%
+ 983  452870      14.45%    passed     31.98%
+ 984  452916      14.45%    passed     38.84%
+ 985  453708      14.28%    passed     67.78%
+ 986  _i907667    14.39%    passed     85.59%
+ 987  _i907964    14.39%    passed     85.19%
+ 988  454477      14.45%    passed     90.75%
+ 989  _i909626    14.39%    passed     86.24%
+ 990  454868      14.56%    passed     81.74%
+ 991  454945      14.33%    passed     74.02%
+ 992  456285      14.39%    passed     66.64%
+ 993  _i914765    14.39%    passed     97.05%
+ 994  _i914766    14.39%    passed     94.11%
+ 995  457931      14.33%    passed     62.18%
+ 996  458848      14.39%    passed     85.31%
+ 997  460260      14.39%    passed     99.42%
+ 998  _i925089    14.28%    passed     99.37%
+ 999  463395      14.39%    passed     93.57%
+1000  _i928539    14.33%    passed     99.73%
+1001  _i928540    14.33%    passed     98.85%
+1002  464489      14.39%    passed     90.58%
+1003  466067      14.33%    passed     90.37%
+1004  _i932645    14.33%    passed     99.40%
+1005  466457      14.39%    passed     97.85%
+1006  467508      14.33%    passed     73.89%
+1007  _i938631    14.39%    passed     98.52%
+1008  _i938632    14.56%    passed     93.70%
+1009  469470      14.56%    passed     76.86%
+1010  _i939334    14.61%    passed     92.94%
+1011  469873      14.67%    passed     81.51%
+1012  470855      14.61%    passed     80.77%
+1013  472515      14.50%    passed     75.06%
+1014  _i945230    14.28%    passed     95.06%
+1015  473170      14.50%    passed     60.34%
+1016  _i948539    14.45%    passed     96.76%
+1017  _i948540    14.45%    passed     97.76%
+1018  _i948543    14.45%    passed     97.20%
+1019  _i948546    14.45%    passed     99.25%
+1020  474374      14.50%    passed     90.51%
+1021  474393      14.50%    passed     99.92%
+1022  474599      14.45%    passed     83.18%
+1023  474761      14.39%    passed     78.77%
+1024  _i950059    14.45%    passed     96.76%
+1025  475041      14.45%    passed     80.62%
+1026  475085      14.45%    passed     91.07%
+1027  _i955309    14.28%    passed     97.19%
+1028  _i955310    14.28%    passed     97.19%
+1029  _i955311    14.28%    passed     97.43%
+1030  478647      14.39%    passed     63.22%
+1031  _i963993    14.28%    passed     98.18%
+1032  _i963994    14.28%    passed     97.33%
+1033  482050      14.39%    passed     96.69%
+1034  482109      14.45%    passed     78.18%
+1035  _i968777    14.28%    passed     97.12%
+1036  484805      14.39%    passed     89.94%
+1037  485893      14.17%    passed     69.91%
+1038  _i974022    14.45%    passed     97.89%
+1039  _i974023    14.45%    passed     97.47%
+1040  _i974024    14.45%    passed     94.92%
+1041  _i975559    14.45%    passed     92.86%
+1042  _i975560    14.45%    passed     90.79%
+1043  _i975562    14.50%    passed     89.83%
+1044  488086      14.50%    passed     60.88%
+1045  488790      14.67%    passed     71.41%
+1046  _i980029    14.50%    passed     94.30%
+1047  490022      14.50%    passed     92.65%
+1048  490410      14.50%    passed     81.41%
+1049  _i981712    14.45%    passed     93.17%
+1050  _i981713    14.50%    passed     87.56%
+1051  491240      14.61%    passed     90.95%
+1052  492034      14.50%    passed     87.74%
+1053  493267      14.73%    passed     68.16%
+1054  _i988172    14.45%    passed     94.97%
+1055  _i988174    14.45%    passed     95.44%
+1056  494329      14.50%    passed     88.58%
+1057  495018      14.50%    passed     89.22%
+1058  497604      14.39%    passed     99.95%
+1059  _i1000258   14.50%    passed     87.10%
+1060  500218      14.61%    passed     53.07%
+1061  500251      14.50%    passed     92.99%
+1062  500747      14.45%    passed     83.13%
+1063  _i1002243   14.28%    passed     96.94%
+1064  _i1003681   14.33%    passed     82.85%
+1065  501896      14.33%    passed     91.91%
+1066  502545      14.33%    passed     64.75%
+1067  _i1005447   14.28%    passed     96.20%
+1068  _i1005448   14.33%    passed     93.16%
+1069  _i1005449   14.33%    passed     94.99%
+1070  _i1005868   14.33%    passed     95.57%
+1071  _i1005869   14.33%    passed     93.16%
+1072  _i1005871   14.33%    passed     91.90%
+1073  _i1006963   14.45%    passed     83.51%
+1074  _i1006964   14.45%    passed     84.68%
+1075  504507      14.50%    passed     77.99%
+1076  505467      14.45%    passed     97.64%
+1077  _i1012121   14.45%    passed     84.51%
+1078  506300      14.45%    passed     74.83%
+1079  506608      14.50%    passed     72.54%
+1080  _i1014012   14.33%    passed     87.35%
+1081  507028      14.33%    passed     90.70%
+1082  507103      14.39%    passed     97.49%
+1083  _i1014863   14.39%    passed     95.39%
+1084  _i1014864   14.39%    passed     94.17%
+1085  _i1019302   14.39%    passed     95.78%
+1086  510141      14.45%    passed     93.39%
+1087  512332      14.39%    passed     95.46%
+1088  514283      14.39%    passed     85.26%
+1089  514690      14.39%    passed     84.89%
+1090  _i1030160   14.33%    passed     84.73%
+1091  515139      14.39%    passed     87.16%
+1092  _i1030934   14.33%    passed     84.73%
+1093  515516      14.39%    passed     80.98%
+1094  516086      14.50%    passed     78.56%
+1095  _i1032721   14.39%    passed     95.86%
+1096  _i1032723   14.39%    passed     97.21%
+1097  516438      14.39%    passed     99.07%
+1098  516746      14.50%    passed     96.41%
+1099  _i1033967   14.50%    passed     93.32%
+1100  517010      14.61%    passed     78.47%
+1101  517132      14.50%    passed     73.99%
+1102  _i1035142   14.33%    passed     93.16%
+1103  _i1036240   14.33%    passed     85.19%
+1104  _i1036492   14.39%    passed     97.54%
+1105  518244      14.45%    passed     97.87%
+1106  518263      14.39%    passed     96.76%
+1107  _i1036714   14.33%    passed     88.55%
+1108  _i1037042   14.33%    passed     82.54%
+1109  518535      14.56%    passed     57.99%
+1110  _i1038148   14.45%    passed     89.82%
+1111  519167      14.56%    passed     78.59%
+1112  519295      14.45%    passed     92.15%
+1113  519703      14.39%    passed     85.42%
+1114  _i1040504   14.39%    passed     77.13%
+1115  520607      14.45%    passed     79.66%
+1116  _i1046616   14.39%    passed     88.06%
+1117  523320      14.45%    passed     88.85%
+1118  523647      14.50%    passed     97.85%
+1119  _i1048471   14.28%    passed     98.67%
+1120  524666      14.33%    passed     89.73%
+1121  524854      14.39%    passed     99.83%
+1122  _i1050658   14.28%    passed     90.00%
+1123  _i1050660   14.28%    passed     79.86%
+1124  525374      14.39%    passed     64.75%
+1125  527199      14.39%    passed     61.70%
+1126  529886      14.39%    passed     77.77%
+1127  _i1060488   14.28%    passed     99.25%
+1128  _i1060489   14.28%    passed     99.60%
+1129  _i1060490   14.28%    passed     99.80%
+1130  _i1060491   14.28%    passed     99.95%
+1131  _i1060492   14.28%    passed     99.95%
+1132  _i1062434   14.39%    passed     99.55%
+1133  _i1062435   14.39%    passed     95.51%
+1134  531385      14.39%    passed     93.57%
+1135  531999      14.39%    passed     70.72%
+1136  _i1066154   14.39%    passed     99.70%
+1137  533715      14.56%    passed     70.76%
+1138  _i1068644   14.39%    passed     99.88%
+1139  534663      14.39%    passed     94.65%
+1140  534844      14.45%    passed     83.51%
+1141  _i1070744   14.28%    passed     99.82%
+1142  _i1070745   14.28%    passed     99.57%
+1143  _i1071722   14.28%    passed     97.00%
+1144  _i1073849   14.28%    passed     95.95%
+1145  536924      14.28%    passed     87.62%
+1146  537213      14.33%    passed     65.83%
+1147  _i1076420   14.28%    passed     97.00%
+1148  _i1076421   14.28%    passed     95.95%
+1149  _i1076492   14.28%    passed     98.88%
+1150  538273      14.33%    passed     94.08%
+1151  _i1076776   14.28%    passed     97.54%
+1152  _i1078032   14.22%    passed     98.38%
+1153  _i1078033   14.22%    passed     98.38%
+1154  539035      14.17%    passed     88.70%
+1155  539078      14.17%    passed     84.50%
+1156  539125      14.28%    passed     85.82%
+1157  _i1079790   14.22%    passed     99.05%
+1158  540053      14.22%    passed     95.24%
+1159  540233      14.17%    passed     91.74%
+1160  _i1080781   14.28%    passed     95.17%
+1161  541110      14.45%    passed     79.74%
+1162  _i1082986   14.28%    passed     95.17%
+1163  543823      14.28%    passed     94.45%
+1164  546639      14.50%    passed     71.69%
+1165  _i1098628   14.28%    passed     92.12%
+1166  550241      14.39%    passed     57.73%
+1167  _i1100586   14.28%    passed     89.98%
+1168  550549      14.39%    passed     77.90%
+1169  550891      14.61%    passed     90.19%
+1170  553517      14.28%    passed     97.67%
+1171  _i1108909   14.28%    passed     97.06%
+1172  554562      14.28%    passed     91.36%
+1173  _i1109186   14.22%    passed     98.98%
+1174  554662      14.17%    passed     98.92%
+1175  555455      14.28%    passed     77.88%
+1176  _i1112463   14.33%    passed     99.97%
+1177  _i1112464   14.33%    passed     98.92%
+1178  _i1112465   14.50%    passed     95.93%
+1179  556572      14.56%    passed     85.57%
+1180  _i1117588   14.61%    passed     97.07%
+1181  558892      14.67%    passed     89.12%
+1182  _i1118482   14.61%    passed     97.99%
+1183  559314      14.67%    passed     89.19%
+1184  559974      14.61%    passed     95.77%
+1185  _i1123198   14.33%    passed     99.30%
+1186  _i1124508   14.33%    passed     99.34%
+1187  _i1124715   14.33%    passed     99.20%
+1188  562480      14.33%    passed     67.75%
+1189  562653      14.45%    passed     60.00%
+1190  _i1125741   14.33%    passed     99.12%
+1191  _i1125742   14.33%    passed     99.12%
+1192  _i1126599   14.33%    passed     96.20%
+1193  563417      14.39%    passed     59.49%
+1194  563460      14.33%    passed     82.48%
+1195  563536      14.22%    passed     97.97%
+1196  _i1127099   14.33%    passed     93.94%
+1197  563552      14.28%    passed     81.83%
+1198  563569      14.33%    passed     93.02%
+1199  _i1131264   14.33%    passed     99.01%
+1200  566161      14.33%    passed     98.75%
+1201  566316      14.45%    passed     95.65%
+1202  _i1134327   14.33%    passed     99.72%
+1203  _i1134328   14.33%    passed     99.98%
+1204  _i1134329   14.33%    passed     99.25%
+1205  567368      14.45%    passed     99.29%
+1206  _i1135421   14.33%    passed     97.23%
+1207  567761      14.33%    passed     82.62%
+1208  _i1135885   14.33%    passed     97.23%
+1209  _i1135886   14.33%    passed     96.08%
+1210  _i1136855   14.33%    passed     97.89%
+1211  568474      14.33%    passed     85.85%
+1212  _i1142691   14.33%    passed     98.76%
+1213  571354      14.33%    passed     99.85%
+1214  571571      14.45%    passed     88.65%
+1215  572637      14.39%    passed     98.88%
+1216  _i1146329   14.33%    passed     99.00%
+1217  _i1146330   14.33%    passed     99.00%
+1218  _i1146551   14.33%    passed     99.76%
+1219  _i1146552   14.33%    passed     98.68%
+1220  573352      14.50%    passed     86.49%
+1221  573369      14.33%    passed     97.40%
+1222  _i1147129   14.33%    passed     99.96%
+1223  573822      14.39%    passed     99.05%
+1224  574359      14.39%    passed     96.00%
+1225  _i1152122   14.33%    passed     98.65%
+1226  576105      14.50%    passed     97.85%
+1227  _i1153916   14.39%    passed     97.08%
+1228  577064      14.45%    passed     68.51%
+1229  577454      14.45%    passed     94.72%
+1230  577985      14.39%    passed     93.00%
+1231  579380      14.39%    passed     99.64%
+1232  _i1161533   14.50%    passed     89.84%
+1233  580762      14.56%    passed     94.73%
+1234  580767      14.56%    passed     76.63%
+1235  _i1162804   14.28%    passed     99.95%
+1236  _i1162805   14.39%    passed     97.99%
+1237  _i1162810   14.45%    passed     98.97%
+1238  _i1162811   14.45%    passed     99.20%
+1239  581549      14.45%    passed     95.73%
+1240  582335      14.50%    passed     83.79%
+1241  _i1164974   14.45%    passed     98.97%
+1242  _i1164975   14.45%    passed     98.52%
+1243  _i1164976   14.45%    passed     98.99%
+1244  582531      14.45%    passed     91.84%
+1245  _i1168672   14.45%    passed     99.30%
+1246  _i1168928   14.45%    passed     99.82%
+1247  _i1168929   14.45%    passed     99.82%
+1248  584857      14.56%    passed     96.96%
+1249  584949      14.45%    passed     99.75%
+1250  585026      14.61%    passed     99.35%
+1251  586304      14.45%    passed     81.72%
+1252  _i1179766   14.45%    passed     94.84%
+1253  _i1179767   14.45%    passed     94.84%
+1254  590484      14.50%    passed     85.31%
+1255  591251      14.50%    passed     72.63%
+1256  592661      14.50%    passed     72.03%
+1257  _i1187391   14.45%    passed     98.81%
+1258  _i1187550   14.45%    passed     99.84%
+1259  593886      14.39%    passed     92.72%
+1260  594633      14.61%    passed     96.88%
+1261  597425      14.67%    passed     84.73%
+1262  602075      14.50%    passed     99.99%
+1263  _i1204402   14.33%    passed     98.95%
+1264  _i1204403   14.33%    passed     98.95%
+1265  _i1205620   14.33%    passed     97.02%
+1266  _i1205681   14.33%    passed     95.25%
+1267  602870      14.45%    passed     79.78%
+1268  603046      14.39%    passed     96.98%
+1269  603666      14.33%    passed     81.10%
+1270  _i1208474   14.33%    passed     98.25%
+1271  604440      14.33%    passed     96.75%
+1272  605561      14.39%    passed     96.66%
+1273  _i1221148   14.33%    passed     98.22%
+1274  610974      14.50%    passed     82.96%
+1275  _i1224040   14.50%    passed     98.91%
+1276  _i1224111   14.56%    passed     89.71%
+1277  612055      14.61%    passed     87.84%
+1278  612100      14.67%    passed     70.68%
+1279  612201      14.61%    passed     96.77%
+1280  _i1224657   14.33%    passed     99.76%
+1281  _i1224658   14.33%    passed     99.90%
+1282  _i1224659   14.39%    passed     99.41%
+1283  612500      14.50%    passed     83.40%
+1284  _i1225917   14.45%    passed     92.13%
+1285  _i1225988   14.45%    passed     81.82%
+1286  _i1226144   14.45%    passed     72.73%
+1287  613357      14.50%    passed     48.27%
+1288  613436      14.50%    passed     73.50%
+1289  613945      14.56%    passed     59.33%
+1290  615427      14.45%    passed     71.50%
+1291  _i1231148   14.33%    passed     99.90%
+1292  _i1231150   14.39%    passed     99.57%
+1293  _i1234722   14.39%    passed     91.33%
+1294  617575      14.50%    passed     97.32%
+1295  617661      14.45%    passed     83.01%
+1296  _i1238626   14.39%    passed     99.88%
+1297  619529      14.50%    passed     93.48%
+1298  _i1242914   14.39%    passed     99.96%
+1299  621563      14.50%    passed     95.76%
+1300  621944      14.45%    passed     96.91%
+1301  _i1248258   14.33%    passed     99.46%
+1302  _i1248259   14.39%    passed     98.57%
+1303  _i1248260   14.39%    passed     98.94%
+1304  _i1248926   14.39%    passed     96.36%
+1305  625679      14.50%    passed     64.73%
+1306  625946      14.33%    passed     99.30%
+1307  627958      14.39%    passed     48.41%
+1308  _i1258177   14.39%    passed     99.44%
+1309  630264      14.39%    passed     95.87%
+1310  _i1261299   14.39%    passed     95.56%
+1311  _i1261300   14.39%    passed     95.56%
+1312  _i1261369   14.39%    passed     99.54%
+1313  630683      14.33%    passed     72.08%
+1314  _i1261402   14.39%    passed     99.27%
+1315  630709      14.45%    passed     93.41%
+1316  630746      14.33%    passed     91.19%
+1317  631156      14.45%    passed     95.89%
+1318  631324      14.67%    passed     96.26%
+1319  _i1263158   14.33%    passed     99.49%
+1320  _i1263159   14.33%    passed     99.49%
+1321  _i1263803   14.39%    passed     99.52%
+1322  632216      14.39%    passed     99.18%
+1323  _i1264529   14.39%    passed     99.01%
+1324  632880      14.45%    passed     88.81%
+1325  _i1267924   14.39%    passed     99.29%
+1326  _i1271445   14.45%    passed     98.85%
+1327  635721      14.45%    passed     97.14%
+1328  635846      14.45%    passed     97.04%
+1329  636964      14.45%    passed     97.97%
+1330  _i1275558   14.39%    passed     99.41%
+1331  637790      14.56%    passed     92.84%
+1332  637935      14.39%    passed     99.04%
+1333  638136      14.39%    passed     85.23%
+1334  _i1278202   14.22%    passed     99.66%
+1335  _i1278203   14.22%    passed     99.66%
+1336  639235      14.33%    passed     96.64%
+1337  _i1281465   14.22%    passed     99.45%
+1338  640774      14.33%    passed     83.02%
+1339  _i1284029   14.22%    passed     98.97%
+1340  642206      14.28%    passed     98.32%
+1341  _i1285512   14.22%    passed     98.71%
+1342  642758      14.28%    passed     88.31%
+1343  642846      14.22%    passed     97.13%
+1344  643318      14.22%    passed     84.36%
+1345  _i1288293   14.33%    passed     98.94%
+1346  _i1288849   14.39%    passed     97.86%
+1347  644508      14.39%    passed     67.63%
+1348  645173      14.45%    passed     52.62%
+1349  645800      14.28%    passed     97.47%
+1350  _i1291723   14.33%    passed     98.78%
+1351  _i1292279   14.50%    passed     97.43%
+1352  _i1292280   14.50%    passed     96.42%
+1353  646637      14.67%    passed     78.44%
+1354  _i1294655   14.50%    passed     98.06%
+1355  647428      14.61%    passed     99.52%
+1356  647683      14.73%    passed     91.42%
+1357  648301      14.50%    passed     97.29%
+1358  _i1299417   14.33%    passed     94.58%
+1359  _i1299434   14.33%    passed     96.50%
+1360  _i1299741   14.33%    passed     96.95%
+1361  649914      14.33%    passed     96.24%
+1362  650265      14.45%    passed     99.30%
+1363  652175      14.33%    passed     95.16%
+1364  653504      14.33%    passed     76.11%
+1365  _i1312994   14.22%    passed     85.16%
+1366  _i1313370   14.22%    passed     84.91%
+1367  656766      14.39%    passed     81.34%
+1368  656833      14.39%    passed     64.45%
+1369  657235      14.56%    passed     60.36%
+1370  _i1315299   14.22%    passed     98.55%
+1371  _i1315300   14.22%    passed     98.64%
+1372  _i1315302   14.17%    passed     96.49%
+1373  _i1315303   14.22%    passed     96.01%
+1374  658232      14.39%    passed     98.09%
+1375  _i1316748   14.28%    passed     98.70%
+1376  _i1319015   14.22%    passed     97.76%
+1377  659850      14.33%    passed     75.29%
+1378  660362      14.22%    passed     99.35%
+1379  660765      14.39%    passed     82.33%
+1380  _i1322493   14.17%    passed     98.00%
+1381  _i1322752   14.17%    passed     98.90%
+1382  661453      14.28%    passed     96.38%
+1383  661805      14.28%    passed     99.32%
+1384  662104      14.28%    passed     98.17%
+1385  _i1325637   14.22%    passed     96.82%
+1386  663605      14.33%    passed     99.04%
+1387  _i1327507   14.22%    passed     96.12%
+1388  _i1327907   14.28%    passed     97.65%
+1389  664196      14.39%    passed     95.93%
+1390  _i1329145   14.45%    passed     96.91%
+1391  _i1329146   14.50%    passed     96.26%
+1392  664748      14.61%    passed     97.17%
+1393  665117      14.56%    passed     98.02%
+1394  665248      14.61%    passed     82.89%
+1395  666011      14.56%    passed     99.79%
+1396  _i1333482   14.22%    passed     97.90%
+1397  _i1333930   14.28%    passed     83.06%
+1398  667327      14.39%    passed     59.09%
+1399  667633      14.56%    passed     76.62%
+1400  _i1336974   14.28%    passed     99.60%
+1401  669060      14.50%    passed     80.80%
+1402  _i1339665   14.28%    passed     99.99%
+1403  669833      14.28%    passed     99.88%
+1404  670074      14.28%    passed     86.10%
+1405  _i1346333   14.28%    passed     84.24%
+1406  _i1346335   14.28%    passed     75.08%
+1407  _i1346336   14.33%    passed     88.16%
+1408  _i1346338   14.33%    passed     88.89%
+1409  673186      14.50%    passed     97.76%
+1410  _i1346740   14.33%    passed     89.93%
+1411  673718      14.39%    passed     96.36%
+1412  _i1347685   14.33%    passed     94.66%
+1413  673932      14.45%    passed     99.27%
+1414  674153      14.45%    passed     99.35%
+1415  675592      14.56%    passed     99.73%
+1416  _i1353937   14.33%    passed     84.36%
+1417  676966      14.45%    passed     99.41%
+1418  677173      14.33%    passed     88.74%
+1419  678439      14.45%    passed     98.46%
+1420  _i1361740   14.00%    passed     28.26%
+1421  _i1361741   14.05%    passed     35.74%
+1422  _i1361743   14.05%    passed     49.13%
+1423  _i1362353   14.11%    passed     87.54%
+1424  681208      14.22%    passed     63.03%
+1425  _i1363337   14.11%    passed     88.85%
+1426  681881      14.28%    passed     73.64%
+1427  _i1368240   14.11%    passed     94.66%
+1428  684242      14.39%    passed     77.72%
+1429  _i1368774   14.22%    passed     92.02%
+1430  685438      14.33%    passed     71.81%
+1431  686707      14.33%    passed     51.15%
+1432  _i1375676   14.17%    passed     81.36%
+1433  _i1375678   14.22%    passed     86.69%
+1434  _i1375679   14.22%    passed     83.31%
+1435  _i1375680   14.22%    passed     83.31%
+1436  _i1375681   14.22%    passed     82.35%
+1437  _i1375682   14.22%    passed     74.40%
+1438  _i1377182   14.22%    passed     52.55%
+1439  _i1378501   14.33%    passed     57.23%
+1440  689252      14.39%    passed     23.12%
+1441  689349      14.39%    passed     65.63%
+1442  690628      14.45%    failed      4.53%
+1443  _i1383476   14.22%    passed     79.90%
+1444  _i1384257   14.22%    passed     76.13%
+1445  _i1384259   14.22%    passed     69.57%
+1446  _i1384260   14.22%    passed     78.64%
+1447  _i1384261   14.22%    passed     78.64%
+1448  692133      14.28%    passed     68.75%
+1449  _i1386617   14.22%    passed     80.50%
+1450  693351      14.33%    passed     89.58%
+1451  _i1387094   14.28%    passed     76.16%
+1452  693562      14.39%    passed     80.71%
+1453  693849      14.33%    passed     93.41%
+1454  694492      14.22%    passed     91.83%
+1455  _i1390688   14.28%    passed     79.29%
+1456  _i1391438   14.45%    passed     67.00%
+1457  695743      14.50%    passed     46.82%
+1458  696634      14.45%    passed     74.24%
+1459  697608      14.39%    passed     56.18%
+1460  _i1397057   14.22%    passed     83.82%
+1461  _i1397058   14.22%    passed     82.25%
+1462  _i1397651   14.28%    passed     82.92%
+1463  699030      14.33%    passed     66.00%
+1464  699138      14.50%    passed     80.23%
+1465  _i1399028   14.28%    passed     71.47%
+1466  699609      14.45%    passed     68.29%
+1467  700905      14.39%    passed     33.41%
+1468  701448      14.33%    passed     55.71%
+1469  _i1404388   14.22%    passed     78.33%
+1470  _i1404389   14.22%    passed     78.33%
+1471  _i1404390   14.33%    passed     62.86%
+1472  _i1404392   14.33%    passed     55.10%
+1473  _i1404393   14.33%    passed     59.46%
+1474  _i1405388   14.33%    passed     62.21%
+1475  703391      14.45%    passed     37.14%
+1476  703613      14.50%    passed     43.46%
+1477  _i1410988   14.33%    passed     59.46%
+1478  _i1411973   14.39%    passed     39.21%
+1479  705989      14.45%    passed     22.76%
+1480  706150      14.45%    passed     51.90%
+1481  706395      14.33%    passed     47.48%
+1482  _i1414150   14.33%    passed     50.29%
+1483  _i1416164   14.39%    passed     42.52%
+1484  708364      14.50%    passed     49.93%
+1485  _i1417853   14.45%    passed     44.23%
+1486  709032      14.50%    passed     35.32%
+1487  710065      14.50%    passed     44.81%
+1488  711042      14.39%    passed     31.57%
+1489  _i1423119   14.39%    passed     67.17%
+1490  _i1423120   14.39%    passed     54.93%
+1491  _i1423189   14.67%    passed     29.81%
+1492  711590      14.73%    passed     19.24%
+1493  711687      14.67%    passed     24.51%
+1494  711960      14.56%    passed     44.51%
+1495  _i1424355   14.39%    passed     63.42%
+1496  712426      14.45%    passed     43.10%
+1497  _i1426259   14.39%    passed     67.17%
+1498  _i1426260   14.45%    passed     66.79%
+1499  _i1426261   14.45%    passed     59.71%
+1500  713692      14.67%    passed     31.08%
+1501  713949      14.61%    passed     26.54%
+1502  _i1427943   14.45%    passed     53.67%
+1503  714090      14.56%    passed     25.61%
+1504  714249      14.50%    passed     35.72%
+1505  715383      14.56%    passed     69.13%
+1506  _i1431987   14.22%    passed     82.25%
+1507  716154      14.39%    passed     82.57%
+1508  _i1438989   14.22%    passed     80.50%
+1509  _i1439053   14.39%    passed     76.89%
+1510  719638      14.50%    passed     64.53%
+1511  719652      14.39%    passed     77.32%
+1512  721259      14.22%    passed     92.11%
+1513  _i1443450   14.28%    passed     72.03%
+1514  721815      14.39%    passed     45.29%
+1515  _i1445800   14.33%    passed     72.57%
+1516  _i1446172   14.33%    passed     71.13%
+1517  723645      14.33%    passed     56.99%
+1518  723692      14.33%    passed     59.79%
+1519  _i1449156   14.33%    passed     72.27%
+1520  725648      14.39%    passed     42.08%
+1521  _i1452084   14.33%    passed     66.85%
+1522  _i1452133   14.45%    passed     52.53%
+1523  726062      14.73%    passed     42.58%
+1524  726154      14.45%    passed     38.31%
+1525  726288      14.50%    passed     26.67%
+1526  727569      14.22%    passed     56.23%
+1527  _i1461992   14.28%    passed     92.65%
+1528  _i1462519   14.33%    passed     75.52%
+1529  _i1462523   14.33%    passed     68.48%
+1530  731392      14.50%    passed     58.99%
+1531  _i1463773   14.33%    passed     68.48%
+1532  731936      14.39%    passed     64.96%
+1533  _i1467531   14.33%    passed     62.40%
+1534  733795      14.39%    passed     56.47%
+1535  734055      14.39%    passed     55.98%
+1536  _i1472405   14.33%    passed     79.25%
+1537  736241      14.39%    passed     92.02%
+1538  _i1473251   14.33%    passed     51.65%
+1539  736650      14.33%    passed     58.52%
+1540  736726      14.33%    passed     60.08%
+1541  _i1476204   14.28%    passed     73.37%
+1542  738438      14.39%    passed     51.53%
+1543  739623      14.39%    passed     37.01%
+1544  _i1479625   14.22%    passed     84.52%
+1545  _i1479626   14.28%    passed     78.47%
+1546  _i1479629   14.28%    passed     81.12%
+1547  741799      14.33%    passed     33.03%
+1548  741884      14.39%    passed     64.36%
+1549  _i1486120   14.28%    passed     78.47%
+1550  _i1486121   14.28%    passed     79.39%
+1551  _i1486122   14.33%    passed     84.31%
+1552  _i1486123   14.33%    passed     86.24%
+1553  _i1486125   14.33%    passed     77.61%
+1554  743253      14.39%    passed     60.51%
+1555  _i1488646   14.45%    passed     79.07%
+1556  744324      14.56%    passed     57.06%
+1557  744336      14.45%    passed     70.69%
+1558  744623      14.33%    passed     76.17%
+1559  _i1489754   14.33%    passed     93.28%
+1560  _i1489755   14.39%    passed     73.78%
+1561  745344      14.45%    passed     96.36%
+1562  746311      14.39%    passed     52.11%
+1563  746408      14.33%    passed     84.51%
+1564  _i1492998   14.28%    passed     61.71%
+1565  _i1492999   14.28%    passed     61.71%
+1566  _i1493047   14.28%    passed     63.18%
+1567  _i1493048   14.28%    passed     58.27%
+1568  746527      14.39%    passed     36.70%
+1569  746571      14.45%    passed     55.93%
+1570  _i1493199   14.28%    passed     62.39%
+1571  _i1493200   14.28%    passed     62.39%
+1572  _i1493201   14.33%    passed     72.76%
+1573  746666      14.39%    passed     48.31%
+1574  746901      14.33%    passed     41.13%
+1575  749300      14.39%    passed     61.97%
+1576  _i1500522   14.28%    passed     62.39%
+1577  _i1500578   14.28%    passed     52.34%
+1578  _i1500579   14.28%    passed     52.34%
+1579  750635      14.28%    passed     74.42%
+1580  _i1503271   14.28%    passed     52.56%
+1581  _i1503273   14.28%    passed     50.43%
+1582  _i1503274   14.28%    passed     54.19%
+1583  _i1503275   14.28%    passed     54.19%
+1584  752922      14.28%    passed     59.12%
+1585  _i1506191   14.28%    passed     54.19%
+1586  753550      14.28%    passed     25.66%
+1587  _i1507287   14.28%    passed     51.34%
+1588  753997      14.33%    passed     57.69%
+1589  754570      14.33%    passed     52.48%
+1590  _i1509464   14.33%    passed     43.89%
+1591  755144      14.33%    passed     45.30%
+1592  755313      14.39%    passed     31.06%
+1593  _i1511605   14.28%    passed     47.06%
+1594  _i1511639   14.33%    passed     40.33%
+1595  755808      14.39%    passed     40.70%
+1596  755825      14.33%    passed     42.13%
+1597  756618      14.28%    passed     55.38%
+1598  _i1515025   14.33%    passed     54.51%
+1599  _i1515027   14.33%    passed     51.87%
+1600  757645      14.45%    passed     57.99%
+1601  _i1515595   14.39%    passed     54.92%
+1602  757806      14.50%    passed     61.29%
+1603  758089      14.45%    passed     57.33%
+1604  _i1517041   14.33%    passed     53.92%
+1605  _i1517641   14.33%    passed     49.97%
+1606  760175      14.33%    passed     38.62%
+1607  760955      14.33%    passed     76.66%
+1608  _i1523790   14.33%    passed     53.92%
+1609  761937      14.45%    passed     48.71%
+1610  762165      14.33%    passed     59.05%
+1611  _i1531878   14.28%    passed     53.41%
+1612  _i1532214   14.33%    passed     46.46%
+1613  766197      14.39%    passed     29.47%
+1614  767085      14.33%    passed     36.62%
+1615  _i1535632   14.28%    passed     57.01%
+1616  _i1537413   14.28%    passed     55.95%
+1617  768703      14.28%    passed     59.18%
+1618  768769      14.39%    passed     43.61%
+1619  769170      14.33%    passed     39.54%
+1620  770535      14.33%    passed     53.36%
+1621  _i1541447   14.28%    passed     64.11%
+1622  770751      14.33%    passed     55.96%
+1623  772322      14.39%    passed     82.11%
+1624  772809      14.28%    passed     55.36%
+1625  _i1547872   14.28%    passed     72.62%
+1626  _i1548147   14.28%    passed     69.97%
+1627  _i1548148   14.28%    passed     69.97%
+1628  _i1548315   14.28%    passed     83.28%
+1629  _i1548316   14.33%    passed     71.24%
+1630  774518      14.50%    passed     69.89%
+1631  775341      14.39%    passed     75.70%
+1632  _i1555855   14.28%    passed     82.85%
+1633  778208      14.33%    passed     98.17%
+1634  _i1558053   14.28%    passed     76.16%
+1635  779095      14.39%    passed     83.08%
+1636  _i1558407   14.28%    passed     73.20%
+1637  _i1558408   14.28%    passed     81.12%
+1638  779214      14.28%    passed     76.50%
+1639  779251      14.28%    passed     66.20%
+1640  779284      14.33%    passed     38.44%
+1641  780162      14.67%    passed     57.66%
+1642  780269      14.39%    passed     77.77%
+1643  _i1560906   14.28%    passed     72.62%
+1644  _i1560907   14.28%    passed     80.99%
+1645  _i1560908   14.22%    passed     82.19%
+1646  _i1560910   14.22%    passed     79.56%
+1647  781340      14.11%    passed     71.03%
+1648  _i1567692   14.22%    passed     77.03%
+1649  _i1567694   14.22%    passed     86.45%
+1650  785006      14.17%    passed     97.65%
+1651  _i1570653   14.22%    passed     80.87%
+1652  785438      14.22%    passed     88.38%
+1653  785475      14.22%    passed     79.37%
+1654  _i1572947   14.17%    passed     83.16%
+1655  _i1573392   14.17%    passed     78.05%
+1656  786710      14.17%    passed     69.76%
+1657  786740      14.17%    passed     73.65%
+1658  787159      14.17%    passed     59.97%
+1659  _i1577480   14.17%    passed     99.18%
+1660  788885      14.22%    passed     86.49%
+1661  _i1577948   14.17%    passed     98.76%
+1662  _i1578869   14.22%    passed     99.68%
+1663  _i1578871   14.22%    passed     99.68%
+1664  789615      14.28%    passed     97.57%
+1665  _i1579263   14.22%    passed     99.24%
+1666  789696      14.22%    passed     91.31%
+1667  _i1579463   14.22%    passed     99.10%
+1668  789739      14.22%    passed     99.47%
+1669  789770      14.28%    passed     97.32%
+1670  _i1580769   14.22%    passed     99.86%
+1671  790395      14.28%    passed     92.52%
+1672  790753      14.22%    passed     99.83%
+1673  _i1583482   14.17%    passed     99.32%
+1674  _i1583483   14.17%    passed     99.23%
+1675  _i1583724   14.17%    passed     98.76%
+1676  791967      14.22%    passed     98.86%
+1677  _i1584294   14.17%    passed     98.83%
+1678  _i1587059   14.33%    passed     96.85%
+1679  793688      14.33%    passed     96.16%
+1680  793798      14.33%    passed     95.51%
+1681  _i1588603   14.05%    passed     99.90%
+1682  794293      14.05%    passed     99.11%
+1683  794325      14.00%    passed     88.97%
+1684  _i1590159   14.17%    passed     99.23%
+1685  795208      14.22%    passed     99.82%
+1686  _i1590757   14.17%    passed     98.06%
+1687  795477      14.17%    passed     88.99%
+1688  796448      14.22%    passed     72.36%
+1689  _i1594060   14.11%    passed     99.48%
+1690  797146      14.11%    passed     97.53%
+1691  797286      14.11%    passed     99.20%
+1692  _i1600309   14.28%    passed     80.99%
+1693  _i1600310   14.28%    passed     80.95%
+1694  _i1600313   14.39%    passed     93.40%
+1695  _i1600315   14.45%    passed     94.06%
+1696  800275      14.50%    passed     90.98%
+1697  800402      14.33%    passed     90.32%
+1698  801038      14.39%    passed     96.37%
+1699  _i1606346   14.28%    passed     80.95%
+1700  _i1606347   14.28%    passed     89.33%
+1701  _i1607754   14.28%    passed     90.07%
+1702  805768      14.28%    passed     81.72%
+1703  _i1615008   14.39%    passed     94.92%
+1704  _i1615009   14.39%    passed     96.28%
+1705  _i1615010   14.39%    passed     98.30%
+1706  _i1615011   14.39%    passed     98.77%
+1707  _i1615016   14.39%    passed     88.60%
+1708  807617      14.39%    passed     76.87%
+1709  807657      14.45%    passed     89.80%
+1710  _i1616263   14.39%    passed     97.43%
+1711  _i1616499   14.39%    passed     99.18%
+1712  808498      14.50%    passed     99.63%
+1713  808970      14.50%    passed     97.05%
+1714  _i1620759   14.39%    passed     97.43%
+1715  _i1620760   14.39%    passed     98.89%
+1716  _i1621109   14.39%    passed     99.32%
+1717  810695      14.56%    passed     95.82%
+1718  811818      14.45%    passed     99.04%
+1719  _i1625176   14.39%    passed     98.45%
+1720  _i1625186   14.39%    passed     96.10%
+1721  812610      14.39%    passed     87.99%
+1722  815225      14.50%    passed     97.15%
+1723  _i1631454   14.39%    passed     98.45%
+1724  815800      14.45%    passed     83.19%
+1725  _i1632550   14.39%    passed     97.85%
+1726  _i1632551   14.39%    passed     96.32%
+1727  _i1632637   14.39%    passed     91.37%
+1728  816721      14.50%    passed     89.95%
+1729  817282      14.45%    passed     93.74%
+1730  818497      14.39%    passed     97.72%
+1731  819104      14.39%    passed     97.53%
+1732  _i1640759   14.45%    passed     93.63%
+1733  _i1640762   14.50%    passed     94.21%
+1734  820371      14.56%    passed     89.76%
+1735  820717      14.56%    passed     80.62%
+1736  821774      14.50%    passed     95.21%
+1737  _i1645448   14.39%    passed     98.48%
+1738  _i1645632   14.39%    passed     99.34%
+1739  _i1645633   14.39%    passed     99.34%
+1740  _i1645634   14.39%    passed     99.42%
+1741  823790      14.39%    passed     96.45%
+1742  824180      14.45%    passed     90.89%
+1743  _i1650569   14.39%    passed     98.48%
+1744  825798      14.50%    passed     87.35%
+1745  _i1652989   14.39%    passed     98.48%
+1746  826487      14.50%    passed     99.58%
+1747  _i1657314   14.39%    passed     98.50%
+1748  828694      14.45%    passed     99.74%
+1749  _i1657408   14.39%    passed     99.18%
+1750  828796      14.39%    passed     93.81%
+1751  829074      14.39%    passed     99.48%
+1752  _i1660070   14.39%    passed     99.03%
+1753  _i1660071   14.39%    passed     99.03%
+1754  _i1660072   14.39%    passed     98.89%
+1755  830077      14.45%    passed     99.43%
+1756  830161      14.50%    passed     97.19%
+1757  831968      14.39%    passed     93.98%
+1758  _i1664604   14.39%    passed     99.03%
+1759  832315      14.45%    passed     95.38%
+1760  832767      14.50%    passed     90.07%
+1761  _i1669442   14.39%    passed     98.59%
+1762  836824      14.61%    passed     99.35%
+1763  837957      14.45%    passed     90.53%
+1764  838720      14.39%    passed     88.63%
+1765  _i1677732   14.39%    passed     95.85%
+1766  _i1680338   14.39%    passed     97.83%
+1767  840370      14.33%    passed     97.63%
+1768  _i1681397   14.33%    passed     96.49%
+1769  840755      14.39%    passed     91.56%
+1770  841172      14.39%    passed     97.15%
+1771  843835      14.45%    passed     84.64%
+1772  _i1692519   14.28%    passed     87.36%
+1773  _i1692521   14.28%    passed     83.55%
+1774  846560      14.28%    passed     99.21%
+1775  _i1693283   14.28%    passed     88.99%
+1776  _i1693795   14.39%    passed     94.74%
+1777  846906      14.39%    passed     99.79%
+1778  846961      14.56%    passed     90.93%
+1779  847459      14.39%    passed     97.64%
+1780  _i1695327   14.28%    passed     72.77%
+1781  _i1700786   14.28%    passed     77.73%
+1782  _i1701293   14.28%    passed     85.44%
+1783  851114      14.28%    passed     95.17%
+1784  _i1703631   14.28%    passed     87.21%
+1785  851964      14.28%    passed     80.92%
+1786  _i1705407   14.33%    passed     87.14%
+1787  854077      14.33%    passed     77.20%
+1788  854597      14.33%    passed     73.49%
+1789  _i1712290   14.28%    passed     78.62%
+1790  _i1712292   14.28%    passed     84.01%
+1791  856394      14.28%    passed     89.15%
+1792  _i1714214   14.28%    passed     82.19%
+1793  857921      14.33%    passed     91.37%
+1794  859073      14.33%    passed     96.67%
+1795  _i1718600   14.28%    passed     78.62%
+1796  861061      14.33%    passed     57.95%
+1797  _i1725409   14.28%    passed     73.73%
+1798  862717      14.39%    passed     66.03%
+1799  862892      14.33%    passed     82.94%
+1800  _i1728051   14.28%    passed     64.75%
+1801  864104      14.39%    passed     81.76%
+1802  864281      14.28%    passed     86.27%
+1803  _i1729818   14.33%    passed     81.14%
+1804  _i1729819   14.33%    passed     81.14%
+1805  _i1729821   14.33%    passed     85.48%
+1806  _i1730984   14.33%    passed     90.76%
+1807  865738      14.28%    passed     95.12%
+1808  _i1732278   14.45%    passed     95.58%
+1809  866322      14.45%    passed     99.83%
+1810  867033      14.45%    passed     91.24%
+1811  867490      14.33%    passed     97.91%
+1812  _i1736271   14.33%    passed     81.54%
+1813  _i1736272   14.33%    passed     80.51%
+1814  868420      14.39%    passed     70.45%
+1815  _i1740134   14.33%    passed     77.30%
+1816  _i1740135   14.33%    passed     80.95%
+1817  _i1740137   14.33%    passed     81.34%
+1818  870084      14.33%    passed     74.01%
+1819  870587      14.33%    passed     79.46%
+1820  871930      14.33%    passed     77.00%
+1821  _i1744211   14.33%    passed     77.99%
+1822  872190      14.39%    passed     75.44%
+1823  _i1745589   14.33%    passed     86.32%
+1824  872868      14.45%    passed     95.14%
+1825  873079      14.33%    passed     94.50%
+1826  _i1746567   14.39%    passed     82.89%
+1827  _i1746569   14.39%    passed     82.47%
+1828  _i1746571   14.39%    passed     89.90%
+1829  _i1746572   14.39%    passed     91.37%
+1830  _i1746573   14.39%    passed     91.37%
+1831  _i1747053   14.39%    passed     94.13%
+1832  _i1747056   14.45%    passed     94.67%
+1833  _i1747188   14.45%    passed     97.86%
+1834  873590      14.45%    passed     96.43%
+1835  873612      14.45%    passed     99.79%
+1836  873696      14.39%    passed     82.24%
+1837  874603      14.39%    passed     99.55%
+1838  _i1750462   14.45%    passed     87.28%
+1839  _i1750463   14.45%    passed     87.28%
+1840  _i1750467   14.45%    passed     91.44%
+1841  875346      14.33%    passed     78.62%
+1842  875634      14.39%    passed     94.36%
+1843  876054      14.45%    passed     95.52%
+1844  876184      14.39%    passed     97.23%
+1845  876431      14.45%    passed     98.28%
+1846  _i1754018   14.39%    passed     88.54%
+1847  877521      14.33%    passed     99.40%
+1848  _i1756371   14.45%    passed     98.94%
+1849  878209      14.45%    passed     99.41%
+1850  878216      14.45%    passed     99.34%
+1851  880610      14.33%    passed     96.53%
+1852  880977      14.33%    passed     91.97%
+1853  _i1762176   14.33%    passed     75.94%
+1854  _i1762429   14.39%    passed     91.22%
+1855  881236      14.33%    passed     99.53%
+1856  881497      14.39%    passed     83.21%
+1857  _i1765227   14.33%    passed     63.12%
+1858  _i1765228   14.33%    passed     61.28%
+1859  882849      14.33%    passed     58.61%
+1860  883753      14.39%    passed     81.66%
+1861  _i1768221   14.39%    passed     63.41%
+1862  _i1769401   14.39%    passed     64.96%
+1863  885028      14.61%    passed     82.53%
+1864  _i1771313   14.39%    passed     69.25%
+1865  885665      14.45%    passed     94.19%
+1866  886565      14.39%    passed     72.19%
+1867  887330      14.56%    passed     40.24%
+1868  _i1776873   14.28%    passed     91.84%
+1869  _i1776874   14.33%    passed     91.02%
+1870  _i1777818   14.33%    passed     93.75%
+1871  889199      14.39%    passed     99.87%
+1872  890365      14.39%    passed     98.21%
+1873  _i1783584   14.33%    passed     90.27%
+1874  _i1783585   14.33%    passed     90.27%
+1875  892132      14.56%    passed     92.99%
+1876  893691      14.39%    passed     89.49%
+1877  _i1787426   14.33%    passed     90.27%
+1878  _i1789540   14.33%    passed     98.06%
+1879  895066      14.39%    passed     93.36%
+1880  _i1794908   14.33%    passed     99.63%
+1881  897997      14.22%    passed     99.72%
+1882  898510      14.33%    passed     97.05%
+1883  _i1797260   14.39%    passed     89.71%
+1884  _i1797261   14.39%    passed     93.49%
+1885  _i1797269   14.39%    passed     90.10%
+1886  898649      14.56%    passed     96.40%
+1887  899326      14.50%    passed     84.89%
+1888  900078      14.50%    passed     80.98%
+1889  _i1801006   14.39%    passed     91.26%
+1890  901491      14.56%    passed     69.21%
+1891  903135      14.45%    passed     90.24%
+1892  904016      14.22%    passed     99.85%
+1893  _i1812200   14.28%    passed     87.11%
+1894  _i1812201   14.28%    passed     96.28%
+1895  906342      14.39%    passed     93.23%
+1896  906922      14.28%    passed     98.11%
+1897  _i1815322   14.28%    passed     92.70%
+1898  _i1817034   14.28%    passed     78.78%
+1899  _i1817036   14.28%    passed     78.04%
+1900  909842      14.39%    passed     85.53%
+1901  909999      14.39%    passed     61.52%
+1902  911695      14.39%    passed     85.65%
+1903  _i1825068   14.28%    passed     93.02%
+1904  912683      14.33%    passed     62.11%
+1905  _i1826253   14.22%    passed     90.14%
+1906  _i1826254   14.22%    passed     92.98%
+1907  _i1826255   14.22%    passed     92.08%
+1908  913837      14.33%    passed     74.10%
+1909  915114      14.33%    passed     92.37%
+1910  _i1833530   14.22%    passed     93.66%
+1911  _i1833531   14.22%    passed     94.53%
+1912  _i1834611   14.28%    passed     95.70%
+1913  _i1835685   14.33%    passed     88.34%
+1914  917832      14.33%    passed     88.34%
+1915  917833      14.33%    passed     89.27%
+1916  918620      14.28%    passed     96.91%
+1917  920041      14.22%    passed     93.66%
+1918  920515      14.22%    passed     99.89%
+1919  _i1844737   14.22%    passed     88.46%
+1920  _i1844738   14.22%    passed     89.06%
+1921  922512      14.22%    passed     88.46%
+1922  _i1845793   14.22%    passed     86.23%
+1923  923163      14.22%    passed     70.24%
+1924  923935      14.39%    passed     98.74%
+1925  _i1848995   14.22%    passed     83.06%
+1926  _i1848996   14.22%    passed     83.06%
+1927  _i1848997   14.22%    passed     83.06%
+1928  925048      14.22%    passed     64.71%
+1929  925698      14.22%    passed     74.02%
+1930  926055      14.28%    passed     89.60%
+1931  926255      14.33%    passed     96.87%
+1932  _i1854106   14.39%    passed     61.52%
+1933  _i1854107   14.39%    passed     61.52%
+1934  _i1856943   14.39%    passed     61.56%
+1935  _i1856944   14.39%    passed     60.85%
+1936  929279      14.45%    passed     46.36%
+1937  931166      14.50%    passed     67.55%
+1938  931831      14.56%    passed     52.14%
+1939  _i1866227   14.39%    passed     61.52%
+1940  _i1866229   14.39%    passed     58.46%
+1941  933411      14.45%    passed     30.41%
+1942  _i1867264   14.39%    passed     46.74%
+1943  _i1868617   14.39%    passed     26.76%
+1944  _i1868618   14.39%    passed     33.54%
+1945  934353      14.39%    passed      9.95%
+1946  934456      14.39%    passed     33.43%
+1947  935935      14.45%    passed     25.89%
+1948  _i1872436   14.39%    passed     50.15%
+1949  936321      14.39%    passed     19.37%
+1950  937825      14.50%    passed     34.41%
+1951  939125      14.45%    passed     24.02%
+1952  _i1879340   14.39%    passed     59.13%
+1953  _i1879749   14.39%    passed     56.55%
+1954  _i1880067   14.39%    passed     30.77%
+1955  940036      14.45%    passed      9.79%
+1956  940089      14.45%    passed     27.28%
+1957  _i1884433   14.39%    passed     75.78%
+1958  942295      14.50%    passed     70.20%
+1959  942375      14.45%    passed     74.31%
+1960  943426      14.56%    passed     16.52%
+1961  _i1895798   14.22%    passed     86.16%
+1962  _i1896969   14.28%    passed     81.68%
+1963  _i1899105   14.56%    passed     22.60%
+1964  _i1899106   14.56%    passed     21.11%
+1965  949580      14.73%    passed     10.52%
+1966  949600      14.56%    passed      6.03%
+1967  _i1899549   14.56%    passed     21.11%
+1968  950065      14.61%    passed     10.07%
+1969  950214      14.67%    failed      4.80%
+1970  _i1900973   14.28%    passed     81.87%
+1971  950945      14.33%    passed     45.80%
+1972  _i1905760   14.28%    passed     93.91%
+1973  _i1905761   14.28%    passed     79.86%
+1974  _i1905763   14.33%    passed     82.63%
+1975  953498      14.28%    passed     55.71%
+1976  953698      14.56%    passed     63.38%
+1977  _i1909523   14.28%    passed     73.03%
+1978  _i1909524   14.28%    passed     76.99%
+1979  955405      14.45%    passed     28.64%
+1980  956980      14.33%    passed     29.86%
+1981  957049      14.39%    passed     39.73%
+1982  _i1915967   14.33%    passed     92.19%
+1983  958069      14.50%    passed     50.48%
+1984  _i1916253   14.33%    passed     90.80%
+1985  958480      14.61%    passed     77.23%
+1986  _i1918071   14.33%    passed     87.27%
+1987  959241      14.56%    passed     84.97%
+1988  _i1919020   14.33%    passed     76.87%
+1989  959575      14.45%    passed     88.38%
+1990  960082      14.50%    passed     88.35%
+1991  962854      14.39%    passed     18.43%
+1992  _i1929651   14.39%    passed     68.43%
+1993  964918      14.39%    passed     71.17%
+1994  965327      14.39%    passed     72.91%
+1995  _i1935617   14.17%    passed     75.20%
+1996  _i1935618   14.17%    passed     76.00%
+1997  968499      14.56%    passed     78.81%
+1998  968818      14.33%    passed     44.02%
+1999  968965      14.45%    passed     80.00%
+2000  _i1938316   14.00%    passed     19.23%
+2001  _i1939550   14.33%    passed     46.18%
+2002  969838      14.56%    passed     89.24%
+2003  _i1940628   14.33%    passed     66.91%
+2004  _i1940874   14.33%    passed     49.35%
+2005  970718      14.61%    passed     68.33%
+2006  971172      14.50%    passed     71.56%
+2007  971503      14.56%    passed     71.50%
+2008  973247      14.39%    passed     87.33%
+2009  _i1951891   14.05%    passed     31.86%
+2010  _i1952055   14.11%    passed     29.58%
+2011  _i1952056   14.22%    passed     23.55%
+2012  _i1952057   14.22%    passed     14.59%
+2013  976080      14.33%    failed      4.30%
+2014  977552      14.45%    passed     51.33%
+2015  _i1956748   14.22%    passed     21.37%
+2016  _i1956749   14.22%    passed     16.95%
+2017  978739      14.39%    failed      2.67%
+2018  _i1958273   14.22%    passed     22.30%
+2019  _i1958275   14.45%    passed     15.78%
+2020  _i1958276   14.45%    passed     16.97%
+2021  979540      14.89%    passed     28.46%
+2022  _i1959576   14.50%    passed     12.52%
+2023  _i1959577   14.50%    passed     13.20%
+2024  979854      14.89%    passed     33.99%
+2025  _i1961955   14.50%    passed      9.25%
+2026  _i1961956   14.50%    passed      9.65%
+2027  _i1964643   14.67%    passed      6.78%
+2028  982535      14.67%    failed      3.58%
+2029  983181      14.84%    passed     10.36%
+2030  983639      14.73%    passed      9.74%
+2031  983939      14.84%    passed     21.49%
+2032  _i1969308   14.50%    passed     10.14%
+2033  _i1969310   14.50%    passed      9.69%
+2034  985071      14.78%    passed     18.36%
+2035  985537      14.67%    passed     37.39%
+2036  985728      14.67%    passed     39.62%
+2037  _i1974101   14.45%    passed     12.82%
+2038  987884      14.50%    failed      3.07%
+2039  _i1980402   14.56%    passed      5.82%
+2040  990208      14.61%    passed      7.14%
+2041  990239      14.61%    passed     10.80%
+2042  991223      14.61%    passed     95.72%
+2043  _i1982610   14.22%    passed     21.48%
+2044  992352      14.73%    passed     28.91%
+2045  994417      14.45%    passed     56.59%
+2046  998340      14.73%    passed     74.72%
+2047  999252      14.50%    passed     93.24%
+****  TOTAL       14.37%  9 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: _i22313 is identical to _i20597 but kept for subsequent analysis
+NOTE: _i36014 is identical to _i36012 but kept for subsequent analysis
+NOTE: _i77515 is identical to _i77514 but kept for subsequent analysis
+NOTE: _i149328 is identical to _i143902 but kept for subsequent analysis
+NOTE: _i190290 is identical to _i190289 but kept for subsequent analysis
+NOTE: _i214318 is identical to _i213644 but kept for subsequent analysis
+NOTE: _i241627 is identical to _i221599 but kept for subsequent analysis
+NOTE: _i280167 is identical to _i280166 but kept for subsequent analysis
+NOTE: _i358946 is identical to _i352756 but kept for subsequent analysis
+NOTE: _i361094 is identical to _i361093 but kept for subsequent analysis
+NOTE: _i414721 is identical to _i409607 but kept for subsequent analysis
+NOTE: _i471021 is identical to _i471020 but kept for subsequent analysis
+NOTE: _i482531 is identical to _i476527 but kept for subsequent analysis
+NOTE: _i570228 is identical to _i568880 but kept for subsequent analysis
+NOTE: _i617909 is identical to _i617908 but kept for subsequent analysis
+NOTE: _i623195 is identical to _i623194 but kept for subsequent analysis
+NOTE: _i700097 is identical to _i686165 but kept for subsequent analysis
+NOTE: _i725425 is identical to _i723031 but kept for subsequent analysis
+NOTE: _i739491 is identical to _i739490 but kept for subsequent analysis
+NOTE: _i765251 is identical to _i765250 but kept for subsequent analysis
+NOTE: _i782886 is identical to _i782885 but kept for subsequent analysis
+NOTE: _i807895 is identical to _i807894 but kept for subsequent analysis
+NOTE: _i831524 is identical to _i831523 but kept for subsequent analysis
+NOTE: _i837480 is identical to _i832388 but kept for subsequent analysis
+NOTE: _i839939 is identical to _i839938 but kept for subsequent analysis
+NOTE: _i868867 is identical to _i867263 but kept for subsequent analysis
+NOTE: _i884130 is identical to _i884129 but kept for subsequent analysis
+NOTE: _i904102 is identical to _i904101 but kept for subsequent analysis
+NOTE: _i950059 is identical to _i948539 but kept for subsequent analysis
+NOTE: _i955310 is identical to _i955309 but kept for subsequent analysis
+NOTE: _i1035142 is identical to _i1005448 but kept for subsequent analysis
+NOTE: _i1030934 is identical to _i1030160 but kept for subsequent analysis
+NOTE: _i1060492 is identical to _i1060491 but kept for subsequent analysis
+NOTE: _i1076420 is identical to _i1071722 but kept for subsequent analysis
+NOTE: _i1078033 is identical to _i1078032 but kept for subsequent analysis
+NOTE: _i1082986 is identical to _i1080781 but kept for subsequent analysis
+NOTE: _i1125742 is identical to _i1125741 but kept for subsequent analysis
+NOTE: _i1135885 is identical to _i1135421 but kept for subsequent analysis
+NOTE: _i1146330 is identical to _i1146329 but kept for subsequent analysis
+NOTE: _i1164974 is identical to _i1162810 but kept for subsequent analysis
+NOTE: _i1179767 is identical to _i1179766 but kept for subsequent analysis
+NOTE: _i1204403 is identical to _i1204402 but kept for subsequent analysis
+NOTE: _i1231148 is identical to _i1224658 but kept for subsequent analysis
+NOTE: _i1261300 is identical to _i1261299 but kept for subsequent analysis
+NOTE: _i1278203 is identical to _i1278202 but kept for subsequent analysis
+NOTE: _i1375680 is identical to _i1375679 but kept for subsequent analysis
+NOTE: _i1384261 is identical to _i1384260 but kept for subsequent analysis
+NOTE: _i1404389 is identical to _i1404388 but kept for subsequent analysis
+NOTE: _i1410988 is identical to _i1404393 but kept for subsequent analysis
+NOTE: _i1463773 is identical to _i1462523 but kept for subsequent analysis
+NOTE: _i1486120 is identical to _i1479626 but kept for subsequent analysis
+NOTE: _i1493200 is identical to _i1493199 but kept for subsequent analysis
+NOTE: _i1500579 is identical to _i1500578 but kept for subsequent analysis
+NOTE: _i1503275 is identical to _i1503274 but kept for subsequent analysis
+NOTE: _i1560906 is identical to _i1547872 but kept for subsequent analysis
+NOTE: _i1548148 is identical to _i1548147 but kept for subsequent analysis
+NOTE: _i1600309 is identical to _i1560907 but kept for subsequent analysis
+NOTE: _i1578871 is identical to _i1578869 but kept for subsequent analysis
+NOTE: _i1606346 is identical to _i1600310 but kept for subsequent analysis
+NOTE: _i1620759 is identical to _i1616263 but kept for subsequent analysis
+NOTE: _i1631454 is identical to _i1625176 but kept for subsequent analysis
+NOTE: _i1652989 is identical to _i1650569 but kept for subsequent analysis
+NOTE: _i1660071 is identical to _i1660070 but kept for subsequent analysis
+NOTE: _i1718600 is identical to _i1712290 but kept for subsequent analysis
+NOTE: _i1729819 is identical to _i1729818 but kept for subsequent analysis
+NOTE: _i1746573 is identical to _i1746572 but kept for subsequent analysis
+NOTE: _i1750463 is identical to _i1750462 but kept for subsequent analysis
+NOTE: _i1783585 is identical to _i1783584 but kept for subsequent analysis
+NOTE: 917832 is identical to _i1835685 but kept for subsequent analysis
+NOTE: _i1848996 is identical to _i1848995 but kept for subsequent analysis
+NOTE: _i1854107 is identical to _i1854106 but kept for subsequent analysis
+Checking for duplicate sequences: done in 0.0167626 secs using 1957% CPU
+Identifying sites to remove: done in 0.0156598 secs using 1036% CPU
+NOTE: 14 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: _i190291 (identical to _i190289) is ignored but added at the end
+NOTE: _i414722 (identical to _i409607) is ignored but added at the end
+NOTE: _i716971 (identical to _i686165) is ignored but added at the end
+NOTE: _i774774 (identical to _i739490) is ignored but added at the end
+NOTE: _i794867 (identical to _i782885) is ignored but added at the end
+NOTE: _i794868 (identical to _i782885) is ignored but added at the end
+NOTE: _i813299 (identical to _i807894) is ignored but added at the end
+NOTE: _i837481 (identical to _i832388) is ignored but added at the end
+NOTE: _i897258 (identical to _i832388) is ignored but added at the end
+NOTE: _i1500522 (identical to _i1493199) is ignored but added at the end
+NOTE: _i1664604 (identical to _i1660070) is ignored but added at the end
+NOTE: _i1787426 (identical to _i1783584) is ignored but added at the end
+NOTE: _i1848997 (identical to _i1848995) is ignored but added at the end
+NOTE: _i1866227 (identical to _i1854106) is ignored but added at the end
+Alignment was printed to ./IqOut//result.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to ./IqOut//result.uniqueseq.phy
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.996 seconds
+Generating 1000 samples for ultrafast bootstrap (seed: 574647)...
+
+NOTE: 478 MB RAM (0 GB) is required!
+Measuring multi-threading efficiency up to 28 CPU cores
+Increase to 10 rounds for branch lengths
+5 trees examined
+Threads: 1 / Time: 30.007 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -1174812
+Threads: 2 / Time: 18.569 sec / Speedup: 1.616 / Efficiency: 81% / LogL: -1174812
+Threads: 3 / Time: 16.135 sec / Speedup: 1.860 / Efficiency: 62% / LogL: -1174812
+Threads: 4 / Time: 13.351 sec / Speedup: 2.248 / Efficiency: 56% / LogL: -1174812
+Threads: 5 / Time: 11.812 sec / Speedup: 2.540 / Efficiency: 51% / LogL: -1174812
+Threads: 6 / Time: 10.721 sec / Speedup: 2.799 / Efficiency: 47% / LogL: -1174812
+Determining AUTO threadcount: done in 100.681 secs using 289.3% CPU
+BEST NUMBER OF THREADS: 5
+
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -395013.439
+2. Current log-likelihood: -391722.705
+3. Current log-likelihood: -391375.530
+4. Current log-likelihood: -391230.989
+5. Current log-likelihood: -391207.100
+6. Current log-likelihood: -391204.172
+7. Current log-likelihood: -391203.418
+8. Current log-likelihood: -391203.225
+Optimal log-likelihood: -391203.135
+Rate parameters:  A-C: 0.98708  A-G: 1.08339  A-T: 1.37892  C-G: 0.69993  C-T: 1.48210  G-T: 1.00000
+Base frequencies:  A: 0.213  C: 0.273  G: 0.332  T: 0.183
+Gamma shape alpha: 1.413
+Parameters optimization took 8 rounds (9.223 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 1.74721 secs using 499.7% CPU
+Computing ML distances took 1.757172 sec (of wall-clock time) 8.731165 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 0.0544381 secs using 180.8% CPU
+Constructing RapidNJ tree: done in 0.229236 secs using 197.7% CPU
+Computing RapidNJ tree took 0.283718 sec (of wall-clock time) 0.551678 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -395927.933
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 99.128 second
+Computing log-likelihood of 98 initial trees ... 26.357 seconds
+Current best score: -391203.135
+
+Do NNI search on 20 best initial trees
+Optimizing NNI: done in 14.531 secs using 499.3% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -390589.499
+Optimizing NNI: done in 52.9376 secs using 499% CPU
+Optimizing NNI: done in 52.5993 secs using 499% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 3: -390571.176
+Optimizing NNI: done in 51.4179 secs using 499.1% CPU
+Optimizing NNI: done in 50.4004 secs using 499% CPU
+Optimizing NNI: done in 50.4657 secs using 499.1% CPU
+Optimizing NNI: done in 50.2515 secs using 498.9% CPU
+Optimizing NNI: done in 50.9749 secs using 498.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 8: -390565.577
+Optimizing NNI: done in 48.8881 secs using 499.1% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 9: -390565.286
+Optimizing NNI: done in 50.5215 secs using 498.9% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 10: -390562.851
+Iteration 10 / LogL: -390562.851 / Time: 0h:12m:0s
+Optimizing NNI: done in 51.5391 secs using 499.1% CPU
+Optimizing NNI: done in 54.8278 secs using 498.9% CPU
+Optimizing NNI: done in 53.549 secs using 499% CPU
+Optimizing NNI: done in 52.7543 secs using 499% CPU
+Optimizing NNI: done in 54.4379 secs using 498.8% CPU
+Optimizing NNI: done in 53.402 secs using 498.8% CPU
+Optimizing NNI: done in 50.3876 secs using 499% CPU
+Optimizing NNI: done in 52.323 secs using 498.9% CPU
+Optimizing NNI: done in 50.1943 secs using 498.9% CPU
+Optimizing NNI: done in 52.4803 secs using 499% CPU
+Iteration 20 / LogL: -390627.314 / Time: 0h:20m:46s
+Finish initializing candidate tree set (20)
+Current best tree score: -390562.851 / CPU time: 1128.220
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Optimizing NNI: done in 13.1943 secs using 497% CPU
+Optimizing NNI: done in 9.00309 secs using 496.6% CPU
+Optimizing NNI: done in 9.96092 secs using 497% CPU
+Optimizing NNI: done in 14.9937 secs using 497.2% CPU
+Optimizing NNI: done in 20.1222 secs using 498% CPU
+Optimizing NNI: done in 7.76218 secs using 495.2% CPU
+Optimizing NNI: done in 7.83758 secs using 495.9% CPU
+Optimizing NNI: done in 9.2985 secs using 494.8% CPU
+Optimizing NNI: done in 8.26061 secs using 495.7% CPU
+Optimizing NNI: done in 8.01672 secs using 496.2% CPU
+Iteration 30 / LogL: -390726.171 / Time: 0h:22m:38s (1h:2m:23s left)
+Optimizing NNI: done in 7.62579 secs using 495.3% CPU
+Optimizing NNI: done in 24.2581 secs using 498.4% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 32: -390542.299
+Optimizing NNI: done in 18.1386 secs using 498% CPU
+Optimizing NNI: done in 14.8604 secs using 497.2% CPU
+Optimizing NNI: done in 20.9469 secs using 498.1% CPU
+Optimizing NNI: done in 24.9965 secs using 498.3% CPU
+Optimizing NNI: done in 6.21665 secs using 493.4% CPU
+Optimizing NNI: done in 19.0392 secs using 498.5% CPU
+Optimizing NNI: done in 15.5745 secs using 497.5% CPU
+Optimizing NNI: done in 15.1457 secs using 497.5% CPU
+Iteration 40 / LogL: -390624.961 / Time: 0h:25m:28s (1h:0m:3s left)
+Optimizing NNI: done in 19.2943 secs using 498.2% CPU
+Optimizing NNI: done in 7.25397 secs using 495.8% CPU
+Optimizing NNI: done in 20.3224 secs using 498.2% CPU
+Optimizing NNI: done in 22.2745 secs using 498.6% CPU
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 44: -390514.093
+Optimizing NNI: done in 21.7458 secs using 498.3% CPU
+Optimizing NNI: done in 8.92456 secs using 495.4% CPU
+Optimizing NNI: done in 16.9586 secs using 498% CPU
+Optimizing NNI: done in 12.562 secs using 496.7% CPU
+Optimizing NNI: done in 18.0709 secs using 497.7% CPU
+Optimizing NNI: done in 14.5353 secs using 497.9% CPU
+Iteration 50 / LogL: -390674.182 / Time: 0h:28m:14s (0h:54m:7s left)
+Log-likelihood cutoff on original alignment: -390714.892
+Optimizing NNI: done in 24.7911 secs using 498.1% CPU
+Optimizing NNI: done in 8.68075 secs using 494.4% CPU
+Optimizing NNI: done in 12.3631 secs using 496% CPU
+Optimizing NNI: done in 17.7616 secs using 497.1% CPU
+Optimizing NNI: done in 23.6541 secs using 497.8% CPU
+Optimizing NNI: done in 8.39805 secs using 494.8% CPU
+Optimizing NNI: done in 19.2607 secs using 497.7% CPU
+Optimizing NNI: done in 35.6122 secs using 496.8% CPU
+Optimizing NNI: done in 61.2994 secs using 497.4% CPU
+Optimizing NNI: done in 39.2622 secs using 496.6% CPU
+Iteration 60 / LogL: -390536.407 / Time: 0h:32m:35s (0h:46m:23s left)
+Optimizing NNI: done in 16.7479 secs using 497% CPU
+Optimizing NNI: done in 9.0531 secs using 494.7% CPU
+Optimizing NNI: done in 16.1975 secs using 497.3% CPU
+Optimizing NNI: done in 9.27832 secs using 495.6% CPU
+Optimizing NNI: done in 23.6676 secs using 498.1% CPU
+Optimizing NNI: done in 8.97095 secs using 495.1% CPU
+Optimizing NNI: done in 20.9366 secs using 497.7% CPU
+Optimizing NNI: done in 25.8721 secs using 498.1% CPU
+Optimizing NNI: done in 18.0353 secs using 497.6% CPU
+Optimizing NNI: done in 19.3308 secs using 497.4% CPU
+Iteration 70 / LogL: -390536.789 / Time: 0h:35m:27s (0h:38m:0s left)
+Optimizing NNI: done in 8.48727 secs using 494.7% CPU
+Optimizing NNI: done in 22.8198 secs using 497.8% CPU
+Optimizing NNI: done in 26.1626 secs using 498.1% CPU
+Optimizing NNI: done in 7.86777 secs using 494.7% CPU
+Optimizing NNI: done in 17.6457 secs using 497.1% CPU
+Optimizing NNI: done in 7.93855 secs using 493.5% CPU
+Optimizing NNI: done in 14.9502 secs using 496.5% CPU
+Optimizing NNI: done in 19.6384 secs using 497.3% CPU
+Optimizing NNI: done in 8.68056 secs using 494.4% CPU
+Optimizing NNI: done in 20.4684 secs using 497.6% CPU
+Iteration 80 / LogL: -390626.856 / Time: 0h:38m:5s (0h:30m:50s left)
+Optimizing NNI: done in 13.0382 secs using 496.2% CPU
+Optimizing NNI: done in 7.93966 secs using 494.2% CPU
+Optimizing NNI: done in 8.01845 secs using 493.9% CPU
+Optimizing NNI: done in 8.69898 secs using 493.7% CPU
+Optimizing NNI: done in 10.0965 secs using 494.4% CPU
+Optimizing NNI: done in 24.925 secs using 498% CPU
+Optimizing NNI: done in 26.0507 secs using 497.9% CPU
+Optimizing NNI: done in 18.7251 secs using 497.5% CPU
+Optimizing NNI: done in 18.1009 secs using 497.5% CPU
+Optimizing NNI: done in 18.9732 secs using 497.6% CPU
+Iteration 90 / LogL: -390618.662 / Time: 0h:40m:43s (0h:24m:41s left)
+Optimizing NNI: done in 7.38499 secs using 493.5% CPU
+Optimizing NNI: done in 12.2901 secs using 496.2% CPU
+Optimizing NNI: done in 20.8408 secs using 497.4% CPU
+Optimizing NNI: done in 16.4023 secs using 497.3% CPU
+Optimizing NNI: done in 8.64406 secs using 494.3% CPU
+Optimizing NNI: done in 16.5633 secs using 496.5% CPU
+Optimizing NNI: done in 7.56238 secs using 494.2% CPU
+Optimizing NNI: done in 22.7095 secs using 497.9% CPU
+Optimizing NNI: done in 8.26755 secs using 494.1% CPU
+Optimizing NNI: done in 8.34252 secs using 493.7% CPU
+Iteration 100 / LogL: -390915.670 / Time: 0h:42m:55s (0h:19m:4s left)
+Log-likelihood cutoff on original alignment: -390714.892
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.994
+Optimizing NNI: done in 13.7655 secs using 494.8% CPU
+Optimizing NNI: done in 18.8347 secs using 496.5% CPU
+Optimizing NNI: done in 24.3167 secs using 497.3% CPU
+Optimizing NNI: done in 9.5573 secs using 493.1% CPU
+Optimizing NNI: done in 11.7754 secs using 494.1% CPU
+Optimizing NNI: done in 17.0723 secs using 496.3% CPU
+Optimizing NNI: done in 8.82641 secs using 493.1% CPU
+Optimizing NNI: done in 21.7284 secs using 496.7% CPU
+Optimizing NNI: done in 14.717 secs using 496.1% CPU
+Optimizing NNI: done in 20.5845 secs using 496.3% CPU
+Iteration 110 / LogL: -390541.553 / Time: 0h:45m:46s (0h:37m:47s left)
+Optimizing NNI: done in 24.9904 secs using 497.2% CPU
+Optimizing NNI: done in 8.805 secs using 492.1% CPU
+Optimizing NNI: done in 9.03517 secs using 493.4% CPU
+Optimizing NNI: done in 19.414 secs using 497% CPU
+Optimizing NNI: done in 21.3165 secs using 496.8% CPU
+Optimizing NNI: done in 12.2974 secs using 494.5% CPU
+Optimizing NNI: done in 17.4524 secs using 496.6% CPU
+Optimizing NNI: done in 15.8669 secs using 496.7% CPU
+Optimizing NNI: done in 21.303 secs using 497.1% CPU
+Optimizing NNI: done in 10.6523 secs using 493.2% CPU
+Iteration 120 / LogL: -390719.884 / Time: 0h:48m:31s (0h:32m:36s left)
+Optimizing NNI: done in 8.54106 secs using 492.5% CPU
+Optimizing NNI: done in 22.4148 secs using 496.8% CPU
+Optimizing NNI: done in 9.31693 secs using 493.2% CPU
+Optimizing NNI: done in 20.9153 secs using 496.6% CPU
+Optimizing NNI: done in 6.37975 secs using 491.1% CPU
+Optimizing NNI: done in 16.6149 secs using 496.5% CPU
+Optimizing NNI: done in 20.0571 secs using 496.9% CPU
+Optimizing NNI: done in 19.18 secs using 496.4% CPU
+Optimizing NNI: done in 8.00623 secs using 492.1% CPU
+Optimizing NNI: done in 11.5765 secs using 493.7% CPU
+Iteration 130 / LogL: -390711.826 / Time: 0h:50m:58s (0h:27m:38s left)
+Optimizing NNI: done in 15.2353 secs using 495.3% CPU
+Optimizing NNI: done in 17.5882 secs using 496% CPU
+Optimizing NNI: done in 8.45391 secs using 491.7% CPU
+Optimizing NNI: done in 8.21008 secs using 493.5% CPU
+Optimizing NNI: done in 9.46372 secs using 493.6% CPU
+Optimizing NNI: done in 18.4876 secs using 496.4% CPU
+Optimizing NNI: done in 9.75921 secs using 492.2% CPU
+Optimizing NNI: done in 9.43196 secs using 492.8% CPU
+Optimizing NNI: done in 22.9181 secs using 497.2% CPU
+Optimizing NNI: done in 24.0091 secs using 496.3% CPU
+Iteration 140 / LogL: -390622.977 / Time: 0h:53m:25s (0h:23m:3s left)
+Optimizing NNI: done in 26.0357 secs using 497.5% CPU
+Optimizing NNI: done in 13.1044 secs using 495.4% CPU
+Optimizing NNI: done in 23.3408 secs using 497% CPU
+Optimizing NNI: done in 21.5499 secs using 496.7% CPU
+Optimizing NNI: done in 10.1223 secs using 492.8% CPU
+TREE SEARCH COMPLETED AFTER 145 ITERATIONS / Time: 0h:55m:1s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -390514.093
+Optimal log-likelihood: -390514.091
+Rate parameters:  A-C: 0.98425  A-G: 1.08064  A-T: 1.37718  C-G: 0.70003  C-T: 1.48707  G-T: 1.00000
+Base frequencies:  A: 0.213  C: 0.273  G: 0.332  T: 0.183
+Gamma shape alpha: 1.415
+Parameters optimization took 1 rounds (0.808 sec)
+BEST SCORE FOUND : -390514.091
+Creating bootstrap support values...
+Split supports printed to NEXUS file ./IqOut//result.splits.nex
+Total tree length: 70.047
+
+Total number of iterations: 145
+CPU time used for tree search: 15231.459 sec (4h:13m:51s)
+Wall-clock time used for tree search: 3182.849 sec (0h:53m:2s)
+Total CPU time used: 15614.094 sec (4h:20m:14s)
+Total wall-clock time used: 3308.583 sec (0h:55m:8s)
+
+Computing bootstrap consensus tree...
+Reading input file ./IqOut//result.splits.nex...
+2033 taxa and 5627 splits.
+Consensus tree written to ./IqOut//result.contree
+Reading input trees file ./IqOut//result.contree
+Log-likelihood of consensus tree: -390514.898
+
+Analysis results written to: 
+  IQ-TREE report:                ./IqOut//result.iqtree
+  Maximum-likelihood tree:       ./IqOut//result.treefile
+  Likelihood distances:          ./IqOut//result.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          ./IqOut//result.splits.nex
+  Consensus tree:                ./IqOut//result.contree
+  Screen log file:               ./IqOut//result.log
+
+Date and Time: Thu Jun  5 11:48:03 2025
+======================
+======================
+TreeDist:
+
+Phylogenetic tree with 2033 tips and 2031 internal nodes.
+
+Tip labels:
+  _i1, _i1951891, _i1952055, _i1952056, _i1956748, _i1956749, ...
+
+Unrooted; includes branch length(s).
+
+Phylogenetic tree with 2047 tips and 2045 internal nodes.
+
+Tip labels:
+  _i1, 62169, 518244, 441173, 445819, 610974, ...
+
+Unrooted; includes branch length(s).
+[1] "package:TreeDist"
+[1] 3678
+[1] "double"
+RF distance: 3678 

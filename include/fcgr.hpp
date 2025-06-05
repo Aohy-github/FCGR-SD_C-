@@ -17,4 +17,7 @@ class FCGR{
         static std::pair<int, int> kmerToIndex(const std::string& kmer , const int& k);
         static int baseToInt(char base);
 };
+
+
+
 #endif

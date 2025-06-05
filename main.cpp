@@ -16,12 +16,14 @@ int main(int argc , char *argv[])
     std::string filename;
     int kmerSize = 6;
     int N_thread = 1;
+    double SVD_P = 0.0;
     po::options_description desc("选项:");
     desc.add_options()
 
     ("help,h", "显示帮助信息")
     ("input,i", po::value<std::string>(&filename)->required(), "输入 FASTA 文件路径")
     ("kmerSizem,k", po::value<int>(&kmerSize)->default_value(6), "kmer大小")
+    ("SVD_P,p", po::value<double>(&SVD_P)->default_value(0.75), "kmer大小")
     ("thread,t", po::value<int>(&N_thread)->default_value(1), "线程数量");
 
     po::variables_map vm;
@@ -52,29 +54,49 @@ int main(int argc , char *argv[])
     
     std::vector<std::future<Eigen::MatrixXd>> res_fcgr_list;
     std::vector<std::future<Eigen::MatrixXd>> res_SVD_list;
+
+    struct Com_fcgr_task{
+        FCGR fcgr;
+        std::string content;
+        int kmerSize;
+
+        Eigen::MatrixXd operator()() const{
+            return fcgr.computeMatrix(content, kmerSize);
+        }
+    };
+    struct Com_SVD_task{
+        FCGR fcgr;
+        Eigen::MatrixXd matrix;
+        double P;
+
+        Eigen::MatrixXd  operator()() const{
+            return fcgr.computerSVD(matrix , P);
+        }
+    };
     // 计算FCGR矩阵
     for (auto& seq : seqs) {
-        if(seq.getSeqContent().size()){
-             std::future<Eigen::MatrixXd> res_fcgr = threadPool.enqueue([&fcgr, &seq, kmerSize]() {
-            //std::cout << "Thread ID: " << std::this_thread::get_id() << std::endl;
-                return fcgr.computeMatrix(seq.getSeqContent(), kmerSize);
-            });
-            
-            res_fcgr_list.emplace_back(std::move(res_fcgr));
-        }
+        Com_fcgr_task task{fcgr , seq.getSeqContent() , kmerSize};
+        std::future<Eigen::MatrixXd> res_fcgr = threadPool.enqueue(task);
+        
+        res_fcgr_list.emplace_back(std::move(res_fcgr));
+        
     }
+    if (res_fcgr_list.size() != seqs.size()) {
+        std::cerr << "Mismatch in task enqueuing, program may hang!" << std::endl;
+        exit(0);
+    }
+
     for (size_t i = 0; i < res_fcgr_list.size(); ++i) {
         seqs[i].setMatrix(res_fcgr_list[i].get());
     }
+    
     int count_temp = 0;
     std::cout << "seqs.size() :" << seqs.size() << std::endl;
     for(auto& one: seqs){
         Eigen::MatrixXd matrix = one.getMatrix();
-        auto res_SVD = threadPool.enqueue([&fcgr , matrix](){
-            return fcgr.computerSVD(matrix , 0.75);
-        });
+        Com_SVD_task task{fcgr , matrix , SVD_P};
+        auto res_SVD = threadPool.enqueue(task);
         res_SVD_list.emplace_back(std::move(res_SVD));
-        std::cout << " count_temp :" << count_temp++ << std::endl;
     }
 
     std::cout << "计算完成\n";

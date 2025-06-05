@@ -2,6 +2,7 @@
 #include <cmath>
 #include <random>
 #include <iostream>
+#include "spdlog/spdlog.h"
 FCGR::FCGR() {
     std::cout << "FCGR constructor called" << std::endl;
 }
@@ -104,7 +105,7 @@ std::pair<int, int> FCGR::kmerToIndex(const std::string& kmer , const int& k) {
 
 
 Eigen::MatrixXd FCGR::computerSVD(Eigen::MatrixXd Matrix, double P){
-     // Eigen 使用 JacobiSVD 分解：M = U * S * V^T
+    //spdlog::info("=== start new ComSVD === ");
     Eigen::JacobiSVD<Eigen::MatrixXd> svd(Matrix, Eigen::ComputeThinU | Eigen::ComputeThinV);
     
     const auto& S = svd.singularValues();   // 奇异值 σ1, σ2, ..., σn
@@ -121,12 +122,13 @@ Eigen::MatrixXd FCGR::computerSVD(Eigen::MatrixXd Matrix, double P){
         if (acc / total >= P) break;
     }
     r += 1;  // 因为索引从0开始，实际需要 r+1 列
-    
+
     if (r > U.cols()) {
         std::cerr << "Error: r exceeds the number of columns in U." << std::endl;
         exit(EXIT_FAILURE);
         // return Eigen::MatrixXd(); // 错误处理
     }
+    //spdlog::info("=== End new ComSVD === ");
     return U.leftCols(r);
 }
 

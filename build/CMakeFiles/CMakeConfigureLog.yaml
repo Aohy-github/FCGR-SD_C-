@@ -694,3 +694,39 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/local/share/cmake-3.30/Modules/CheckSymbolExists.cmake:154 (try_compile)"
+      - "/usr/local/share/cmake-3.30/Modules/CheckSymbolExists.cmake:66 (__CHECK_SYMBOL_EXISTS_IMPL)"
+      - "lib/spdlog/CMakeLists.txt:250 (check_symbol_exists)"
+    checks:
+      - "Looking for fwrite_unlocked"
+    directories:
+      source: "/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/CMakeScratch/TryCompile-O0GR5O"
+      binary: "/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/CMakeScratch/TryCompile-O0GR5O"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "HAVE_FWRITE_UNLOCKED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/CMakeScratch/TryCompile-O0GR5O'
+        
+        Run Build Command(s): /usr/local/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_e870b/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_e870b.dir/build.make CMakeFiles/cmTC_e870b.dir/build
+        make[1]: 进入目录“/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/CMakeScratch/TryCompile-O0GR5O”
+        Building C object CMakeFiles/cmTC_e870b.dir/CheckSymbolExists.c.o
+        /usr/bin/cc    -o CMakeFiles/cmTC_e870b.dir/CheckSymbolExists.c.o -c /home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/CMakeScratch/TryCompile-O0GR5O/CheckSymbolExists.c
+        Linking C executable cmTC_e870b
+        /usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e870b.dir/link.txt --verbose=1
+        /usr/bin/cc CMakeFiles/cmTC_e870b.dir/CheckSymbolExists.c.o -o cmTC_e870b
+        make[1]: 离开目录“/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/CMakeScratch/TryCompile-O0GR5O”
+        
+      exitCode: 0
+...

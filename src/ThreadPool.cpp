@@ -11,8 +11,8 @@ ThreadPool::ThreadPool(size_t n): stop(false){
                         return this->stop || !this->Tasks.empty();
                     });
                     if(this->stop && this->Tasks.empty()) return;
-                    taks = std::move(Tasks.front());
-                    Tasks.pop();
+                    taks = std::move(this->Tasks.front());
+                    this->Tasks.pop();
                 }
                 taks();
             }

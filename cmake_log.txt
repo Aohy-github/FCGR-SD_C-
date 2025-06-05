@@ -5,6 +5,8 @@ CMake Warning (dev) at CMakeLists.txt:16 (find_package):
 
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
+-- Build spdlog: 1.15.0
+-- Build type: Release
 -- Configuring done (0.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/aohy/AohyFile/GLS_cluster/build

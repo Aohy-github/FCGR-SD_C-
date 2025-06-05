@@ -141,6 +141,7 @@ GLS: CMakeFiles/GLS.dir/src/fcgr.cpp.o
 GLS: CMakeFiles/GLS.dir/src/ThreadPool.cpp.o
 GLS: CMakeFiles/GLS.dir/build.make
 GLS: /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0
+GLS: lib/spdlog/libspdlog.a
 GLS: CMakeFiles/GLS.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable GLS"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLS.dir/link.txt --verbose=$(VERBOSE)

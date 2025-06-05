@@ -1,0 +1,6 @@
+输入文件: ./data/steps-1024_0.fasta
+FCGR constructor called
+N_thread : 20
+seqs.size() :2047
+计算完成
+Tree file is ok: out.tree

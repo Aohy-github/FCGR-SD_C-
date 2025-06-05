@@ -129,6 +129,19 @@ GLS/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/GLS.dir/build.make CMakeFiles/GLS.dir/build
 .PHONY : GLS/fast
 
+#=============================================================================
+# Target rules for targets named spdlog
+
+# Build rule for target.
+spdlog: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 spdlog
+.PHONY : spdlog
+
+# fast build rule for target.
+spdlog/fast:
+	$(MAKE) $(MAKESILENT) -f lib/spdlog/CMakeFiles/spdlog.dir/build.make lib/spdlog/CMakeFiles/spdlog.dir/build
+.PHONY : spdlog/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -234,6 +247,7 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... GLS"
+	@echo "... spdlog"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
