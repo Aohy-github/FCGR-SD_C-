@@ -1,6 +1,0 @@
-/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/GLS.dir
-/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/edit_cache.dir
-/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles/rebuild_cache.dir
-/home/aohy/AohyFile/GLS_cluster/build/lib/spdlog/CMakeFiles/spdlog.dir
-/home/aohy/AohyFile/GLS_cluster/build/lib/spdlog/CMakeFiles/edit_cache.dir
-/home/aohy/AohyFile/GLS_cluster/build/lib/spdlog/CMakeFiles/rebuild_cache.dir
