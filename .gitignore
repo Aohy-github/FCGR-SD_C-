@@ -5,4 +5,4 @@ cmake-build-debug
 build_log.txt
 cmake_log.txt
 log.txt
-
+.idea
