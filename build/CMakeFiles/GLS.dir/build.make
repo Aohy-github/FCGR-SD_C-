@@ -73,49 +73,64 @@ CMakeFiles/GLS.dir/main.cpp.o: CMakeFiles/GLS.dir/flags.make
 CMakeFiles/GLS.dir/main.cpp.o: /home/aohy/AohyFile/GLS_cluster/main.cpp
 CMakeFiles/GLS.dir/main.cpp.o: CMakeFiles/GLS.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/GLS.dir/main.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GLS.dir/main.cpp.o -MF CMakeFiles/GLS.dir/main.cpp.o.d -o CMakeFiles/GLS.dir/main.cpp.o -c /home/aohy/AohyFile/GLS_cluster/main.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GLS.dir/main.cpp.o -MF CMakeFiles/GLS.dir/main.cpp.o.d -o CMakeFiles/GLS.dir/main.cpp.o -c /home/aohy/AohyFile/GLS_cluster/main.cpp
 
 CMakeFiles/GLS.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GLS.dir/main.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aohy/AohyFile/GLS_cluster/main.cpp > CMakeFiles/GLS.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aohy/AohyFile/GLS_cluster/main.cpp > CMakeFiles/GLS.dir/main.cpp.i
 
 CMakeFiles/GLS.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GLS.dir/main.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aohy/AohyFile/GLS_cluster/main.cpp -o CMakeFiles/GLS.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aohy/AohyFile/GLS_cluster/main.cpp -o CMakeFiles/GLS.dir/main.cpp.s
 
 CMakeFiles/GLS.dir/src/readSeq.cpp.o: CMakeFiles/GLS.dir/flags.make
 CMakeFiles/GLS.dir/src/readSeq.cpp.o: /home/aohy/AohyFile/GLS_cluster/src/readSeq.cpp
 CMakeFiles/GLS.dir/src/readSeq.cpp.o: CMakeFiles/GLS.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GLS.dir/src/readSeq.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GLS.dir/src/readSeq.cpp.o -MF CMakeFiles/GLS.dir/src/readSeq.cpp.o.d -o CMakeFiles/GLS.dir/src/readSeq.cpp.o -c /home/aohy/AohyFile/GLS_cluster/src/readSeq.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GLS.dir/src/readSeq.cpp.o -MF CMakeFiles/GLS.dir/src/readSeq.cpp.o.d -o CMakeFiles/GLS.dir/src/readSeq.cpp.o -c /home/aohy/AohyFile/GLS_cluster/src/readSeq.cpp
 
 CMakeFiles/GLS.dir/src/readSeq.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GLS.dir/src/readSeq.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aohy/AohyFile/GLS_cluster/src/readSeq.cpp > CMakeFiles/GLS.dir/src/readSeq.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aohy/AohyFile/GLS_cluster/src/readSeq.cpp > CMakeFiles/GLS.dir/src/readSeq.cpp.i
 
 CMakeFiles/GLS.dir/src/readSeq.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GLS.dir/src/readSeq.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aohy/AohyFile/GLS_cluster/src/readSeq.cpp -o CMakeFiles/GLS.dir/src/readSeq.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aohy/AohyFile/GLS_cluster/src/readSeq.cpp -o CMakeFiles/GLS.dir/src/readSeq.cpp.s
 
 CMakeFiles/GLS.dir/src/fcgr.cpp.o: CMakeFiles/GLS.dir/flags.make
 CMakeFiles/GLS.dir/src/fcgr.cpp.o: /home/aohy/AohyFile/GLS_cluster/src/fcgr.cpp
 CMakeFiles/GLS.dir/src/fcgr.cpp.o: CMakeFiles/GLS.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/GLS.dir/src/fcgr.cpp.o"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GLS.dir/src/fcgr.cpp.o -MF CMakeFiles/GLS.dir/src/fcgr.cpp.o.d -o CMakeFiles/GLS.dir/src/fcgr.cpp.o -c /home/aohy/AohyFile/GLS_cluster/src/fcgr.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GLS.dir/src/fcgr.cpp.o -MF CMakeFiles/GLS.dir/src/fcgr.cpp.o.d -o CMakeFiles/GLS.dir/src/fcgr.cpp.o -c /home/aohy/AohyFile/GLS_cluster/src/fcgr.cpp
 
 CMakeFiles/GLS.dir/src/fcgr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GLS.dir/src/fcgr.cpp.i"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aohy/AohyFile/GLS_cluster/src/fcgr.cpp > CMakeFiles/GLS.dir/src/fcgr.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aohy/AohyFile/GLS_cluster/src/fcgr.cpp > CMakeFiles/GLS.dir/src/fcgr.cpp.i
 
 CMakeFiles/GLS.dir/src/fcgr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GLS.dir/src/fcgr.cpp.s"
-	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aohy/AohyFile/GLS_cluster/src/fcgr.cpp -o CMakeFiles/GLS.dir/src/fcgr.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aohy/AohyFile/GLS_cluster/src/fcgr.cpp -o CMakeFiles/GLS.dir/src/fcgr.cpp.s
+
+CMakeFiles/GLS.dir/src/ThreadPool.cpp.o: CMakeFiles/GLS.dir/flags.make
+CMakeFiles/GLS.dir/src/ThreadPool.cpp.o: /home/aohy/AohyFile/GLS_cluster/src/ThreadPool.cpp
+CMakeFiles/GLS.dir/src/ThreadPool.cpp.o: CMakeFiles/GLS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GLS.dir/src/ThreadPool.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GLS.dir/src/ThreadPool.cpp.o -MF CMakeFiles/GLS.dir/src/ThreadPool.cpp.o.d -o CMakeFiles/GLS.dir/src/ThreadPool.cpp.o -c /home/aohy/AohyFile/GLS_cluster/src/ThreadPool.cpp
+
+CMakeFiles/GLS.dir/src/ThreadPool.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GLS.dir/src/ThreadPool.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/aohy/AohyFile/GLS_cluster/src/ThreadPool.cpp > CMakeFiles/GLS.dir/src/ThreadPool.cpp.i
+
+CMakeFiles/GLS.dir/src/ThreadPool.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GLS.dir/src/ThreadPool.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/aohy/AohyFile/GLS_cluster/src/ThreadPool.cpp -o CMakeFiles/GLS.dir/src/ThreadPool.cpp.s
 
 # Object files for target GLS
 GLS_OBJECTS = \
 "CMakeFiles/GLS.dir/main.cpp.o" \
 "CMakeFiles/GLS.dir/src/readSeq.cpp.o" \
-"CMakeFiles/GLS.dir/src/fcgr.cpp.o"
+"CMakeFiles/GLS.dir/src/fcgr.cpp.o" \
+"CMakeFiles/GLS.dir/src/ThreadPool.cpp.o"
 
 # External object files for target GLS
 GLS_EXTERNAL_OBJECTS =
@@ -123,10 +138,11 @@ GLS_EXTERNAL_OBJECTS =
 GLS: CMakeFiles/GLS.dir/main.cpp.o
 GLS: CMakeFiles/GLS.dir/src/readSeq.cpp.o
 GLS: CMakeFiles/GLS.dir/src/fcgr.cpp.o
+GLS: CMakeFiles/GLS.dir/src/ThreadPool.cpp.o
 GLS: CMakeFiles/GLS.dir/build.make
 GLS: /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0
 GLS: CMakeFiles/GLS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable GLS"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/aohy/AohyFile/GLS_cluster/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable GLS"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GLS.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

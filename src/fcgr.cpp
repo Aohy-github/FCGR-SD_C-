@@ -1,7 +1,7 @@
 #include "fcgr.hpp"
-#include <iostream>
 #include <cmath>
 #include <random>
+#include <iostream>
 FCGR::FCGR() {
     std::cout << "FCGR constructor called" << std::endl;
 }
@@ -70,7 +70,8 @@ char otherCharToATCG(char num) {
         // 默认处理其他字符
         default: {
             std::cerr << "Unknown character: " << char(num) << std::endl;
-            exit(EXIT_FAILURE);
+            return arr_ATCG[dis(gen)];
+            // exit(EXIT_FAILURE);
         }
     }
 }
@@ -120,11 +121,7 @@ Eigen::MatrixXd FCGR::computerSVD(Eigen::MatrixXd Matrix, double P){
         if (acc / total >= P) break;
     }
     r += 1;  // 因为索引从0开始，实际需要 r+1 列
-
-    // 提取前 r 列的 U 矩阵
-     // A_i = U[:,0:r]
-    std::cout << "rank: " << r << std::endl;
-    std::cout << "U: " << U.rows() << " " << U.cols() << std::endl;
+    
     if (r > U.cols()) {
         std::cerr << "Error: r exceeds the number of columns in U." << std::endl;
         exit(EXIT_FAILURE);

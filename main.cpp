@@ -9,18 +9,20 @@ namespace po = boost::program_options;
 #include "readSeq.hpp"
 #include "Seq.hpp"
 #include "fcgr.hpp"
-
+#include "ThreadPool.h"
 
 int main(int argc , char *argv[])
 {
     std::string filename;
     int kmerSize = 6;
+    int N_thread = 1;
     po::options_description desc("选项:");
     desc.add_options()
 
     ("help,h", "显示帮助信息")
     ("input,i", po::value<std::string>(&filename)->required(), "输入 FASTA 文件路径")
-    ("kmerSizem,k", po::value<int>(&kmerSize)->default_value(6), "kmer大小");
+    ("kmerSizem,k", po::value<int>(&kmerSize)->default_value(6), "kmer大小")
+    ("thread,t", po::value<int>(&N_thread)->default_value(1), "线程数量");
 
     po::variables_map vm;
     try {
@@ -42,30 +44,48 @@ int main(int argc , char *argv[])
     }
 
     std::cout << "输入文件: " << filename << "\n";
+    // 读取序列
     std::vector<Seq> seqs = get_sequence(filename, kmerSize);
     FCGR fcgr;
-    // for(int i =0 ; i < seqs.size(); i++) {
-    //     std::cout << "序列名称: " << seqs[i].getSeqName() << "\n";
-    //     std::cout << "序列内容: " << seqs[i].getSeqContent().size() << "\n";
-    // }
-
+    std::cout << "N_thread : " << N_thread << std::endl;
+    ThreadPool threadPool(N_thread);
+    
+    std::vector<std::future<Eigen::MatrixXd>> res_fcgr_list;
+    std::vector<std::future<Eigen::MatrixXd>> res_SVD_list;
     // 计算FCGR矩阵
     for (auto& seq : seqs) {
-        seq.setMatrix(fcgr.computeMatrix(seq.getSeqContent() , kmerSize));
-        
-        Eigen::MatrixXd matrix = seq.getMatrix();
-        
-        std::cout << "序列名称: " << seq.getSeqName() << "\n";
-        std::cout << "FCGR矩阵:\n" << matrix << "\n";
-        
-        Eigen::MatrixXd rankMatrix = seq.getRankMatrix();
-        seq.setrankMatrix(fcgr.computerSVD(seq.getMatrix()));
-        std::cout << "秩矩阵:\n" << rankMatrix << "\n";
+        if(seq.getSeqContent().size()){
+             std::future<Eigen::MatrixXd> res_fcgr = threadPool.enqueue([&fcgr, &seq, kmerSize]() {
+            //std::cout << "Thread ID: " << std::this_thread::get_id() << std::endl;
+                return fcgr.computeMatrix(seq.getSeqContent(), kmerSize);
+            });
+            
+            res_fcgr_list.emplace_back(std::move(res_fcgr));
+        }
     }
+    for (size_t i = 0; i < res_fcgr_list.size(); ++i) {
+        seqs[i].setMatrix(res_fcgr_list[i].get());
+    }
+    int count_temp = 0;
+    std::cout << "seqs.size() :" << seqs.size() << std::endl;
+    for(auto& one: seqs){
+        Eigen::MatrixXd matrix = one.getMatrix();
+        auto res_SVD = threadPool.enqueue([&fcgr , matrix](){
+            return fcgr.computerSVD(matrix , 0.75);
+        });
+        res_SVD_list.emplace_back(std::move(res_SVD));
+        std::cout << " count_temp :" << count_temp++ << std::endl;
+    }
+
     std::cout << "计算完成\n";
+    for(size_t i = 0; i < res_SVD_list.size() ; i++){
+        seqs[i].setrankMatrix(res_SVD_list[i].get());
+    }
+
+    
     // 计算Grassmann距离
     int n = seqs.size();
-    std::cout << "序列数量: " << n << "\n";
+    //std::cout << "序列数量: " << n << "\n";
     Eigen::MatrixXd D = Eigen::MatrixXd::Zero(n, n);
     for(int i = 0 ; i < n; i++){
         for(int j = i + 1 ; j < n; j++){

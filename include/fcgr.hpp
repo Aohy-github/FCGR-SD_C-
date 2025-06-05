@@ -4,6 +4,7 @@
 #include <string>
 #include <unordered_map>
 #include <Eigen/Dense>
+#include <iostream>
 class FCGR{
     public :
         FCGR();

@@ -11,9 +11,10 @@ make -C build > build_log.txt 2>&1
 # ./data/Variola.fasta
 # data/sars2_similarity_70_1.fas
 # data/23s_rRNA.fasta
+# mt1x.fasta
+# steps-1024_0
 
-
-dataNmae="./data/23s_rRNA.fasta"
+dataNmae="./data/steps-1024_0.fasta"
 
 alignName="align.fasta"
 
@@ -22,28 +23,28 @@ echo "======================"
 
 echo " GLS: "
 
-time ./build/GLS -i ${dataNmae} -k 4 > log.txt
+/usr/bin/time -v ./build/GLS -i ${dataNmae} -k 6 -t 1 > log.txt
 
-echo "======================"
-echo "======================"
+# echo "======================"
+# echo "======================"
 
-echo " mafft: "
-time mafft --thread 16 ${dataNmae} > ${alignName}
+# echo " mafft: "
+# time mafft --thread 16 ${dataNmae} > ${alignName}
 
-echo "======================"
-echo "======================"
+# echo "======================"
+# echo "======================"
 
-outName="./IqOut/"
-echo " iqtree: "
-./iqtree-3.0.1-Linux-intel/bin/iqtree3 -s ./${alignName} -m GTR+G -B 1000 -T AUTO --prefix ${outName}/result
+# outName="./IqOut/"
+# echo " iqtree: "
+# ./iqtree-3.0.1-Linux-intel/bin/iqtree3 -s ./${alignName} -m GTR+G -B 1000 -T AUTO --prefix ${outName}/result
 
 
-echo "======================"
-echo "======================"
+# echo "======================"
+# echo "======================"
 
-outName="./IqOut/"
+# outName="./IqOut/"
 
-echo " TreeDist: "
-Rscript compare_rf.R ${outName}/result.bionj ./out.tree 
-rm -r ${outName}/*
+# echo " TreeDist: "
+# Rscript compare_rf.R ${outName}/result.bionj ./out.tree 
+# rm -r ${outName}/*
 

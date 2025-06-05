@@ -1,1 +1,1 @@
-/usr/bin/g++ -g -O0 CMakeFiles/GLS.dir/main.cpp.o CMakeFiles/GLS.dir/src/readSeq.cpp.o CMakeFiles/GLS.dir/src/fcgr.cpp.o -o GLS  /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0
+/usr/bin/c++ CMakeFiles/GLS.dir/main.cpp.o CMakeFiles/GLS.dir/src/readSeq.cpp.o CMakeFiles/GLS.dir/src/fcgr.cpp.o CMakeFiles/GLS.dir/src/ThreadPool.cpp.o -o GLS  /usr/lib/x86_64-linux-gnu/libboost_program_options.so.1.71.0 -lpthread
